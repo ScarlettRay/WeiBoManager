@@ -9,7 +9,7 @@ import xyz.iamray.weibomanger.common.R;
  */
 public interface API<T,E> {
 
-    R<T> exe(E param);
+    R<T> exe(E param, Context context);
 
     /*
     //登录

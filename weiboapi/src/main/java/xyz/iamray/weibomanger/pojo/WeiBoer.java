@@ -17,9 +17,11 @@ public class WeiBoer {
 
     private boolean needVerify;
 
-    private String captchaUrl;
+    private String captchaUrl;//验证码链接
 
     private String uid;
+
+    private String gid;//分组
 
     /**
      * 设置微博登录信息

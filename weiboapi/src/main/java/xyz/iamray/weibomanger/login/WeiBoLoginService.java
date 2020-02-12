@@ -14,6 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import xyz.iamray.core.HttpConstant;
 import xyz.iamray.core.SpiderConstant;
 import xyz.iamray.link.http.HttpClientTool;
+import xyz.iamray.repo.NormalCrawlMes;
 import xyz.iamray.weibomanger.common.exception.WbException;
 import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
 
@@ -59,7 +60,7 @@ public class WeiBoLoginService {
         this.weiBoLoginMes = weiBoLoginMes;
         weiBoLoginMes.setSu(Base64.getEncoder().encodeToString(URLEncoder.encode(username,CHARSET_UTF8).getBytes(CHARSET_UTF8)));
         String  jsonStr =  HttpClientTool.get(AutoWeiBoSpiderConstant.WEIBO_PRELOGINURL.replace("{}",weiBoLoginMes.getSu()),
-                SpiderConstant.DefaultHeader,weiBoLoginMes.getWeiboHttpClient(),String.class);
+                SpiderConstant.DefaultHeader,new NormalCrawlMes(),weiBoLoginMes.getWeiboHttpClient(),String.class);
         Matcher m = prejsonstr.matcher(jsonStr);
         JSONObject jsonObject = null;
         if(m.find()){
@@ -125,9 +126,8 @@ public class WeiBoLoginService {
             keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
             return keyFactory.generatePublic(rsaPubKS);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new WbException(e);
         }
-        return null;
     }
 
 

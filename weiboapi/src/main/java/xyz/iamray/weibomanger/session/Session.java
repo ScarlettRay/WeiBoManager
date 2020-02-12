@@ -17,6 +17,10 @@ import java.util.List;
 @Data
 public class Session {
 
+    Session(WeiBoer weiBoer){
+        this.weiBoer = weiBoer;
+    }
+
     private CloseableHttpClient weiboHttpClient;
 
     private WeiBoer weiBoer;
@@ -26,6 +30,7 @@ public class Session {
     private List tasks;
 
     /**
+     * TODO
      * 退出会话
      * @param force 为true时，强制退出，将tasks里面的任务退出，将SessionManger里面的session删除
      */

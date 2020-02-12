@@ -16,8 +16,14 @@ public class R<T> {
 
     private String description;//描述
 
-    public R(T obj){
+    public R(T obj,Status status){
         this.re = obj;
+        this.status = status;
+    }
+
+
+    public static <T> R<T> ok(T obj){
+        return new R(obj,Status.OK);
     }
 
     public T getRe(){

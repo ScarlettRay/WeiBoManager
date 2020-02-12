@@ -1,6 +1,7 @@
 package xyz.iamray.weibomanger.session;
 
 import xyz.iamray.weibomanger.common.exception.WbException;
+import xyz.iamray.weibomanger.pojo.WeiBoer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +23,9 @@ public class SessionManger {
      */
     private Map<String,Session> sessions = new HashMap<>();
 
-    public static void setSession(String uid,Session session){
-        DEFAULT_SESSION_MANGER.sessions.put(uid,session);
+    public static void createAndStoreSession(WeiBoer weiBoer){
+        Session session = new Session(weiBoer);
+        DEFAULT_SESSION_MANGER.sessions.put(weiBoer.getUid(),session);
     }
 
     public static boolean hasSession(String uid){
