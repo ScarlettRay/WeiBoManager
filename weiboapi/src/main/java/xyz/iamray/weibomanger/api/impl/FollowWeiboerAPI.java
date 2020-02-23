@@ -9,7 +9,7 @@ import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.constant.Constant;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
-import xyz.iamray.weibomanger.spider.action.AddFollowingToGroupAction;
+import xyz.iamray.weibomanger.spider.action.FollowWeiBoerAction;
 import xyz.iamray.weibomanger.utils.PostBodyBuildUtil;
 
 import java.util.Map;
@@ -17,22 +17,24 @@ import java.util.Map;
 /**
  * @author winray
  * @since v1.0.1
- * 将用户加入指定分组
+ * 关注微博api,
+ * 此接口必须有自定义的线程池
  */
-public class AddFollowingToGroupAPI implements API<WeiBoer,WeiBoer> {
+public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
 
     @Override
     public APINumber getNumber() {
-        return APINumber.ADDFOLLOWINGTOGROUPAPI;
+        return APINumber.FOLLOWWEIBOERAPI;
     }
 
     @Override
     public R<WeiBoer> exe(WeiBoer weiBoer, Context context) {
-        Map<String,String> postBody = PostBodyBuildUtil.buildGroupAddParam(weiBoer.getGid(),weiBoer.getUid());
-        Result<WeiBoer> re = PostSpider.make().defaultThreadPool().
-                setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(AutoWeiBoSpiderConstant.UpdateGroup_URL+System.currentTimeMillis(),
-                        postBody, AddFollowingToGroupAction.INSTANCE, context.getHttpClient())
+        String url = AutoWeiBoSpiderConstant.Followed_URL+System.currentTimeMillis();
+        Map<String,String> postBody = PostBodyBuildUtil.buildFollowedParam(weiBoer.getUid());
+        PostSpider spider = PostSpider.make();
+        spider.setCumstomizeExecutorService(context.getExecutorService());
+        Result<WeiBoer> re = spider.setRequestHeader(Constant.COMMON_HEADER)
+                .setStarterConfiger(url,postBody, FollowWeiBoerAction.INSTANCE,context.getHttpClient())
                 .start();
         return R.ok(re.getObj());
     }

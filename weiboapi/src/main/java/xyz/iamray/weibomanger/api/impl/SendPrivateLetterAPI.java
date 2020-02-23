@@ -3,6 +3,7 @@ package xyz.iamray.weibomanger.api.impl;
 import xyz.iamray.core.PostSpider;
 import xyz.iamray.link.Result;
 import xyz.iamray.weibomanger.api.API;
+import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
@@ -19,6 +20,11 @@ import java.util.Map;
  * 私信api
  */
 public class SendPrivateLetterAPI implements API<PrivateLetter,PrivateLetter> {
+
+    @Override
+    public APINumber getNumber() {
+        return APINumber.SENDPRIVATELETTERAPI;
+    }
 
     @Override
     public R<PrivateLetter> exe(PrivateLetter letter, Context context) {

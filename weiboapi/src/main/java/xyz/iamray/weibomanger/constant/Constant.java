@@ -18,5 +18,6 @@ public class Constant {
     static {
         COMMON_HEADER.put(HttpConstant.Header.USER_AGENT, SpiderConstant.ChromeUserAgent);
         COMMON_HEADER.put(HttpConstant.Header.REFERER, AutoWeiBoSpiderConstant.MyWeiBO_ProFile);
+
     }
 }

@@ -3,6 +3,7 @@ package xyz.iamray.weibomanger.api.impl;
 import xyz.iamray.core.PostSpider;
 import xyz.iamray.link.Result;
 import xyz.iamray.weibomanger.api.API;
+import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
@@ -18,6 +19,11 @@ import java.util.Map;
  * @since v1.0.1
  */
 public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingGroup> {
+
+    @Override
+    public APINumber getNumber() {
+        return APINumber.CREATENEWFOLLOWINGGROUPAPI;
+    }
 
     @Override
     public R<FollowingGroup> exe(FollowingGroup group, Context context) {

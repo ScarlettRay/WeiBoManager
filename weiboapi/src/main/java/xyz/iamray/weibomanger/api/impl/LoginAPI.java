@@ -1,6 +1,7 @@
 package xyz.iamray.weibomanger.api.impl;
 
 import xyz.iamray.weibomanger.api.API;
+import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.login.LoginAssistant;
@@ -16,6 +17,12 @@ import xyz.iamray.weibomanger.session.SessionManger;
  */
 public class LoginAPI implements API<WeiBoer, WeiBoer>{
 
+
+    @Override
+    public APINumber getNumber() {
+        return APINumber.LOGINAPI;
+    }
+
     @Override
     public R<WeiBoer> exe(WeiBoer user, Context context){
         WeiBoLoginMes mes = LoginAssistant.login(user.getAccount(),user.getPassword());
@@ -23,6 +30,6 @@ public class LoginAPI implements API<WeiBoer, WeiBoer>{
         if(!SessionManger.hasSession(mes.getUid())){
             SessionManger.createAndStoreSession(user);
         }
-        return new R<>(user);
+        return R.ok(user);
     }
 }

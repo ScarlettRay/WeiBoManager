@@ -1,6 +1,5 @@
 package xyz.iamray.weibomanger.session;
 
-import xyz.iamray.weibomanger.common.exception.WbException;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
 
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class SessionManger {
      */
     private Map<String,Session> sessions = new HashMap<>();
 
-    public static void createAndStoreSession(WeiBoer weiBoer){
+    public static synchronized void createAndStoreSession(WeiBoer weiBoer){
         Session session = new Session(weiBoer);
         DEFAULT_SESSION_MANGER.sessions.put(weiBoer.getUid(),session);
     }
@@ -31,10 +30,14 @@ public class SessionManger {
     public static boolean hasSession(String uid){
         if(DEFAULT_SESSION_MANGER.sessions.containsKey(uid)
                 && !DEFAULT_SESSION_MANGER.sessions.get(uid).isExpired()){
-            throw new WbException("此账号已存在会话，请先退出之前的会话。");
+            return true;
         }else{
             return false;
         }
+    }
+
+    public static Session getSession(String uid){
+        return DEFAULT_SESSION_MANGER.sessions.get(uid);
     }
 
 }

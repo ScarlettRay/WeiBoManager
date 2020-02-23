@@ -67,7 +67,7 @@ public class WeiBoLoginService {
             jsonObject = JSON.parseObject(m.group(0));
         }
         //检查是否需要验证码
-        if(jsonObject.getInteger("showpin") == 1){
+        if(jsonObject.getInteger("showpin") != null && jsonObject.getInteger("showpin") == 1){
             weiBoLoginMes.setNeedValid(true);
             weiBoLoginMes.setCodeURL(AutoWeiBoSpiderConstant.WEIBO_CODEURL.replace("{p}",jsonObject.getString("pcid")));
             weiBoLoginMes.setPreLoginJsonObject(jsonObject);
@@ -181,6 +181,7 @@ public class WeiBoLoginService {
             Matcher ma = uniqueidPattern.matcher(html);
             if(ma.find()){
                 weiBoLoginMes.setUid(ma.group(1));
+                weiBoLoginMes.setProfileUrl(AutoWeiBoSpiderConstant.WEIBO_WEB_URL.replace("{uid}",weiBoLoginMes.getUid()));
             }else{
                 weiBoLoginMes.setFailReason("WeiBoLoginService.lastLogin:"+html);
             }

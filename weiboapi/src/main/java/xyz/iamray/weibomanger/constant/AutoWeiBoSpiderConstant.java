@@ -27,7 +27,7 @@ public class AutoWeiBoSpiderConstant {
     public static final String WEIBO_URL = "https://m.weibo.cn/api/container/getIndex?type=uid&value={}&containerid=107603{}";
 
     //网页微博列表api
-    public static final String WEIBO_WEB_URL = "https://weibo.com/u/{}?profile_ftype=1&is_all=1#_0";
+    public static final String WEIBO_WEB_URL = "https://weibo.com/u/{uid}?profile_ftype=1&is_all=1#_0";
 
     public static final String WEIBO_WEB_URL_HOT = "https://weibo.com/u/{uid}?is_search=0&visible=0&is_hot=1&is_tag=0&profile_ftype=1&page=";
 
@@ -117,4 +117,14 @@ public class AutoWeiBoSpiderConstant {
     public static final String Message_URL = "https://weibo.com/messages";
 
     public static final String ADD_GROUP_URL = "https://weibo.com/aj/f/group/add?ajwvr=6&__rnd=";
+
+    /**
+     * 上传图片的URL POST
+     * 需要替换的是URL(weibo.com/u/uid)
+     * nick(用户名)
+     */
+    public static final String Img_UPLOAD_URL = "https://picupload.weibo.com/interface/pic_upload.php?mime=image%2Fjpeg&data=base64&url={url}&markpos=1&logo=1&nick={nick}&marks=0&app=miniblog&s=rdxt&pri=null&file_source=1&cb=https%3A%2F%2Fweibo.com%2Faj%2Fstatic%2Fupimgback.html%3F_wv%3D5%26callback%3DSTK_ijax_";
+
+    public static final String RPOFILE_URL_WITH_PAGE = "https://weibo.com/{uid}?is_all=1&is_tag=0&page={page}";
+
 }

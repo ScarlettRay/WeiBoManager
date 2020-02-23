@@ -23,6 +23,17 @@ public class WeiBoer {
 
     private String gid;//分组
 
+    private String nickName;//昵称
+
+    private String profileUrl;//主页URL
+
+    public WeiBoer(){}
+
+    public WeiBoer(String account,String password){
+        this.account = account;
+        this.password = password;
+    }
+
     /**
      * 设置微博登录信息
      * @param mes
