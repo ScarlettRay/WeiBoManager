@@ -24,31 +24,27 @@ public class APIManger {
 
     //注册系统自带的api
     static{
-        AddFollowingToGroupAPI addFollowingToGroupAPI = new AddFollowingToGroupAPI();
-        CrawlWeiBoAPI crawlWeiBoAPI = new CrawlWeiBoAPI();
-        CreateNewFollowingGroupAPI createNewFollowingGroupAPI = new CreateNewFollowingGroupAPI();
-        DeliverBlogAPI deliverBlogAPI = new DeliverBlogAPI();
-        FollowWeiboerAPI followWeiboerAPI = new FollowWeiboerAPI();
-        ForwardBlogAPI forwardBlogAPI = new ForwardBlogAPI();
-        GetHotCommentAPI getHotCommentAPI = new GetHotCommentAPI();
-        GetWeiBoersFromGroupChatAPI getWeiBoersFromGroupChatAPI = new GetWeiBoersFromGroupChatAPI();
-        LoginAPI loginAPI = new LoginAPI();
-        SendGroupMessageAPI sendGroupMessageAPI = new SendGroupMessageAPI();
-        SendPrivateLetterAPI sendPrivateLetterAPI = new SendPrivateLetterAPI();
-        UploadImageAPI uploadImageAPI = new UploadImageAPI();
+        register( new AddFollowingToGroupAPI());
+        register( new CrawlWeiBoAPI());
+        register( new CreateNewFollowingGroupAPI());
+        register( new DeliverBlogAPI());
+        register( new FollowWeiboerAPI());
+        register( new ForwardBlogAPI());
+        register( new GetHotCommentAPI());
+        register( new GetWeiBoersFromGroupChatAPI());
+        register( new LoginAPI());
+        register( new SendGroupMessageAPI());
+        register( new SendPrivateLetterAPI());
+        register( new UploadImageAPI());
 
-        API_MAP.put(addFollowingToGroupAPI.getNumber(), addFollowingToGroupAPI);
-        API_MAP.put(crawlWeiBoAPI.getNumber(), crawlWeiBoAPI);
-        API_MAP.put(createNewFollowingGroupAPI.getNumber(), createNewFollowingGroupAPI);
-        API_MAP.put(deliverBlogAPI.getNumber(), deliverBlogAPI);
-        API_MAP.put(followWeiboerAPI.getNumber(), followWeiboerAPI);
-        API_MAP.put(forwardBlogAPI.getNumber(), forwardBlogAPI);
-        API_MAP.put(getHotCommentAPI.getNumber(), getHotCommentAPI);
-        API_MAP.put(getWeiBoersFromGroupChatAPI.getNumber(), getWeiBoersFromGroupChatAPI);
-        API_MAP.put(loginAPI.getNumber(), loginAPI);
-        API_MAP.put(sendGroupMessageAPI.getNumber(), sendGroupMessageAPI);
-        API_MAP.put(sendPrivateLetterAPI.getNumber(), sendPrivateLetterAPI);
-        API_MAP.put(uploadImageAPI.getNumber(), uploadImageAPI);
+    }
+
+    public static boolean register(API api){
+        if(!API_MAP.containsKey(api.getNumber())){
+            API_MAP.put(api.getNumber(),api);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -58,14 +54,13 @@ public class APIManger {
     public static void register(String classPath)  {
         try {
             Class apiClass = APIManger.class.getClassLoader().loadClass(classPath);
-            API api = (API) apiClass.newInstance();
+            API api = (API) apiClass.getConstructor().newInstance();
             if(api.getNumber() == null || API_MAP.containsKey(api.getNumber())){
                 throw new WbException("API编码为空或者已被注册");
             }
             API_MAP.put(api.getNumber(),api);
         }catch (Exception e){
-            log.error(classPath + "注册失败：发生如下错误");
-            log.error(e.getMessage());
+            log.error(classPath + "注册失败：发生如下错误:" + e);
         }
     }
 
