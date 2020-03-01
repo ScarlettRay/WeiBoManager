@@ -1,6 +1,7 @@
 package xyz.iamray.weibomanger.common;
 
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import xyz.iamray.weibomanger.pojo.Blog;
 
 import java.io.UnsupportedEncodingException;
@@ -26,7 +27,7 @@ public enum PropCrawlAction {
     MID(){
         @Override
         public void crawl(Element el, Blog blog) {
-            blog.setSendTime(new Date(Long.parseLong(el.selectFirst("a[node-type=feed_list_item_date]").attr("date"))));
+            blog.setMid(el.attr("mid"));
         }
     },
     IMGS(){
@@ -35,18 +36,22 @@ public enum PropCrawlAction {
 
         @Override
         public void crawl(Element el, Blog blog) {
-            Element ulElement = el.selectFirst("ul[node-type=fl_pic_list]");
-
-            if (ulElement != null) {
-                String imageUrl = null;
-                try {
-                    imageUrl = URLDecoder.decode(ulElement.attr("action-data"), "utf8");
-                } catch (UnsupportedEncodingException e1) {
-                    e1.printStackTrace();
-                }
-                Matcher ma = imageListRegex.matcher(imageUrl);
-                if (ma.find()) {
-                    blog.setImagePaths(Arrays.asList(ma.group(1).split(",")));
+            Element mediaBox = el.selectFirst("div[class=WB_detail]>div[class=WB_media_wrap clearfix]>div[class=media_box]");
+            if(mediaBox != null){
+                //有媒体资源，图片或者视频
+                Elements ulElements = mediaBox.getElementsByTag("ul");
+                if (!ulElements.isEmpty() && ulElements.get(0).hasAttr("action-data")) {
+                    Element ulElement = ulElements.get(0);
+                    String imageUrl = null;
+                    try {
+                        imageUrl = URLDecoder.decode(ulElement.attr("action-data"), "utf8");
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    }
+                    Matcher ma = imageListRegex.matcher(imageUrl);
+                    if (ma.find()) {
+                        blog.setImagePaths(Arrays.asList(ma.group(1).split(",")));
+                    }
                 }
             }
         }

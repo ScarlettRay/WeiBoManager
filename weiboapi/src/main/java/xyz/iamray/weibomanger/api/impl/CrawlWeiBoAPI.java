@@ -27,7 +27,7 @@ public class CrawlWeiBoAPI implements API<List<Blog>,WeiBoer> {
 
     @Override
     public R<List<Blog>> exe(WeiBoer weiBoer, Context context) {
-        String url = AutoWeiBoSpiderConstant.RPOFILE_URL_WITH_PAGE
+        String url = AutoWeiBoSpiderConstant.WEIBO_HOME_URL
                 .replace("{uid}",weiBoer.getUid())
                 .replace("{page}",context.getProperty("crawl_page",String.class));
         SimpleSpider spider = SimpleSpider.make();

@@ -22,11 +22,11 @@ public class CrawlWeiBoAPITest {
         List<APINumber> apis = new ArrayList<>();
         apis.add(APINumber.CRAWLWEIBOAPI);
         WeiBoer weiBoer = new WeiBoer();
-        weiBoer.setUid("shenteng");
+        weiBoer.setUid("1006051782432341");
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());
-        context.setProperty("crawl_page","2");
+        context.setProperty("crawl_page","1");
         R<List<Blog>> r = APIManger.call(weiBoer,apis, null, context);
-        r.getRe().forEach(e->log.info(e.getReason()));
+        r.getRe().forEach(e->log.info(e.toString()));
     }
 
 }

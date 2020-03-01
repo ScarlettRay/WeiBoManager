@@ -127,4 +127,6 @@ public class AutoWeiBoSpiderConstant {
 
     public static final String RPOFILE_URL_WITH_PAGE = "https://weibo.com/{uid}?is_all=1&is_tag=0&page={page}";
 
+    public static final String WEIBO_HOME_URL = "https://weibo.com/p/{uid}/home?pids=Pl_Official_MyProfileFeed__23&is_all=1&page={page}&ajaxpagelet=1";
+
 }
