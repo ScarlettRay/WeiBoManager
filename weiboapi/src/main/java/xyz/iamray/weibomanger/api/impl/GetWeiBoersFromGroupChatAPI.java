@@ -28,7 +28,7 @@ public class GetWeiBoersFromGroupChatAPI implements API<ChatGroup, ChatGroup> {
     public R<ChatGroup> exe(ChatGroup chatGroup, Context context) {
         String url = AutoWeiBoSpiderConstant.Following_FromQueryMes_URL.replace("{gid}",chatGroup.getGid())+System.currentTimeMillis();
         SimpleSpider spider = SimpleSpider.make();
-        spider.setCumstomizeExecutorService(context.getExecutorService());
+        spider.customThreadPool(context.getExecutorService(),true);
         Result<ChatGroup> result = spider.setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(url, null,GetWeiBoersFromGroupChatAction.INSTANCE,context.getHttpClient())
                 .start();

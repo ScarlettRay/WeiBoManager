@@ -127,6 +127,9 @@ public class AutoWeiBoSpiderConstant {
 
     public static final String RPOFILE_URL_WITH_PAGE = "https://weibo.com/{uid}?is_all=1&is_tag=0&page={page}";
 
+    //博主微博列表
     public static final String WEIBO_HOME_URL = "https://weibo.com/p/{uid}/home?pids=Pl_Official_MyProfileFeed__23&is_all=1&page={page}&ajaxpagelet=1";
 
+    //微博热门评论
+    public static final String WEIBO_HOT_COMMENT_URL = "https://weibo.com/aj/v6/comment/small?ajwvr=6&act=list&mid={mid}&isMain=true&comment_type=0&_t=0&__rnd=&comment_type=0&_t=0&__rnd=";
 }

@@ -61,7 +61,7 @@ public class UploadImageAPI implements API<String,String> {
         if(imageBase64 != null){
             Map<String,String> postBody = PostBodyBuildUtil.buildSendWeiBoParam(imageBase64);
             PostSpider postSpider = PostSpider.make();
-            postSpider.setCumstomizeExecutorService(context.getExecutorService());
+            postSpider.customThreadPool(context.getExecutorService(),true);
             Result<String> result = postSpider.setRequestHeader(Constant.COMMON_HEADER)
                     .setStarterConfiger(url,postBody, UploadImageAction.INSTANCE,context.getHttpClient())
                     .setListenHttpStatus(HttpStatus.SC_MOVED_TEMPORARILY)

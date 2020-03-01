@@ -33,7 +33,7 @@ public class SendGroupMessageAPI implements API<GroupMessage,GroupMessage> {
         String url = AutoWeiBoSpiderConstant.GROUP_CHAT_ADD_URL+System.currentTimeMillis();
         Map<String,String> postBody = PostBodyBuildUtil.buildGroupChatParam(groupMessage.getGid(),groupMessage.getContent());
         PostSpider spider = PostSpider.make();
-        spider.setCumstomizeExecutorService(context.getExecutorService());
+        spider.customThreadPool(context.getExecutorService(),true);
         Result<GroupMessage> result = spider.setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(url,postBody, SendGroupMessageAction.INSTANCE,context.getHttpClient())
                 .start();

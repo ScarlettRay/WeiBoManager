@@ -32,7 +32,7 @@ public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
         String url = AutoWeiBoSpiderConstant.Followed_URL+System.currentTimeMillis();
         Map<String,String> postBody = PostBodyBuildUtil.buildFollowedParam(weiBoer.getUid());
         PostSpider spider = PostSpider.make();
-        spider.setCumstomizeExecutorService(context.getExecutorService());
+        spider.customThreadPool(context.getExecutorService(),true);
         Result<WeiBoer> re = spider.setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(url,postBody, FollowWeiBoerAction.INSTANCE,context.getHttpClient())
                 .start();
