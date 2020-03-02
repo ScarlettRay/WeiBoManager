@@ -9,5 +9,13 @@ import lombok.Data;
 @Data
 public class Comment {
 
+    private String id;
+
     private String content;
+
+    private WeiBoer weiBoer;
+
+    private int praiseNum;
+
+    private String moreSmallComment;
 }
