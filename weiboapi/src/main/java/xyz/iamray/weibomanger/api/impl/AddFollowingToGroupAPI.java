@@ -22,8 +22,8 @@ import java.util.Map;
 public class AddFollowingToGroupAPI implements API<WeiBoer,WeiBoer> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.ADDFOLLOWINGTOGROUPAPI;
+    public String getNumber() {
+        return APINumber.ADDFOLLOWINGTOGROUPAPI.name();
     }
 
     @Override

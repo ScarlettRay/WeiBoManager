@@ -22,8 +22,8 @@ import java.util.List;
 public class GetHotCommentAPI implements API<List<Comment>, Blog> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.GETHOTCOMMENTAPI;
+    public String getNumber() {
+        return APINumber.GETHOTCOMMENTAPI.name();
     }
 
     @Override

@@ -30,8 +30,8 @@ import java.util.Map;
  */
 public class UploadImageAPI implements API<String,String> {
     @Override
-    public APINumber getNumber() {
-        return APINumber.UPLOADIMAGEAPI;
+    public String getNumber() {
+        return APINumber.UPLOADIMAGEAPI.name();
     }
 
     @Override

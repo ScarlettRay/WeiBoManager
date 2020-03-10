@@ -20,8 +20,8 @@ import xyz.iamray.weibomanger.spider.action.GetWeiBoersFromGroupChatAction;
 public class GetWeiBoersFromGroupChatAPI implements API<ChatGroup, ChatGroup> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.GETWEIBOERSFROMGROUPCHATAPI;
+    public String getNumber() {
+        return APINumber.GETWEIBOERSFROMGROUPCHATAPI.name();
     }
 
     @Override

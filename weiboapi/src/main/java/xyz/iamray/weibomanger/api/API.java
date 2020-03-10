@@ -9,7 +9,7 @@ import xyz.iamray.weibomanger.common.R;
  */
 public interface API<T,E> {
 
-    APINumber getNumber();
+    String getNumber();
 
     R<T> exe(E param, Context context);
 

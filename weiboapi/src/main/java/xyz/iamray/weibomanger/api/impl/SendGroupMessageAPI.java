@@ -24,8 +24,8 @@ import java.util.Map;
 public class SendGroupMessageAPI implements API<GroupMessage,GroupMessage> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.SENDGROUPMESSAGEAPI;
+    public String getNumber() {
+        return APINumber.SENDGROUPMESSAGEAPI.name();
     }
 
     @Override

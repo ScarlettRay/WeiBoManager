@@ -21,8 +21,8 @@ import java.util.Map;
 public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingGroup> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.CREATENEWFOLLOWINGGROUPAPI;
+    public String getNumber() {
+        return APINumber.CREATENEWFOLLOWINGGROUPAPI.name();
     }
 
     @Override

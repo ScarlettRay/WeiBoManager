@@ -22,8 +22,8 @@ import java.util.Map;
 public class ForwardBlogAPI implements API<Blog,Blog> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.FORWARDBLOGAPI;
+    public String getNumber() {
+        return APINumber.FORWARDBLOGAPI.name();
     }
 
     @Override

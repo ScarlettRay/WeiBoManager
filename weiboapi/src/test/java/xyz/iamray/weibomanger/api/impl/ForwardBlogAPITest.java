@@ -7,25 +7,25 @@ import xyz.iamray.weibomanger.api.APIManger;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.ContextBuilder;
 import xyz.iamray.weibomanger.common.R;
+import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class LoginAPITest {
+public class ForwardBlogAPITest {
 
     @Test
-    public void testLoginAPI(){
+    public void testForwardBlogApi(){
         List<String> apis = new ArrayList<>();
+        APIManger.register(new CustomDemoAPI());
         apis.add(APINumber.LOGINAPI.name());
+        apis.add("CustomApi");
+        apis.add(APINumber.FORWARDBLOGAPI.name());
         WeiBoer weiboer = new WeiBoer("1454377676@qq.com","sina3211922");
-        R<WeiBoer> r = APIManger.call(weiboer,apis, null,ContextBuilder.buildContext());
-        log.info("登陆成功：" + r.getRe().getUid());
-
+        R<Blog> r = APIManger.call(weiboer,apis, "5945738590", ContextBuilder.buildContext());
+        log.info(r.getRe().getMid() );
     }
 
-    @Test
-    public void testLength(){
-    }
 }

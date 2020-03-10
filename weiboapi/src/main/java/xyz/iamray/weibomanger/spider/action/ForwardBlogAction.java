@@ -18,7 +18,7 @@ public class ForwardBlogAction extends AbstractJsonObjectCrawlerAction<Blog> {
 
     @Override
     public Blog crawl(JSONObject jsonObject, CrawlMes crawlMes) {
-        log.info(jsonObject.toJSONString());
-        return null;
+        log.info("返回的数据："+jsonObject.toJSONString());
+        return new Blog();
     }
 }

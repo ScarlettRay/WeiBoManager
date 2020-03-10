@@ -19,8 +19,8 @@ public class LoginAPI implements API<WeiBoer, WeiBoer>{
 
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.LOGINAPI;
+    public String getNumber() {
+        return APINumber.LOGINAPI.name();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LoginAPI implements API<WeiBoer, WeiBoer>{
         WeiBoLoginMes mes = LoginAssistant.login(user.getAccount(),user.getPassword());
         user.setLoginMessage(mes);
         if(!SessionManger.hasSession(mes.getUid())){
-            SessionManger.createAndStoreSession(user);
+            SessionManger.createAndStoreSession(user,mes.getWeiboHttpClient());
         }
         return R.ok(user);
     }

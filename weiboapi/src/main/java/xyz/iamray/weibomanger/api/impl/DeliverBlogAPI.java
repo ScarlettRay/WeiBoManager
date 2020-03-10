@@ -22,8 +22,8 @@ import java.util.Map;
 public class DeliverBlogAPI implements API<Blog,Blog> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.DELIVERBLOGAPI;
+    public String getNumber() {
+        return APINumber.DELIVERBLOGAPI.name();
     }
 
     @Override

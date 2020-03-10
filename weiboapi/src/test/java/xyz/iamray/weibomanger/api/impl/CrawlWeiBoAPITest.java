@@ -19,8 +19,8 @@ public class CrawlWeiBoAPITest {
 
     @Test
     public void testCrawlWeiBoApi(){
-        List<APINumber> apis = new ArrayList<>();
-        apis.add(APINumber.CRAWLWEIBOAPI);
+        List<String> apis = new ArrayList<>();
+        apis.add(APINumber.CRAWLWEIBOAPI.name());
         WeiBoer weiBoer = new WeiBoer();
         weiBoer.setUid("1006051782432341");
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());

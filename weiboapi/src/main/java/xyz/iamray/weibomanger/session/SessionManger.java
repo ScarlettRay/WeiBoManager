@@ -1,5 +1,6 @@
 package xyz.iamray.weibomanger.session;
 
+import org.apache.http.impl.client.CloseableHttpClient;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
 
 import java.util.HashMap;
@@ -22,8 +23,9 @@ public class SessionManger {
      */
     private Map<String,Session> sessions = new HashMap<>();
 
-    public static synchronized void createAndStoreSession(WeiBoer weiBoer){
+    public static synchronized void createAndStoreSession(WeiBoer weiBoer, CloseableHttpClient httpClient){
         Session session = new Session(weiBoer);
+        session.setWeiboHttpClient(httpClient);
         DEFAULT_SESSION_MANGER.sessions.put(weiBoer.getUid(),session);
     }
 

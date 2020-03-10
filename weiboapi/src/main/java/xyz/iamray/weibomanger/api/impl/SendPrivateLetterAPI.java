@@ -22,8 +22,8 @@ import java.util.Map;
 public class SendPrivateLetterAPI implements API<PrivateLetter,PrivateLetter> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.SENDPRIVATELETTERAPI;
+    public String getNumber() {
+        return APINumber.SENDPRIVATELETTERAPI.name();
     }
 
     @Override

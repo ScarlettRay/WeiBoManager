@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 public class APIManger {
 
-    private static final Map<APINumber,API> API_MAP = new HashMap<>();
+    private static final Map<String,API> API_MAP = new HashMap<>();
 
     //注册系统自带的api
     static{
@@ -71,14 +71,14 @@ public class APIManger {
      * @param apiNumbers
      * @param uid
      */
-    public static <T,E> R<E> call(T obj,List<APINumber> apiNumbers, String uid,Context context){
+    public static <T,E> R<E> call(T obj,List<String> apiNumbers, String uid,Context context){
         if(apiNumbers.isEmpty())return null;
         int i = 0;
         R r = R.ok(obj);
         if(SessionManger.hasSession(uid)){
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
-        }else if (APINumber.LOGINAPI == apiNumbers.get(0)){
-            r = API_MAP.get(APINumber.LOGINAPI).exe(obj,null);
+        }else if (APINumber.LOGINAPI.name() == apiNumbers.get(0)){
+            r = API_MAP.get(APINumber.LOGINAPI.name()).exe(obj,null);
             i++;
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
         }else {

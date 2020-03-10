@@ -23,8 +23,8 @@ import java.util.Map;
 public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.FOLLOWWEIBOERAPI;
+    public String getNumber() {
+        return APINumber.FOLLOWWEIBOERAPI.name();
     }
 
     @Override

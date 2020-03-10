@@ -21,8 +21,8 @@ import java.util.List;
 public class CrawlWeiBoAPI implements API<List<Blog>,WeiBoer> {
 
     @Override
-    public APINumber getNumber() {
-        return APINumber.CRAWLWEIBOAPI;
+    public String getNumber() {
+        return APINumber.CRAWLWEIBOAPI.name();
     }
 
     @Override
