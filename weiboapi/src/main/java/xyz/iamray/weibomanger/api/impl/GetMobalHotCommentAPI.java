@@ -10,7 +10,7 @@ import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.pojo.Comment;
-import xyz.iamray.weibomanger.spider.action.GetHotCommentAction;
+import xyz.iamray.weibomanger.spider.action.GetMobalHotCommentAction;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * @since v1.0.1
  * 根据微博爬取热门评论
  */
-public class GetHotCommentAPI implements API<List<Comment>, Blog> {
+public class GetMobalHotCommentAPI implements API<Blog,List<Comment>> {
 
     @Override
     public APINumber getNumber() {
@@ -32,7 +32,7 @@ public class GetHotCommentAPI implements API<List<Comment>, Blog> {
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Comment>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url, GetHotCommentAction.INSTANCE).start();
+                .setStarterConfiger(url, GetMobalHotCommentAction.INSTANCE).start();
 
         return R.ok(result.getObj());
     }

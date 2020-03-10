@@ -18,7 +18,7 @@ import java.util.List;
  * @author winray
  * @since v1.0.1
  */
-public class CrawlWeiBoAPI implements API<List<Blog>,WeiBoer> {
+public class CrawlWeiBoAPI implements API<WeiBoer,List<Blog>> {
 
     @Override
     public APINumber getNumber() {

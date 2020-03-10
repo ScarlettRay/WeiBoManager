@@ -30,7 +30,7 @@ public class APIManger {
         register( new DeliverBlogAPI());
         register( new FollowWeiboerAPI());
         register( new ForwardBlogAPI());
-        register( new GetHotCommentAPI());
+        register( new GetMobalHotCommentAPI());
         register( new GetWeiBoersFromGroupChatAPI());
         register( new LoginAPI());
         register( new SendGroupMessageAPI());

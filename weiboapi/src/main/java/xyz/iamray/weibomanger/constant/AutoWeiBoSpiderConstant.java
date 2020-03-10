@@ -132,4 +132,7 @@ public class AutoWeiBoSpiderConstant {
 
     //微博热门评论
     public static final String WEIBO_HOT_COMMENT_URL = "https://weibo.com/aj/v6/comment/small?ajwvr=6&act=list&mid={mid}&isMain=true&comment_type=0&_t=0&__rnd=&comment_type=0&_t=0&__rnd=";
+
+    //移动版网页微博热门评论
+    public static final String WEIBO_MOBAL_HOT_COMMENT_URL = "https://m.weibo.cn/comments/hotflow?mid={mid}";
 }

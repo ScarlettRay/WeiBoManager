@@ -64,7 +64,7 @@ public class UploadImageAPI implements API<String,String> {
             postSpider.customThreadPool(context.getExecutorService(),true);
             Result<String> result = postSpider.setRequestHeader(Constant.COMMON_HEADER)
                     .setStarterConfiger(url,postBody, UploadImageAction.INSTANCE,context.getHttpClient())
-                    .setListenHttpStatus(HttpStatus.SC_MOVED_TEMPORARILY)
+                    //.setListenHttpStatus(HttpStatus.SC_MOVED_TEMPORARILY)
                     .start();
             return R.ok(result.getObj());
         }else{
