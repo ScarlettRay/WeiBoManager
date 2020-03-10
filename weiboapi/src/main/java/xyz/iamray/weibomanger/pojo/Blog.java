@@ -41,4 +41,6 @@ public class Blog {
 
     private String oweiboerUrl;//原博主主页URL
 
+    private List<Comment> comments;//评论
+
 }

@@ -24,4 +24,6 @@ public class Comment {
     private String moreSmallComment;
 
     private String imageUrl;
+
+    private List<Comment> subComment;
 }
