@@ -6,12 +6,14 @@ import xyz.iamray.weibomanger.common.R;
  * @author winray
  * @since v1.0.1
  * 微博管理机器人的接口调用标准定义
+ * T:输出
+ * E:输入
  */
-public interface API<T,E> {
+public interface API<I,O> {
 
     String getNumber();
 
-    R<T> exe(E param, Context context);
+    R<O> exe(I param, Context context);
 
     /*
     //登录
