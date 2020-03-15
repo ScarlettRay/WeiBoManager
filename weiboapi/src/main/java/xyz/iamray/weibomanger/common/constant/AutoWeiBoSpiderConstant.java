@@ -1,4 +1,4 @@
-package xyz.iamray.weibomanger.constant;
+package xyz.iamray.weibomanger.common.constant;
 
 /**
  * Created by liuwenrui on 2018/4/15

@@ -2,6 +2,7 @@ package xyz.iamray.weibomanger.spider.action;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
 import xyz.iamray.weibomanger.pojo.Comment;
@@ -23,22 +24,26 @@ public class GetMobalHotCommentAction extends AbstractJsonObjectCrawlerAction<Li
     public List<Comment> crawl(JSONObject jsonObject, CrawlMes crawlMes) {
         List<Comment> comments = new ArrayList<>();
         if(jsonObject.getInteger("ok") == 1){
-            JSONArray commentArray = jsonObject.getJSONArray("data");
+            JSONArray commentArray = (JSONArray) JSONPath.eval(jsonObject,"$.data.data");;
             for (Object o : commentArray) {
                 JSONObject commentJsonObj = (JSONObject) o;
                 Comment comment = getCommentFromJson(commentJsonObj);
                 //评论的评论
-                JSONArray subCommentArray = commentJsonObj.getJSONArray("comments");
-                if(!subCommentArray.isEmpty()){
-                    List<Comment> subComments = new ArrayList<>();
-                    for (Object subCommentObj : subCommentArray) {
-                        Comment subComment = getCommentFromJson((JSONObject) subCommentObj);
-                        subComments.add(subComment);
+                Object subCommentObjs = commentJsonObj.get("comments");
+                if(subCommentObjs instanceof JSONArray){
+                    JSONArray subCommentArray = (JSONArray)subCommentObjs;
+                    if(!subCommentArray.isEmpty()){
+                        List<Comment> subComments = new ArrayList<>();
+                        for (Object subCommentObj : subCommentArray) {
+                            Comment subComment = getCommentFromJson((JSONObject) subCommentObj);
+                            subComments.add(subComment);
+                        }
+                        comment.setSubComment(subComments);
                     }
-                    comment.setSubComment(subComments);
                 }
+
                 //博主
-                comment.setWeiBoer(getWeiBoerFromJson(jsonObject.getJSONObject("user")));
+                comment.setWeiBoer(getWeiBoerFromJson(commentJsonObj.getJSONObject("user")));
                 comments.add(comment);
             }
         }

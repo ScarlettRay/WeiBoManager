@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
+import xyz.iamray.weibomanger.common.exception.WbException;
 import xyz.iamray.weibomanger.pojo.Blog;
 
 /**
@@ -18,7 +19,12 @@ public class DeliverBlogAction extends AbstractJsonObjectCrawlerAction<Blog> {
 
     @Override
     public Blog crawl(JSONObject jsonObject, CrawlMes crawlMes) {
-        log.info("DeliverBlogAction:" + jsonObject);
-        return null;
+        if(jsonObject.getInteger("code") == 100000){
+            //进行一些属性的设置
+
+            return getAttr("blog",Blog.class);
+        }else{
+            throw new WbException(jsonObject.toJSONString());
+        }
     }
 }

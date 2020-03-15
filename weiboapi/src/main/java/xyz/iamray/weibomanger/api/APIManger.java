@@ -36,6 +36,7 @@ public class APIManger {
         register( new SendGroupMessageAPI());
         register( new SendPrivateLetterAPI());
         register( new UploadImageAPI());
+        register( new GetMobalHotCommentAPI());
 
     }
 
@@ -67,6 +68,8 @@ public class APIManger {
     /**
      * api调用接口
      * 上下文环境构建
+     * TODO 1.如果有会话了，删除掉前面的登录api
+     * TODO 2.API之间传入传出类型的转换
      * @param obj 初始api的参数
      * @param apiNumbers
      * @param uid

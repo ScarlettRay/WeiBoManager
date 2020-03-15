@@ -1,7 +1,6 @@
 package xyz.iamray.weibomanger.api.impl;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpStatus;
 import xyz.iamray.core.PostSpider;
 import xyz.iamray.link.Result;
 import xyz.iamray.link.http.HttpClientTool;
@@ -11,8 +10,8 @@ import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.common.exception.WbException;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weibomanger.constant.Constant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.Constant;
 import xyz.iamray.weibomanger.spider.action.UploadImageAction;
 import xyz.iamray.weibomanger.utils.PostBodyBuildUtil;
 

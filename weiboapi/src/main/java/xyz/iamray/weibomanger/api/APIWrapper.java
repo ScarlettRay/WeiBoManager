@@ -6,15 +6,15 @@ import xyz.iamray.weibomanger.common.R;
  * @author winray
  * @since v1.0.1
  */
-public class APIWrapper<T,E> {
+public class APIWrapper<I,O> {
 
-    private T t;
+    private I i;
 
-    private E e;
+    private O o;
 
-    private API<T,E> api;
+    private API<I,O> api;
 
-    private APIWrapper(API<T,E> api){
+    private APIWrapper(API<I,O> api){
         this.api = api;
     }
 
@@ -22,8 +22,8 @@ public class APIWrapper<T,E> {
         return new APIWrapper<T,E>(api);
     }
 
-    public R<T> exe(E t, Context context){
-        return api.exe(t,context);
+    public R<O> exe(I i, Context context){
+        return api.exe(i,context);
     }
 
     /**

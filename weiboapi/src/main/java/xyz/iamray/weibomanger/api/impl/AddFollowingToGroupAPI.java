@@ -6,10 +6,10 @@ import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weibomanger.constant.Constant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.Constant;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
-import xyz.iamray.weibomanger.spider.action.AddFollowingToGroupAction;
+import xyz.iamray.weibomanger.spider.action.CommonResponseHandleAction;
 import xyz.iamray.weibomanger.utils.PostBodyBuildUtil;
 
 import java.util.Map;
@@ -32,7 +32,7 @@ public class AddFollowingToGroupAPI implements API<WeiBoer,WeiBoer> {
         Result<WeiBoer> re = PostSpider.make().defaultThreadPool().
                 setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(AutoWeiBoSpiderConstant.UpdateGroup_URL+System.currentTimeMillis(),
-                        postBody, AddFollowingToGroupAction.INSTANCE, context.getHttpClient())
+                        postBody, CommonResponseHandleAction.INSTANCE, context.getHttpClient())
                 .start();
         return R.ok(re.getObj());
     }

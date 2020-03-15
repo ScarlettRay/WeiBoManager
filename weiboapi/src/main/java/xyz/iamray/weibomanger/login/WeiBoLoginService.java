@@ -16,7 +16,7 @@ import xyz.iamray.core.SpiderConstant;
 import xyz.iamray.link.http.HttpClientTool;
 import xyz.iamray.repo.NormalCrawlMes;
 import xyz.iamray.weibomanger.common.exception.WbException;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;

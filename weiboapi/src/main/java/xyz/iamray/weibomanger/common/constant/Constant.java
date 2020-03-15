@@ -1,4 +1,4 @@
-package xyz.iamray.weibomanger.constant;
+package xyz.iamray.weibomanger.common.constant;
 
 import xyz.iamray.core.HttpConstant;
 import xyz.iamray.core.SpiderConstant;

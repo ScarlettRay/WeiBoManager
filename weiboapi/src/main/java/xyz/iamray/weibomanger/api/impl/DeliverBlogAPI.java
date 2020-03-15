@@ -6,8 +6,8 @@ import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weibomanger.constant.Constant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.Constant;
 import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.spider.action.DeliverBlogAction;
 import xyz.iamray.weibomanger.utils.PostBodyBuildUtil;
@@ -30,8 +30,10 @@ public class DeliverBlogAPI implements API<Blog,Blog> {
     public R<Blog> exe(Blog blog, Context context) {
         String url = AutoWeiBoSpiderConstant.SEND_BLOG_URL+System.currentTimeMillis();
         Map<String,String> postBody = PostBodyBuildUtil.buildSendBlogParam(blog.getReason(),blog.getImagePaths());
-        Result<Blog> result = PostSpider.make().setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(url,postBody, DeliverBlogAction.INSTANCE)
+        Result<Blog> result = PostSpider.make().defaultThreadPool()
+                .setProperty("blog",blog)
+                .setRequestHeader(Constant.COMMON_HEADER)
+                .setStarterConfiger(url,postBody, DeliverBlogAction.INSTANCE,context.getHttpClient())
                 .start();
         return R.ok(result.getObj());
     }

@@ -7,7 +7,7 @@ import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.pojo.WeiBoer;
 import xyz.iamray.weibomanger.spider.action.CrawlWeiBoAction;

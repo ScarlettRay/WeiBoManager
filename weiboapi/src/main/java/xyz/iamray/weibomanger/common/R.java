@@ -26,6 +26,14 @@ public class R<T> {
         return new R(obj,Status.OK);
     }
 
+    public static R ok(){
+        return new R();
+    }
+
+    public static <T> R<T> err(T obj){
+        return new R(obj,Status.ERR);
+    }
+
     public T getRe(){
         return re;
     }

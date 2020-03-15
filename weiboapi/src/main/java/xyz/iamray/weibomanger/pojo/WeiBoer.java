@@ -42,5 +42,6 @@ public class WeiBoer {
         this.setNeedVerify(mes.isNeedValid());
         this.setCaptchaUrl(mes.getCodeURL());
         this.setUid(mes.getUid());
+        this.setProfileUrl(mes.getProfileUrl());
     }
 }

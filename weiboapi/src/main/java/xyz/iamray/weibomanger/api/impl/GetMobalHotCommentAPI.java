@@ -7,7 +7,7 @@ import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.spider.action.GetMobalHotCommentAction;
 
@@ -20,12 +20,12 @@ public class GetMobalHotCommentAPI implements API<Blog,Blog> {
 
     @Override
     public String getNumber() {
-        return APINumber.GETHOTCOMMENTAPI.name();
+        return APINumber.GETMOBALHOTCOMMENTAPI.name();
     }
 
     @Override
     public R<Blog> exe(Blog blog, Context context) {
-        String url = AutoWeiBoSpiderConstant.WEIBO_HOT_COMMENT_URL.replace("{mid}",blog.getMid()) + System.currentTimeMillis();
+        String url = AutoWeiBoSpiderConstant.WEIBO_MOBAL_HOT_COMMENT_URL.replace("{mid}",blog.getMid());
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<Blog> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
