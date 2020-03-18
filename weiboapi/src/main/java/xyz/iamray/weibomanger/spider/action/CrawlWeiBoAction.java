@@ -25,7 +25,16 @@ public class CrawlWeiBoAction extends AbstractDocumentCrawlerAction<List<Blog>> 
 
     public static CrawlWeiBoAction INSTANCE = new CrawlWeiBoAction();
 
-    private static final PropCrawlAction[] propCrawlActions = PropCrawlAction.values();
+    private static final PropCrawlAction[] propCrawlActions = new  PropCrawlAction[]{
+            PropCrawlAction.WB_TEXT,
+            PropCrawlAction.MID,
+            PropCrawlAction.IMGS,
+            PropCrawlAction.SEND_TIME,
+            PropCrawlAction.FORWARD_NUM,
+            PropCrawlAction.COMMENT_NUM,
+            PropCrawlAction.PRAISE_NUM,
+            PropCrawlAction.FROWARD
+    };
 
     private static final Pattern REGEX = Pattern.compile("(?<=html\":\")[\\s\\S]*(?=\"})");
 

@@ -98,6 +98,12 @@ public enum PropCrawlAction {
                 blog.setOweiboerUrl(wbinfo.attr("href"));
             }
         }
+    },
+    P_WB_TEXT(){
+        @Override
+        public void crawl(Element el, Blog blog) {
+            blog.setReason(el.selectFirst("p[node-type=feed_list_content]").text());
+        }
     };
 
     int getNum(String str){

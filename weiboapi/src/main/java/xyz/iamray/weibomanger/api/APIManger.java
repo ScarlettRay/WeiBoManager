@@ -37,6 +37,7 @@ public class APIManger {
         register( new SendPrivateLetterAPI());
         register( new UploadImageAPI());
         register( new GetMobalHotCommentAPI());
+        register( new CrawlWeiBoByUrlAPI());
 
     }
 
@@ -80,16 +81,24 @@ public class APIManger {
         R r = R.ok(obj);
         if(SessionManger.hasSession(uid)){
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
-        }else if (APINumber.LOGINAPI.name() == apiNumbers.get(0)){
+        }else if (APINumber.LOGINAPI.name().equals(apiNumbers.get(0))){
             r = API_MAP.get(APINumber.LOGINAPI.name()).exe(obj,null);
             i++;
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
-        }else {
-            log.warn("用户未登录！");
         }
 
         for (; i < apiNumbers.size(); i++) {
-            r = API_MAP.get(apiNumbers.get(i)).exe(r.getRe(),context);
+            String number = apiNumbers.get(i);
+            if(API_MAP.get(number) == null)throw new WbException("编码为：" + apiNumbers.get(i) + "的API未注册");
+            if((APINumber.LOGINAPI.name().equals(apiNumbers.get(i))) && SessionManger.hasSession(uid)){
+                context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
+            }else{
+                r = API_MAP.get(number).exe(r.getRe(),context);
+                if((APINumber.LOGINAPI.name().equals(apiNumbers.get(i)))){
+                    context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
+                }
+            }
+
         }
         return (R<E>)r;
 

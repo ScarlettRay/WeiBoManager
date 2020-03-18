@@ -31,7 +31,7 @@ public class DeliverBlogAPI implements API<Blog,Blog> {
         String url = AutoWeiBoSpiderConstant.SEND_BLOG_URL+System.currentTimeMillis();
         Map<String,String> postBody = PostBodyBuildUtil.buildSendBlogParam(blog.getReason(),blog.getImagePaths());
         Result<Blog> result = PostSpider.make().defaultThreadPool()
-                .setProperty("blog",blog)
+                //.setProperty("blog",blog)
                 .setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(url,postBody, DeliverBlogAction.INSTANCE,context.getHttpClient())
                 .start();

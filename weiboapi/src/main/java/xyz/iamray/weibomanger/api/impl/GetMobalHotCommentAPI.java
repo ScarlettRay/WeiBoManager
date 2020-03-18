@@ -9,7 +9,10 @@ import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.pojo.Blog;
+import xyz.iamray.weibomanger.pojo.Comment;
 import xyz.iamray.weibomanger.spider.action.GetMobalHotCommentAction;
+
+import java.util.List;
 
 /**
  * @author winray
@@ -28,9 +31,9 @@ public class GetMobalHotCommentAPI implements API<Blog,Blog> {
         String url = AutoWeiBoSpiderConstant.WEIBO_MOBAL_HOT_COMMENT_URL.replace("{mid}",blog.getMid());
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
-        Result<Blog> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
+        Result<List<Comment>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
                 .setStarterConfiger(url, GetMobalHotCommentAction.INSTANCE).start();
-
-        return R.ok(result.getObj());
+        blog.setComments(result.getObj());
+        return R.ok(blog);
     }
 }

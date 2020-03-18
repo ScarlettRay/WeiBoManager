@@ -1,6 +1,8 @@
 package xyz.iamray.weibomanger.api;
 
 
+import xyz.iamray.weibomanger.api.impl.CrawlWeiBoByUrlAPI;
+
 /**
  * @author winray
  * @since v1.0.1
@@ -19,5 +21,6 @@ public enum APINumber {
     SENDGROUPMESSAGEAPI,
     SENDPRIVATELETTERAPI,
     UPLOADIMAGEAPI,
-    GETMOBALHOTCOMMENTAPI;
+    GETMOBALHOTCOMMENTAPI,
+    CRAWLWEIBOBYURLAPI;
 }
