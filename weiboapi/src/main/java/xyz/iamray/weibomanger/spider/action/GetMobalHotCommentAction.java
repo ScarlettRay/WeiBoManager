@@ -24,7 +24,7 @@ public class GetMobalHotCommentAction extends AbstractJsonObjectCrawlerAction<Li
     public List<Comment> crawl(JSONObject jsonObject, CrawlMes crawlMes) {
         List<Comment> comments = new ArrayList<>();
         if(jsonObject.getInteger("ok") == 1){
-            JSONArray commentArray = (JSONArray) JSONPath.eval(jsonObject,"$.data.data");;
+            JSONArray commentArray = (JSONArray) JSONPath.eval(jsonObject,"$.data.data");
             for (Object o : commentArray) {
                 JSONObject commentJsonObj = (JSONObject) o;
                 Comment comment = getCommentFromJson(commentJsonObj);

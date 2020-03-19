@@ -27,12 +27,11 @@ public class CrawlWeiBoByUrlAPI implements API<String, List<Blog>> {
 
     @Override
     public R<List<Blog>> exe(String url, Context context) {
-        String hotUrl = "https://s.weibo.com" + url;
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Blog>> re = spider.setRequestHeader(SpiderConstant.DefaultHeader)
                 .addCookie("SUB","1",".weibo.com","/")
-                .setStarterConfiger(hotUrl, CrawlWeiBoByUrlAction.INSTANCE).start();
+                .setStarterConfiger(url, CrawlWeiBoByUrlAction.INSTANCE).start();
         return R.ok(re.getObj());
     }
 }

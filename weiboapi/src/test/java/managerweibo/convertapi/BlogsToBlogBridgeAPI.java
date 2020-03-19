@@ -1,4 +1,4 @@
-package managerweibo;
+package managerweibo.convertapi;
 
 import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.Context;

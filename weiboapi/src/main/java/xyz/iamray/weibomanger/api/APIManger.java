@@ -2,6 +2,9 @@ package xyz.iamray.weibomanger.api;
 
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.weibomanger.api.impl.*;
+import xyz.iamray.weibomanger.api.impl.mobal.CrawlMobalHotListAPI;
+import xyz.iamray.weibomanger.api.impl.mobal.GetMobalHotCommentAPI;
+import xyz.iamray.weibomanger.api.impl.mobal.GetMobalWeiBoByUrlAPI;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.common.exception.WbException;
 import xyz.iamray.weibomanger.session.SessionManger;
@@ -38,6 +41,8 @@ public class APIManger {
         register( new UploadImageAPI());
         register( new GetMobalHotCommentAPI());
         register( new CrawlWeiBoByUrlAPI());
+        register( new CrawlMobalHotListAPI());
+        register( new GetMobalWeiBoByUrlAPI());
 
     }
 
@@ -55,8 +60,8 @@ public class APIManger {
      */
     public static void register(String classPath)  {
         try {
-            Class apiClass = APIManger.class.getClassLoader().loadClass(classPath);
-            API api = (API) apiClass.getConstructor().newInstance();
+            Class<?> apiClass = APIManger.class.getClassLoader().loadClass(classPath);
+            API<?,?> api = (API<?,?>) apiClass.getConstructor().newInstance();
             if(api.getNumber() == null || API_MAP.containsKey(api.getNumber())){
                 throw new WbException("API编码为空或者已被注册");
             }
