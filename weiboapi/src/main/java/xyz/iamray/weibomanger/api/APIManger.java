@@ -83,11 +83,12 @@ public class APIManger {
     public static <T,E> R<E> call(T obj,List<String> apiNumbers, String uid,Context context){
         if(apiNumbers.isEmpty())return null;
         int i = 0;
-        R r = R.ok(obj);
+        R<?> r = R.ok(obj);
         if(SessionManger.hasSession(uid)){
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
         }else if (APINumber.LOGINAPI.name().equals(apiNumbers.get(0))){
-            r = API_MAP.get(APINumber.LOGINAPI.name()).exe(obj,null);
+            API<T,?> api = API_MAP.get(APINumber.LOGINAPI.name());
+            r = api.exe(obj,null);
             i++;
             context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
         }
@@ -98,7 +99,8 @@ public class APIManger {
             if((APINumber.LOGINAPI.name().equals(apiNumbers.get(i))) && SessionManger.hasSession(uid)){
                 context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
             }else{
-                r = API_MAP.get(number).exe(r.getRe(),context);
+                API api = API_MAP.get(number);
+                r = api.exe(r.getRe(),context);
                 if((APINumber.LOGINAPI.name().equals(apiNumbers.get(i)))){
                     context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
                 }
