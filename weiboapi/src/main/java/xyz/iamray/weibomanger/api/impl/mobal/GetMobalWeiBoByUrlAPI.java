@@ -8,8 +8,8 @@ import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.pojo.Blog;
-import xyz.iamray.weibomanger.pojo.Comment;
-import xyz.iamray.weibomanger.spider.action.GetMobalHotCommentAction;
+import xyz.iamray.weibomanger.spider.action.mobal.GetMobalHotCommentAction;
+import xyz.iamray.weibomanger.spider.action.mobal.GetMobalWeiBoByUrlAction;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class GetMobalWeiBoByUrlAPI implements API<String,List<Blog>> {
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Blog>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url, GetMobalHotCommentAction.INSTANCE).start();
+                .setStarterConfiger(url, GetMobalWeiBoByUrlAction.INSTANCE).start();
 
         return R.ok(result.getObj());
     }

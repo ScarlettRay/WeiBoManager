@@ -10,7 +10,7 @@ import xyz.iamray.weibomanger.common.R;
 import xyz.iamray.weibomanger.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weibomanger.pojo.Blog;
 import xyz.iamray.weibomanger.pojo.Comment;
-import xyz.iamray.weibomanger.spider.action.GetMobalHotCommentAction;
+import xyz.iamray.weibomanger.spider.action.mobal.GetMobalHotCommentAction;
 
 import java.util.List;
 

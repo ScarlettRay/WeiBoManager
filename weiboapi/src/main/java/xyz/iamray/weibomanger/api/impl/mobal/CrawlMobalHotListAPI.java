@@ -7,7 +7,7 @@ import xyz.iamray.weibomanger.api.API;
 import xyz.iamray.weibomanger.api.APINumber;
 import xyz.iamray.weibomanger.api.Context;
 import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.spider.action.CrawlMobalHotListAction;
+import xyz.iamray.weibomanger.spider.action.mobal.CrawlMobalHotListAction;
 
 import java.util.List;
 

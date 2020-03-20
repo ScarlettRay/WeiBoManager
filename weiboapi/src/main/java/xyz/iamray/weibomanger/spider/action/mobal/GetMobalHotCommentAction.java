@@ -1,4 +1,4 @@
-package xyz.iamray.weibomanger.spider.action;
+package xyz.iamray.weibomanger.spider.action.mobal;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

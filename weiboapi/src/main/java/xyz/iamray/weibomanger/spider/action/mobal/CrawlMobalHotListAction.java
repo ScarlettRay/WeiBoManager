@@ -1,4 +1,4 @@
-package xyz.iamray.weibomanger.spider.action;
+package xyz.iamray.weibomanger.spider.action.mobal;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Ray
  * @create 2020-03-19 14:48:53
- * <p>
+ * <p>{@link xyz.iamray.weibomanger.api.impl.mobal.CrawlMobalHotListAPI}
  */
 public class CrawlMobalHotListAction extends AbstractJsonObjectCrawlerAction<List<String>> {
 
