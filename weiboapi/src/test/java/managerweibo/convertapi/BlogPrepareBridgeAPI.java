@@ -1,10 +1,10 @@
 package managerweibo.convertapi;
 
-import xyz.iamray.weibomanger.api.API;
-import xyz.iamray.weibomanger.api.Context;
-import xyz.iamray.weibomanger.common.R;
-import xyz.iamray.weibomanger.pojo.Blog;
-import xyz.iamray.weibomanger.utils.WeiBoUtil;
+import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.common.R;
+import xyz.iamray.weiboapi.pojo.Blog;
+import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 /**
  * @author Ray

@@ -9,6 +9,7 @@
     <version>1.0</version>
     <modules>
         <module>weiboapi</module>
+        <module>flow</module>
     </modules>
     <name>weibomanger</name>
     <description>微博管理机器人</description>

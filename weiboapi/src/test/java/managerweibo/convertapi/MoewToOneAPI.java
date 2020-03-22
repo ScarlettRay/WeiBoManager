@@ -1,8 +1,8 @@
 package managerweibo.convertapi;
 
-import xyz.iamray.weibomanger.api.API;
-import xyz.iamray.weibomanger.api.Context;
-import xyz.iamray.weibomanger.common.R;
+import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.common.R;
 
 import java.util.List;
 
