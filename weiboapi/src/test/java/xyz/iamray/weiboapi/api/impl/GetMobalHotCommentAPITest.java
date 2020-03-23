@@ -20,7 +20,7 @@ public class GetMobalHotCommentAPITest {
     @Test
     public void testCrawlComment(){
         List<String> apis = new ArrayList<>();
-        apis.add(APINumber.GETMOBALHOTCOMMENTAPI.name());
+        apis.add(APINumber.GETMOBALHOTCOMMENTAPI);
         Blog blog = new Blog();
         blog.setMid("4482129221905543");
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());

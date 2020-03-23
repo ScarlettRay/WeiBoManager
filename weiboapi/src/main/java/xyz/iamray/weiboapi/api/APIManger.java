@@ -1,6 +1,7 @@
 package xyz.iamray.weiboapi.api;
 
 import lombok.extern.slf4j.Slf4j;
+import xyz.iamray.link.SpiderUtil;
 import xyz.iamray.weiboapi.api.impl.*;
 import xyz.iamray.weiboapi.api.impl.mobal.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobal.GetMobalHotCommentAPI;
@@ -9,9 +10,7 @@ import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author winray
@@ -118,7 +117,8 @@ public class APIManger {
      * @param api
      */
     private void check(Object re,API api){
-
+        //SpiderUtil.getClassArguments()
+        //if(re instanceof Collection)
     }
 
 

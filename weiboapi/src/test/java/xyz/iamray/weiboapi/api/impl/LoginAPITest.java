@@ -18,7 +18,7 @@ public class LoginAPITest {
     @Test
     public void testLoginAPI(){
         List<String> apis = new ArrayList<>();
-        apis.add(APINumber.LOGINAPI.name());
+        apis.add(APINumber.LOGINAPI);
         R<WeiBoer> r = APIManger.call(TestConstant.WEIBOER,apis, null,ContextBuilder.buildContext());
         log.info("登陆成功：" + r.getRe().getUid());
 

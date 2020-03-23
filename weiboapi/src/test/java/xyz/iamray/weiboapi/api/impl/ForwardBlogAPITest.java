@@ -20,9 +20,9 @@ public class ForwardBlogAPITest {
     public void testForwardBlogApi(){
         List<String> apis = new ArrayList<>();
         APIManger.register(new CustomDemoAPI());
-        apis.add(APINumber.LOGINAPI.name());
+        apis.add(APINumber.LOGINAPI);
         apis.add("CustomApi");
-        apis.add(APINumber.FORWARDBLOGAPI.name());
+        apis.add(APINumber.FORWARDBLOGAPI);
         R<Blog> r = APIManger.call(TestConstant.WEIBOER,apis, "7364250637", ContextBuilder.buildContext());
         log.info(r.getRe().getMid() );
     }

@@ -17,9 +17,9 @@ public class DeliverBlogAPITest {
     @Test
     public void testDeliverBlogApi(){
         List<String> apis = new ArrayList<>();
-        apis.add(APINumber.LOGINAPI.name());
+        apis.add(APINumber.LOGINAPI);
         apis.add("Login2DeliverBlogAPI");
-        apis.add(APINumber.DELIVERBLOGAPI.name());
+        apis.add(APINumber.DELIVERBLOGAPI);
         APIManger.register(new Login2DeliverBlogAPI());
         R<String> r = APIManger.call(TestConstant.WEIBOER,apis, "7364250637", ContextBuilder.buildContext());
         log.info(r.getRe());

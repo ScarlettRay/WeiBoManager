@@ -14,18 +14,6 @@ public class ExecuteChain {
 
     private ExecuteChain(){}
 
-    /**
-     *
-     * @param apiNumbers
-     * @return
-     */
-    public static ExecuteChain create(APINumber... apiNumbers){
-        ExecuteChain chain = new ExecuteChain();
-        for (APINumber apiNumber : apiNumbers) {
-            chain.apiNumberList.add(apiNumber.name());
-        }
-        return chain;
-    }
 
 
 }
