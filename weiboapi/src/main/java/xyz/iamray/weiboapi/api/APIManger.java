@@ -1,7 +1,6 @@
 package xyz.iamray.weiboapi.api;
 
 import lombok.extern.slf4j.Slf4j;
-import xyz.iamray.link.SpiderUtil;
 import xyz.iamray.weiboapi.api.impl.*;
 import xyz.iamray.weiboapi.api.impl.mobal.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobal.GetMobalHotCommentAPI;
@@ -10,7 +9,11 @@ import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
 
-import java.util.*;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author winray
@@ -116,9 +119,35 @@ public class APIManger {
      * @param re
      * @param api
      */
-    private void check(Object re,API api){
-        //SpiderUtil.getClassArguments()
-        //if(re instanceof Collection)
+    private static void checkAndConvert(Object re,API api){
+        Type apiArg = getRowType(api);
+        if(apiArg instanceof Class){
+            if(re.getClass().equals(apiArg)){
+
+            }else{
+
+            }
+        }else if(apiArg instanceof ParameterizedType){
+            //有泛型，则继续比较
+
+        }
+    }
+
+    /**
+     * 获取api的第一个泛型类
+     * @param api
+     * @return
+     */
+    private static Type getRowType(API api){
+        Class<?> clazz = api.getClass();
+        Type[] types = clazz.getGenericInterfaces();
+        for(Type type:types){
+            if(type.getTypeName().contains("xyz.iamray.weiboapi.api.API")){
+                Type[] typeArgs = ((ParameterizedType)type).getActualTypeArguments();
+                return typeArgs[0];
+            }
+        }
+        throw new WbException("API:" + api.getNumber() + " 没有获取到泛型，请检查！");
     }
 
 
