@@ -116,21 +116,25 @@ public class APIManger {
     /**
      * 检查re的类型是否为api的输入类型
      * 如果两者有一个是列表，需要拿列表里面的泛型比较
+     * TODO
      * @param re
      * @param api
      */
-    private static void checkAndConvert(Object re,API api){
+    private static Object checkAndConvert(Object re,API api){
         Type apiArg = getRowType(api);
         if(apiArg instanceof Class){
             if(re.getClass().equals(apiArg)){
-
+                return re;
             }else{
 
             }
         }else if(apiArg instanceof ParameterizedType){
             //有泛型，则继续比较
 
+        }else{
+            throw new WbException("apiArg有其他类型" + apiArg);
         }
+        return null;
     }
 
     /**
