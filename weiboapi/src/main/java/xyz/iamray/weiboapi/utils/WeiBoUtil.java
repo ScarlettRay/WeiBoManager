@@ -1,5 +1,6 @@
 package xyz.iamray.weiboapi.utils;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -29,4 +30,9 @@ public class WeiBoUtil {
     public static String trimHtml(String text){
         return text;
     }
+
+    public static boolean isNull(Collection collection){
+        return collection == null || collection.isEmpty();
+    }
+
 }

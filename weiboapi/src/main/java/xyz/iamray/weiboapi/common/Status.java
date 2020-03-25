@@ -7,7 +7,8 @@ package xyz.iamray.weiboapi.common;
 public enum Status {
 
     OK(200,"ok"),
-    ERR(500,"fail");
+    ERR(500,"fail"),
+    NO(600,"传入的参数为空!");
 
     private Status(int code,String description){
         this.code = code;
@@ -15,6 +16,6 @@ public enum Status {
     }
 
 
-    private int code;
-    private String description;
+    public int code;
+    public String description;
 }

@@ -18,6 +18,7 @@ public class ForwardHotListFlow extends AbstractFlow{
         apis.add(APINumber.LOGINAPI);
         apis.add(ApiBridgeNumber.MOBALHOTLISTURLBRIDGEAPI);
         apis.add(APINumber.CRAWLMOBALHOTLISTAPI);
+        apis.add(ApiBridgeNumber.CONVERTHOTWEIBOURLBRIDGEAPI);
 
         return apis;
     }

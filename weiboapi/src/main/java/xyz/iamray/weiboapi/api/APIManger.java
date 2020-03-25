@@ -8,9 +8,8 @@ import xyz.iamray.weiboapi.api.impl.mobal.GetMobalWeiBoByUrlAPI;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
+import xyz.iamray.weiboapi.utils.ParamConvertor;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +101,7 @@ public class APIManger {
                 context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
             }else{
                 API api = API_MAP.get(number);
-                r = api.exe(r.getRe(),context);
+                r = api.exe(ParamConvertor.checkAndConvert(r.getRe(),api),context);//先转换
                 if((APINumber.LOGINAPI.equals(apiNumbers.get(i)))){
                     context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
                 }
@@ -113,46 +112,7 @@ public class APIManger {
 
     }
 
-    /**
-     * 检查re的类型是否为api的输入类型
-     * 如果两者有一个是列表，需要拿列表里面的泛型比较
-     * TODO
-     * @param re
-     * @param api
-     */
-    private static Object checkAndConvert(Object re,API api){
-        Type apiArg = getRowType(api);
-        if(apiArg instanceof Class){
-            if(re.getClass().equals(apiArg)){
-                return re;
-            }else{
 
-            }
-        }else if(apiArg instanceof ParameterizedType){
-            //有泛型，则继续比较
-
-        }else{
-            throw new WbException("apiArg有其他类型" + apiArg);
-        }
-        return null;
-    }
-
-    /**
-     * 获取api的第一个泛型类
-     * @param api
-     * @return
-     */
-    private static Type getRowType(API api){
-        Class<?> clazz = api.getClass();
-        Type[] types = clazz.getGenericInterfaces();
-        for(Type type:types){
-            if(type.getTypeName().contains("xyz.iamray.weiboapi.api.API")){
-                Type[] typeArgs = ((ParameterizedType)type).getActualTypeArguments();
-                return typeArgs[0];
-            }
-        }
-        throw new WbException("API:" + api.getNumber() + " 没有获取到泛型，请检查！");
-    }
 
 
 }

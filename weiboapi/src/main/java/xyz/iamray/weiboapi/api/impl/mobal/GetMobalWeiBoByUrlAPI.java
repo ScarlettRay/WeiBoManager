@@ -9,6 +9,7 @@ import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.mobal.GetMobalWeiBoByUrlAction;
+import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 import java.util.List;
 
@@ -17,18 +18,19 @@ import java.util.List;
  * @create 2020-03-19 16:30:46
  * <p>
  */
-public class GetMobalWeiBoByUrlAPI implements API<String,List<Blog>> {
+public class GetMobalWeiBoByUrlAPI implements API<List<String>,List<Blog>> {
     @Override
     public String getNumber() {
         return APINumber.GETMOBALWEIBOBYURLAPI;
     }
 
     @Override
-    public R<List<Blog>> exe(String url, Context context) {
+    public R<List<Blog>> exe(List<String> urls, Context context) {
+        if(WeiBoUtil.isNull(urls))return R.no();
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Blog>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url, GetMobalWeiBoByUrlAction.INSTANCE).start();
+                .setStarterConfiger(urls.toArray(new String[0]), GetMobalWeiBoByUrlAction.INSTANCE).start();
 
         return R.ok(result.getObj());
     }
