@@ -22,14 +22,7 @@ public class WeiBoUtil {
                 sb.lastIndexOf(substr)>0?sb.lastIndexOf(substr):0);
     }
 
-    /**
-     * 去除html代碼，如果是emojy表情则替换
-     * TODO
-     * @return
-     */
-    public static String trimHtml(String text){
-        return text;
-    }
+
 
     public static boolean isNull(Collection collection){
         return collection == null || collection.isEmpty();
