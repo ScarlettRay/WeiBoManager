@@ -11,6 +11,7 @@ import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.ForwardBlogAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
+import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 import java.util.Map;
 
@@ -20,6 +21,8 @@ import java.util.Map;
  * 转发微博的api
  */
 public class ForwardBlogAPI implements API<Blog,Blog> {
+
+    public static final ForwardBlogAPI INSTANCE = new ForwardBlogAPI();
 
     @Override
     public String getNumber() {
@@ -32,8 +35,8 @@ public class ForwardBlogAPI implements API<Blog,Blog> {
         Map<String,String> postBody = PostBodyBuildUtil.buildForwardParam(blog.getReason(),blog.getMid());
         Result<Blog> re = PostSpider.make().defaultThreadPool()
                 .setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(url, postBody, ForwardBlogAction.INSTANCE,context.getHttpClient())
+                .setStarterConfiger(url, postBody, ForwardBlogAction.getInstance(),context.getHttpClient())
                 .start();
-        return R.ok(blog);
+        return WeiBoUtil.dealResult(re);
     }
 }

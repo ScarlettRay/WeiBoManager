@@ -1,6 +1,5 @@
 package xyz.iamray.flow.bridge;
 
-import xyz.iamray.flow.common.ApiBridgeNumber;
 import xyz.iamray.weiboapi.api.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
@@ -10,9 +9,12 @@ import xyz.iamray.weiboapi.common.R;
  * @since v1.0.1
  */
 public class MobalHotListUrlBridgeAPI implements ApiBridge<Object,String> {
+
+    public final static MobalHotListUrlBridgeAPI INSTANCE = new MobalHotListUrlBridgeAPI();
+
     @Override
     public String getNumber() {
-        return ApiBridgeNumber.MOBALHOTLISTURLBRIDGEAPI;
+        return "MobalHotListUrlBridgeAPI";
     }
 
     @Override

@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class CrawlWeiBoAPI implements API<WeiBoer,List<Blog>> {
 
+    public final static CrawlWeiBoAPI INSTANCE = new CrawlWeiBoAPI();
+
     @Override
     public String getNumber() {
         return APINumber.CRAWLWEIBOAPI;

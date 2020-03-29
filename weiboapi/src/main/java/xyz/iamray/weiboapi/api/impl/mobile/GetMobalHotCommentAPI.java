@@ -1,4 +1,4 @@
-package xyz.iamray.weiboapi.api.impl.mobal;
+package xyz.iamray.weiboapi.api.impl.mobile;
 
 import xyz.iamray.core.SimpleSpider;
 import xyz.iamray.core.SpiderConstant;
@@ -10,7 +10,7 @@ import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.pojo.Comment;
-import xyz.iamray.weiboapi.spider.action.mobal.GetMobalHotCommentAction;
+import xyz.iamray.weiboapi.spider.action.mobile.GetMobileHotCommentAction;
 
 import java.util.List;
 
@@ -20,6 +20,8 @@ import java.util.List;
  * 根据微博爬取热门评论
  */
 public class GetMobalHotCommentAPI implements API<Blog,Blog> {
+
+    public final static GetMobalHotCommentAPI INSTANCE = new GetMobalHotCommentAPI();
 
     @Override
     public String getNumber() {
@@ -32,7 +34,7 @@ public class GetMobalHotCommentAPI implements API<Blog,Blog> {
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Comment>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url, GetMobalHotCommentAction.INSTANCE).start();
+                .setStarterConfiger(url, GetMobileHotCommentAction.INSTANCE).start();
         blog.setComments(result.getObj());
         return R.ok(blog);
     }

@@ -22,6 +22,8 @@ import java.util.Map;
  */
 public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
 
+    public final static FollowWeiboerAPI INSTANCE = new FollowWeiboerAPI();
+
     @Override
     public String getNumber() {
         return APINumber.FOLLOWWEIBOERAPI;

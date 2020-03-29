@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
  */
 public class TextTrimer {
 
-    private static final Pattern SPANPATTERN = Pattern.compile("(?<=<span class=\"url-icon\">).*(?=</span>)");
+    private static final Pattern SPANPATTERN = Pattern.compile("(<span class=\"url-icon\">.*?</span>)");
+
+    private static final Pattern IMGPATTERN = Pattern.compile("\\[.{1,}?\\]");
 
     /**
      * 去除html代碼，如果是emojy表情则替换
@@ -19,7 +21,13 @@ public class TextTrimer {
     public static String trimHtml(String text){
         Matcher ma = SPANPATTERN.matcher(text);
         while (ma.find()){
-
+            String span = ma.group();
+            Matcher imgma = IMGPATTERN.matcher(span);
+            StringBuilder sb = new StringBuilder();
+            while (imgma.find()){
+                sb.append(imgma.group());
+            }
+            text = text.replace(span,sb.toString());
         }
         return text;
     }

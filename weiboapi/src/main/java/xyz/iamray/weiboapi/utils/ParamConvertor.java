@@ -1,5 +1,6 @@
 package xyz.iamray.weiboapi.utils;
 
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.common.exception.WbException;
 
@@ -21,9 +22,12 @@ public final class ParamConvertor {
      * @param api
      */
     public static Object checkAndConvert(Object re, API api){
+        if(re == null)return null;
         Type apiArg = getRowType(api);
         if(apiArg instanceof Class){
-            if(re.getClass().equals(apiArg)|| re.getClass().isAssignableFrom((Class<?>) apiArg)){
+            if(re.getClass().equals(apiArg)
+                    || ((Class<?>) apiArg).isAssignableFrom(re.getClass())
+                    || re.getClass().isAssignableFrom((Class<?>) apiArg)){
                 return re;
             }else{
                 Class apiClazz = (Class)apiArg;
@@ -55,7 +59,9 @@ public final class ParamConvertor {
             }else{
                 throw new WbException("((ParameterizedType) apiArg).getRawType() 得到新类型：" + type.getClass());
             }
-            if(re.getClass().equals(apiClazz) || apiClazz.isAssignableFrom(re.getClass())){
+            if(re.getClass().equals(apiClazz)
+                    || apiClazz.isAssignableFrom(re.getClass())
+                    || re.getClass().isAssignableFrom(apiClazz)){
                 return re;
             }else if(re instanceof Collection && !(Collection.class.isAssignableFrom(apiClazz))){
                 //判断apiArg的泛型是否与re的类相同
@@ -93,11 +99,11 @@ public final class ParamConvertor {
      * @param api
      * @return
      */
-    private static Type getRowType(API api){
+    public static Type getRowType(API api){
         Class<?> clazz = api.getClass();
         Type[] types = clazz.getGenericInterfaces();
         for(Type type:types){
-            if(type.getTypeName().contains("xyz.iamray.weiboapi.api.API")){
+            if(API.class.isAssignableFrom(((ParameterizedTypeImpl) type).getRawType())){
                 Type[] typeArgs = ((ParameterizedType)type).getActualTypeArguments();
                 return typeArgs[0];
             }

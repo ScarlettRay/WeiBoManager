@@ -23,5 +23,5 @@ public final class APINumber {
     public static final String GETMOBALHOTCOMMENTAPI = "GETMOBALHOTCOMMENTAPI";
     public static final String CRAWLWEIBOBYURLAPI = "CRAWLWEIBOBYURLAPI";
     public static final String CRAWLMOBALHOTLISTAPI = "CRAWLMOBALHOTLISTAPI";
-    public static final String GETMOBALWEIBOBYURLAPI = "GETMOBALWEIBOBYURLAPIv";
+    public static final String GETMOBALWEIBOBYURLAPI = "GETMOBALWEIBOBYURLAPI";
 }

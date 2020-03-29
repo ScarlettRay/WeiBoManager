@@ -3,6 +3,7 @@ package xyz.iamray.weiboapi.spider.action;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
+import xyz.iamray.exception.spiderexceptions.SpiderException;
 import xyz.iamray.repo.CrawlMes;
 import xyz.iamray.weiboapi.pojo.Blog;
 
@@ -14,11 +15,16 @@ import xyz.iamray.weiboapi.pojo.Blog;
 @Slf4j
 public class ForwardBlogAction extends AbstractJsonObjectCrawlerAction<Blog> {
 
-    public static ForwardBlogAction INSTANCE = new ForwardBlogAction();
+    public static ForwardBlogAction getInstance(){
+        return new ForwardBlogAction();
+    }
 
     @Override
     public Blog crawl(JSONObject jsonObject, CrawlMes crawlMes) {
-        log.info("返回的数据："+jsonObject.toJSONString());
-        return new Blog();
+        if(jsonObject.getInteger("code") == 100000){
+            return new Blog();//TODO 获取mid
+        }else{
+            throw new SpiderException(jsonObject.toJSONString());
+        }
     }
 }

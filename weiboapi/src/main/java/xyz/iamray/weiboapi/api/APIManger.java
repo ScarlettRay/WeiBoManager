@@ -2,17 +2,17 @@ package xyz.iamray.weiboapi.api;
 
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.weiboapi.api.impl.*;
-import xyz.iamray.weiboapi.api.impl.mobal.CrawlMobalHotListAPI;
-import xyz.iamray.weiboapi.api.impl.mobal.GetMobalHotCommentAPI;
-import xyz.iamray.weiboapi.api.impl.mobal.GetMobalWeiBoByUrlAPI;
+import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
+import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
+import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoByUrlAPI;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
 import xyz.iamray.weiboapi.utils.ParamConvertor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.*;
 
 /**
  * @author winray
@@ -95,13 +95,23 @@ public class APIManger {
         }
 
         for (; i < apiNumbers.size(); i++) {
+            log.info(r.toString());
             String number = apiNumbers.get(i);
             if(API_MAP.get(number) == null)throw new WbException("编码为：" + apiNumbers.get(i) + "的API未注册");
             if((APINumber.LOGINAPI.equals(apiNumbers.get(i))) && SessionManger.hasSession(uid)){
                 context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
             }else{
                 API api = API_MAP.get(number);
-                r = api.exe(ParamConvertor.checkAndConvert(r.getRe(),api),context);//先转换
+                log.info("调用API:" + api.getNumber());
+                if(isMoreToOne(r.getRe(),api)){//如果多对一
+                    List<Object> reList = new ArrayList<>();
+                    for (Object o : ((Collection) r.getRe())) {
+                        reList.add(api.exe(ParamConvertor.checkAndConvert(o,api),context));
+                    }
+                    r = R.ok(reList);
+                }else{
+                    r = api.exe(ParamConvertor.checkAndConvert(r.getRe(),api),context);//先转换
+                }
                 if((APINumber.LOGINAPI.equals(apiNumbers.get(i)))){
                     context = ContextBuilder.buildAPIContext(context,SessionManger.getSession(uid));
                 }
@@ -112,6 +122,19 @@ public class APIManger {
 
     }
 
+    private static boolean isMoreToOne(Object re,API api){
+        Type type = ParamConvertor.getRowType(api);
+        boolean b;
+        if(type instanceof Class){
+            b = Collection.class.isAssignableFrom((Class<?>) type);
+        }else if(type instanceof ParameterizedType){
+            Class tmp = (Class)((ParameterizedType) type).getRawType();
+            b = Collection.class.isAssignableFrom(tmp);
+        }else{
+            throw new WbException("出现未发现的Type类型：" + type.getClass());
+        }
+        return Collection.class.isAssignableFrom(re.getClass()) && !b;
+    }
 
 
 

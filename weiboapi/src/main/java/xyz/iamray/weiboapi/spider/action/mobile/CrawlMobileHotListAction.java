@@ -1,4 +1,4 @@
-package xyz.iamray.weiboapi.spider.action.mobal;
+package xyz.iamray.weiboapi.spider.action.mobile;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * @author Ray
  * @create 2020-03-19 14:48:53
- * <p>{@link xyz.iamray.weiboapi.api.impl.mobal.CrawlMobalHotListAPI}
+ * <p>{@link xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI}
  */
-public class CrawlMobalHotListAction extends AbstractJsonObjectCrawlerAction<List<String>> {
+public class CrawlMobileHotListAction extends AbstractJsonObjectCrawlerAction<List<String>> {
 
-    public static final CrawlMobalHotListAction INSTANCE = new CrawlMobalHotListAction();
+    public static final CrawlMobileHotListAction INSTANCE = new CrawlMobileHotListAction();
 
     @Override
     public List<String> crawl(JSONObject jsonObject, CrawlMes crawlMes) {

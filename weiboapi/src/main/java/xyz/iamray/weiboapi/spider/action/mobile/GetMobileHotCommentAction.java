@@ -1,4 +1,4 @@
-package xyz.iamray.weiboapi.spider.action.mobal;
+package xyz.iamray.weiboapi.spider.action.mobile;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -15,9 +15,9 @@ import java.util.List;
  * @author winray
  * @since v1.0.1
  */
-public class GetMobalHotCommentAction extends AbstractJsonObjectCrawlerAction<List<Comment>> {
+public class GetMobileHotCommentAction extends AbstractJsonObjectCrawlerAction<List<Comment>> {
 
-    public static GetMobalHotCommentAction INSTANCE = new GetMobalHotCommentAction();
+    public static GetMobileHotCommentAction INSTANCE = new GetMobileHotCommentAction();
 
 
     @Override

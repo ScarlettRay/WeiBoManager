@@ -1,4 +1,4 @@
-package xyz.iamray.weiboapi.spider.action.mobal;
+package xyz.iamray.weiboapi.spider.action.mobile;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -15,9 +15,9 @@ import java.util.List;
  * @create 2020-03-19 16:35:06
  * <p>
  */
-public class GetMobalWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<List<Blog>> {
+public class GetMobileWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<List<Blog>> {
 
-    public static final GetMobalWeiBoByUrlAction INSTANCE = new GetMobalWeiBoByUrlAction();
+    public static final GetMobileWeiBoByUrlAction INSTANCE = new GetMobileWeiBoByUrlAction();
 
     @Override
     public List<Blog> crawl(JSONObject jsonObject, CrawlMes crawlMes) {
@@ -25,17 +25,21 @@ public class GetMobalWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<Li
         if(jsonObject.getInteger("ok") == 1){
             JSONArray cards = (JSONArray) JSONPath.eval(jsonObject,"$.data.cards");
             for (Object o: cards) {
+                if(((JSONObject)o).getInteger("card_type")!=9)continue;
                 JSONObject mblog = ((JSONObject)o).getJSONObject("mblog");
                 Blog blog = new Blog();
                 blog.setMid(mblog.getString("mid"));
                 blog.setReason(mblog.getString("text"));
                 //图片
                 JSONArray pics = mblog.getJSONArray("pics");
-                List<String> imgs = new ArrayList<>();
-                for (Object pic : pics) {
-                    imgs.add((String) JSONPath.eval(pic,"$.large.url"));
+                if(pics != null){
+                    List<String> imgs = new ArrayList<>();
+                    for (Object pic : pics) {
+                        imgs.add((String) JSONPath.eval(pic,"$.large.url"));
+                    }
+                    blog.setImagePaths(imgs);
                 }
-                blog.setImagePaths(imgs);
+                blogs.add(blog);
             }
         }
         return blogs;

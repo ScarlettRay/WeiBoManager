@@ -135,4 +135,7 @@ public class AutoWeiBoSpiderConstant {
 
     //移动版网页微博热门评论
     public static final String WEIBO_MOBAL_HOT_COMMENT_URL = "https://m.weibo.cn/comments/hotflow?mid={mid}";
+
+    //获取消息列表
+    public static final String GET_MESSAGE_LIST_URL = "https://m.weibo.cn/message/msglist?page={page}";
 }

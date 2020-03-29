@@ -1,13 +1,12 @@
-package xyz.iamray.weiboapi.api.impl.mobal;
+package xyz.iamray.weiboapi.api.impl.mobile;
 
 import xyz.iamray.core.SimpleSpider;
 import xyz.iamray.core.SpiderConstant;
 import xyz.iamray.link.Result;
 import xyz.iamray.weiboapi.api.API;
-import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
-import xyz.iamray.weiboapi.spider.action.mobal.CrawlMobalHotListAction;
+import xyz.iamray.weiboapi.spider.action.mobile.CrawlMobileHotListAction;
 
 import java.util.List;
 
@@ -19,9 +18,12 @@ import java.util.List;
  *     O:输出热榜榜单分录链接
  */
 public class CrawlMobalHotListAPI implements API<String, List<String>> {
+
+    public final static CrawlMobalHotListAPI INSTANCE = new CrawlMobalHotListAPI();
+
     @Override
     public String getNumber() {
-        return APINumber.CRAWLMOBALHOTLISTAPI;
+        return "CRAWLMOBALHOTLISTAPI";
     }
 
     @Override
@@ -29,7 +31,7 @@ public class CrawlMobalHotListAPI implements API<String, List<String>> {
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<String>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url,CrawlMobalHotListAction.INSTANCE)
+                .setStarterConfiger(url, CrawlMobileHotListAction.INSTANCE)
                 .start();
         return R.ok(result.getObj());
     }

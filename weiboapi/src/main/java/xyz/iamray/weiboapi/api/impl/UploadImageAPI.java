@@ -29,6 +29,9 @@ import java.util.Map;
  * 上传图片api
  */
 public class UploadImageAPI implements API<String,String> {
+
+    public final static UploadImageAPI INSTANCE = new UploadImageAPI();
+
     @Override
     public String getNumber() {
         return APINumber.UPLOADIMAGEAPI;

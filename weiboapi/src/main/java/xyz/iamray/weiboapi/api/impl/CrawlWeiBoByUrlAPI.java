@@ -18,6 +18,9 @@ import java.util.List;
  * <p>
  */
 public class CrawlWeiBoByUrlAPI implements API<String, List<Blog>> {
+
+    public final static CrawlWeiBoByUrlAPI INSTANCE = new CrawlWeiBoByUrlAPI();
+
     @Override
     public String getNumber() {
         return APINumber.CRAWLWEIBOBYURLAPI;

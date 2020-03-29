@@ -20,6 +20,8 @@ import java.util.Map;
  */
 public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingGroup> {
 
+    public final static CreateNewFollowingGroupAPI INSTANCE = new CreateNewFollowingGroupAPI();
+
     @Override
     public String getNumber() {
         return APINumber.CREATENEWFOLLOWINGGROUPAPI;

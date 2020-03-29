@@ -1,5 +1,7 @@
 package xyz.iamray.flow;
 
+import xyz.iamray.weiboapi.common.R;
+
 /**
  * @author winray
  * @since v1.0.1
@@ -7,6 +9,10 @@ package xyz.iamray.flow;
  * 这个接口只是让官方的流程更加规范化
  */
 public interface Flow {
+
+    String INIT_PARAM = "init_param";
+
+    String INIT_UID = "init_uid";
 
     /**
      * 放入运行时流程需要用到的参数
@@ -30,7 +36,7 @@ public interface Flow {
      * 执行，返回流程id
      * @return
      */
-    long execute();
+    <T> R<T> execute() throws Exception;
 
     enum FlowState{
         UNRUN,

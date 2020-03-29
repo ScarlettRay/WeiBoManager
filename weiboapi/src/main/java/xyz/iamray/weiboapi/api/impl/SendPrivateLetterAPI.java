@@ -8,7 +8,7 @@ import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.common.constant.Constant;
-import xyz.iamray.weiboapi.pojo.PrivateLetter;
+import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.spider.action.SendPrivateLetterAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
 
@@ -19,7 +19,9 @@ import java.util.Map;
  * @since v1.0.1
  * 私信api
  */
-public class SendPrivateLetterAPI implements API<PrivateLetter,PrivateLetter> {
+public class SendPrivateLetterAPI implements API<Message,Message> {
+
+    public final static SendPrivateLetterAPI INSTANCE = new SendPrivateLetterAPI();
 
     @Override
     public String getNumber() {
@@ -27,9 +29,9 @@ public class SendPrivateLetterAPI implements API<PrivateLetter,PrivateLetter> {
     }
 
     @Override
-    public R<PrivateLetter> exe(PrivateLetter letter, Context context) {
-        Map<String,String> postBody = PostBodyBuildUtil.buildPrivateMesParam(letter.getUid(),letter.getContent());
-        Result<PrivateLetter> re = PostSpider.make().defaultThreadPool().setRequestHeader(Constant.COMMON_HEADER)
+    public R<Message> exe(Message message, Context context) {
+        Map<String,String> postBody = PostBodyBuildUtil.buildPrivateMesParam(message.getId(),message.getText());
+        Result<Message> re = PostSpider.make().defaultThreadPool().setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(AutoWeiBoSpiderConstant.SendPrivateMes_URL+System.currentTimeMillis(),
                         postBody, SendPrivateLetterAction.INSTANCE,context.getHttpClient())
                 .start();

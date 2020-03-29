@@ -17,6 +17,7 @@ import xyz.iamray.weiboapi.session.SessionManger;
  */
 public class LoginAPI implements API<WeiBoer, WeiBoer>{
 
+    public final static LoginAPI INSTANCE = new LoginAPI();
 
     @Override
     public String getNumber() {

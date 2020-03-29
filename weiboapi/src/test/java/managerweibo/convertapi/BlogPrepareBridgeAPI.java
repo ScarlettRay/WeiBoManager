@@ -4,7 +4,7 @@ import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
-import xyz.iamray.weiboapi.utils.WeiBoUtil;
+import xyz.iamray.weiboapi.utils.TextTrimer;
 
 /**
  * @author Ray
@@ -21,7 +21,7 @@ public class BlogPrepareBridgeAPI implements API<Blog,Blog> {
     public R<Blog> exe(Blog blog, Context context) {
         blog.setMid(context.getProperty("forward_mid",String.class));
         if(!blog.getComments().isEmpty()){
-            blog.setReason(WeiBoUtil.trimHtml(blog.getComments().get(0).getText()));
+            blog.setReason(TextTrimer.trimHtml(blog.getComments().get(0).getText()));
         }
         return R.ok(blog);
     }
