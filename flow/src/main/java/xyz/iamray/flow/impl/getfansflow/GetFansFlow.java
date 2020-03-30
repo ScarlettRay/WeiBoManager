@@ -23,6 +23,7 @@ public class GetFansFlow extends AbstractFlow {
         apis.add(GetWeiBoersFromGroupChatAPI.INSTANCE.getNumber());
         apis.add(GroupsToWeiBosAPI.INSTANCE.getNumber());
         apis.add(FollowWeiboerAPI.INSTANCE.getNumber());
+
         apis.add(SendGroupMessageAPI.INSTANCE.getNumber());
     }
 
