@@ -4,6 +4,7 @@ import xyz.iamray.weiboapi.api.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
+import xyz.iamray.weiboapi.pojo.Comment;
 import xyz.iamray.weiboapi.utils.TextTrimer;
 import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
@@ -23,10 +24,14 @@ public class CommentToBlogBridgeAPI implements ApiBridge<Blog, Blog> {
     @Override
     public R<Blog> exe(Blog blog, Context context) {
         Blog newBlog = new Blog();
-        if(WeiBoUtil.isNull(blog.getComments())){
-            newBlog.setReason("[doge]");
-        }else{
-            newBlog.setReason(TextTrimer.trimHtml(blog.getComments().get(0).getText()));
+        newBlog.setReason("[doge]");
+        if(!WeiBoUtil.isNull(blog.getComments())){
+            for (Comment comment : blog.getComments()) {
+                if(!blog.getWeiBoer().getUid().equals(comment.getWeiBoer().getUid())){
+                    newBlog.setReason(TextTrimer.trimHtml(comment.getText()));
+                    break;
+                }
+            }
         }
         newBlog.setMid(blog.getMid());
 

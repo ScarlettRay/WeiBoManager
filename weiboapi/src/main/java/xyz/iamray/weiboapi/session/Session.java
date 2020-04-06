@@ -25,7 +25,7 @@ public class Session {
 
     private WeiBoer weiBoer;
 
-    private boolean isExpired = true;//是否过期
+    private boolean isExpired = false;//是否过期
 
     private List tasks;
 

@@ -21,6 +21,7 @@ import java.util.Map;
  * @author winray
  * @since v1.0.1
  * 转发热榜微博
+ * ForwardBlogAPI-HasForwardKey(ArrayList):已转发的微博mid
  */
 @Slf4j
 public class ForwardHotListFlow extends AbstractFlow {
@@ -36,6 +37,7 @@ public class ForwardHotListFlow extends AbstractFlow {
         apis.add(ConvertHotWeiBoUrlBridgeAPI.INSTANCE.getNumber());
         apis.add(ListToOneBridgeAPI.INSTANCE.getNumber());
         apis.add(GetMobalWeiBoByUrlAPI.INSTANCE.getNumber());
+        apis.add(ListToOneBridgeAPI.INSTANCE.getNumber());
         apis.add(GetMobalHotCommentAPI.INSTANCE.getNumber());
         apis.add(CommentToBlogBridgeAPI.INSTANCE.getNumber());
         apis.add(ForwardBlogAPI.INSTANCE.getNumber());

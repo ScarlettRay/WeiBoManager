@@ -36,6 +36,7 @@ public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
         PostSpider spider = PostSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<WeiBoer> re = spider.setRequestHeader(Constant.COMMON_HEADER)
+                .setProperty("weiboer",weiBoer)
                 .setStarterConfiger(url,postBody, FollowWeiBoerAction.INSTANCE,context.getHttpClient())
                 .start();
         return R.ok(re.getObj());

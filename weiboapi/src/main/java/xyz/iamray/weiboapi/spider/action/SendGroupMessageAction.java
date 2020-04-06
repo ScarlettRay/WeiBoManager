@@ -20,7 +20,7 @@ public class SendGroupMessageAction extends AbstractJsonObjectCrawlerAction<Mess
     @Override
     public Message crawl(JSONObject jsonObject, CrawlMes crawlMes) {
         log.info("SendGroupMessageActionv:" + jsonObject);
-        if(jsonObject.getInteger("code") == 100000){
+        if(jsonObject.getBoolean("result")){
             return new Message();//TODO
         }else{
             throw new SpiderException(jsonObject.toJSONString());

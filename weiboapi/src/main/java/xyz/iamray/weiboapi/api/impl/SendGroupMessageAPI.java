@@ -32,8 +32,8 @@ public class SendGroupMessageAPI implements API<Message,Message> {
 
     @Override
     public R<Message> exe(Message groupMessage, Context context) {
-        String url = AutoWeiBoSpiderConstant.GROUP_CHAT_ADD_URL+System.currentTimeMillis();
-        Map<String,String> postBody = PostBodyBuildUtil.buildGroupChatParam(groupMessage.getId(),groupMessage.getText());
+        String url = AutoWeiBoSpiderConstant.SEND_MESSAGE_URL;
+        Map<String,String> postBody = PostBodyBuildUtil.buildGroupChatBody(groupMessage.getId(),groupMessage.getText());
         PostSpider spider = PostSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<Message> result = spider.setRequestHeader(Constant.COMMON_HEADER)

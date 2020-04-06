@@ -1,9 +1,7 @@
 package xyz.iamray.flow;
 
-import xyz.iamray.flow.common.SpiderPool;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.common.R;
 
 import java.util.HashMap;
@@ -34,11 +32,10 @@ public abstract class AbstractFlow implements Flow{
     protected abstract List<String> getApis();
 
     @Override
-    public <T> R<T> execute() throws Exception {
+    public <T> R<T> execute(Context context) throws Exception {
         check();
-        Context context = ContextBuilder.buildContext(SpiderPool.executorService);
         properties.forEach(context::setProperty);
-        return APIManger.call(properties.get(INIT_PARAM),getApis(), (String) properties.get(INIT_UID),context);
+        return APIManager.call(properties.get(INIT_PARAM),getApis(), (String) properties.get(INIT_UID),context);
     }
 
     public String checkUtil(Map<String,String> requiredMap){

@@ -2,7 +2,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
@@ -21,7 +21,7 @@ public class CrawlMobalHotListAPITest {
         List<String> apis = new ArrayList<>();
         apis.add(APINumber.CRAWLMOBALHOTLISTAPI);
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());
-        R<List<String>> r = APIManger.call(url,apis,null,context);
+        R<List<String>> r = APIManager.call(url,apis,null,context);
         r.getRe().forEach(e->log.info(e.toString()));
     }
 }

@@ -11,6 +11,7 @@ import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.FollowingGroup;
 import xyz.iamray.weiboapi.spider.action.CreateNewFollowingGroupAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
+import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 import java.util.Map;
 
@@ -31,9 +32,11 @@ public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingG
     public R<FollowingGroup> exe(FollowingGroup group, Context context) {
         Map<String,String> postBody = PostBodyBuildUtil.buildAddGroupParam(group.getName(),group.getDescription(),group.isPublic());
         Result<FollowingGroup> re = PostSpider.make().defaultThreadPool().setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(AutoWeiBoSpiderConstant.ADD_GROUP_URL+System.currentTimeMillis()
-                        ,postBody,CreateNewFollowingGroupAction.INSTANCE,context.getHttpClient())
+                .setProperty("followingGroup",group)
+                .setStarterConfiger(AutoWeiBoSpiderConstant.ADD_GROUP_URL+System.currentTimeMillis(),
+                        postBody,CreateNewFollowingGroupAction.getInstance(),context.getHttpClient())
                 .start();
-        return R.ok(re.getObj());
+
+        return WeiBoUtil.dealResult(re);
     }
 }

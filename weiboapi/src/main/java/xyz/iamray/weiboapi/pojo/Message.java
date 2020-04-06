@@ -14,7 +14,7 @@ public class Message {
     private Type type;//私信还是群消息
     private Integer unread;//未读消息数
 
-    enum Type{
+    public enum Type{
         U,G;
     }
 }

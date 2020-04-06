@@ -88,7 +88,7 @@ public class AutoWeiBoSpiderConstant {
     /**
      * 获取微博群上求粉的账号
      */
-    public static final String Following_FromQueryMes_URL = "https://api.weibo.com/groupchat/query_messages.json?id={gid}&count=3&is_encoded=1&convert_emoji=1&is_pc=1&source=209678993&__rnd=";
+    public static final String Following_FromQueryMes_URL = "https://api.weibo.com/webim/groupchat/query_messages.json?id={gid}&count=3&convert_emoji=1&query_sender=1&source=209678993&max_mid=0&t=";
 
     /**
      * 关注Url
@@ -138,4 +138,8 @@ public class AutoWeiBoSpiderConstant {
 
     //获取消息列表
     public static final String GET_MESSAGE_LIST_URL = "https://m.weibo.cn/message/msglist?page={page}";
+
+    public static final String GET_GROUP_LIST_URL = "https://weibo.com/aj/f/group/list";
+
+    public static final String SEND_MESSAGE_URL = "https://api.weibo.com/webim/groupchat/send_message.json";
 }

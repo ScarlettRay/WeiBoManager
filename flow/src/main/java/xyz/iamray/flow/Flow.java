@@ -1,5 +1,6 @@
 package xyz.iamray.flow;
 
+import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 
 /**
@@ -35,8 +36,9 @@ public interface Flow {
     /**
      * 执行，返回流程id
      * @return
+     * @param context
      */
-    <T> R<T> execute() throws Exception;
+    <T> R<T> execute(Context context) throws Exception;
 
     enum FlowState{
         UNRUN,

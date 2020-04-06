@@ -27,6 +27,8 @@ public class Blog {
 
     private int praiseNum;
 
+    private WeiBoer weiBoer;
+
     private boolean isforward;//是否转发
 
     private String omid;//原微博mid

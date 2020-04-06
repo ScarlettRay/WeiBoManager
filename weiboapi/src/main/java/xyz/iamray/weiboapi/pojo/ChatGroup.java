@@ -11,13 +11,15 @@ import java.util.List;
  * 聊天群
  */
 @Data
-public class Group {
+public class ChatGroup {
 
     private List<WeiBoer> weiBoers = new ArrayList<>();
 
     private String gid;
 
-    public Group(String gid){
+    private String name;
+
+    public ChatGroup(String gid){
         this.gid = gid;
     }
 }

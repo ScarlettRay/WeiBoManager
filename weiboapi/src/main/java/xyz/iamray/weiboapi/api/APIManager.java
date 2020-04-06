@@ -22,7 +22,7 @@ import java.util.*;
  * API调用入口
  */
 @Slf4j
-public class APIManger {
+public class APIManager {
 
     private static final Map<String,API> API_MAP = new HashMap<>();
 
@@ -61,7 +61,7 @@ public class APIManger {
      */
     public static void register(String classPath)  {
         try {
-            Class<?> apiClass = APIManger.class.getClassLoader().loadClass(classPath);
+            Class<?> apiClass = APIManager.class.getClassLoader().loadClass(classPath);
             API<?,?> api = (API<?,?>) apiClass.getConstructor().newInstance();
             if(api.getNumber() == null || API_MAP.containsKey(api.getNumber())){
                 throw new WbException("API编码为空或者已被注册");
@@ -106,7 +106,7 @@ public class APIManger {
                 if(isMoreToOne(r.getRe(),api)){//如果多对一
                     List<Object> reList = new ArrayList<>();
                     for (Object o : ((Collection) r.getRe())) {
-                        reList.add(api.exe(ParamConvertor.checkAndConvert(o,api),context));
+                        reList.add(api.exe(ParamConvertor.checkAndConvert(o,api),context).getRe());
                     }
                     r = R.ok(reList);
                 }else{

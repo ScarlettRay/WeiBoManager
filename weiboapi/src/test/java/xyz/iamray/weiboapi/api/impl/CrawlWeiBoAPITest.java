@@ -2,7 +2,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
@@ -25,7 +25,7 @@ public class CrawlWeiBoAPITest {
         weiBoer.setUid("1006051782432341");
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());
         context.setProperty("crawl_page","1");
-        R<List<Blog>> r = APIManger.call(weiBoer,apis, null, context);
+        R<List<Blog>> r = APIManager.call(weiBoer,apis, null, context);
         r.getRe().forEach(e->log.info(e.toString()));
     }
 

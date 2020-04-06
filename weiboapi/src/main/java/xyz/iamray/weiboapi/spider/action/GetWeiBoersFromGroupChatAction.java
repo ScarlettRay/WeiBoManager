@@ -1,15 +1,17 @@
 package xyz.iamray.weiboapi.spider.action;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import lombok.extern.slf4j.Slf4j;
-import xyz.iamray.action.impl.AbstractStringCrawlerAction;
+import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
-import xyz.iamray.weiboapi.pojo.Group;
+import xyz.iamray.weiboapi.common.exception.WbException;
+import xyz.iamray.weiboapi.pojo.ChatGroup;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author winray
@@ -17,24 +19,27 @@ import java.util.regex.Pattern;
  * {@link xyz.iamray.weiboapi.api.impl.GetWeiBoersFromGroupChatAPI}
  */
 @Slf4j
-public class GetWeiBoersFromGroupChatAction extends AbstractStringCrawlerAction<Group> {
-
-    private static Pattern UID_PATTERN = Pattern.compile("(?<=from_uid\":)\\d+(?=,)");
+public class GetWeiBoersFromGroupChatAction extends AbstractJsonObjectCrawlerAction<ChatGroup> {
 
     public static final GetWeiBoersFromGroupChatAction INSTANCE = new GetWeiBoersFromGroupChatAction();
 
     @Override
-    public Group crawl(String s, CrawlMes crawlMes) {
-        log.info("GetWeiBoersFromGroupChatAction:" + s);
-        Matcher ma = UID_PATTERN.matcher(s);
-        List<WeiBoer> weiBoers = new ArrayList<>();
-        while(ma.find()){
-            WeiBoer weiBoer = new WeiBoer();
-            weiBoer.setUid(ma.group(0));
-            weiBoers.add(weiBoer);
+    public ChatGroup crawl(JSONObject jsonObject, CrawlMes crawlMes) {
+        log.info("GetWeiBoersFromGroupChatAction:" + jsonObject);
+        if(jsonObject.getBoolean("result")){
+            JSONArray mesArr = jsonObject.getJSONArray("messages");
+            List<WeiBoer> weiBoers = new ArrayList<>();
+            for (Object o : mesArr) {
+                JSONObject mes = (JSONObject)o;
+                WeiBoer weiBoer = new WeiBoer();
+                weiBoer.setUid(mes.getString("from_uid"));
+                weiBoer.setNickName((String) JSONPath.eval(mes,"$.from_user.screen_name"));
+                weiBoers.add(weiBoer);
+            }
+            ChatGroup chatGroup = getAttribute("chat_group", ChatGroup.class);
+            chatGroup.setWeiBoers(weiBoers);
+            return chatGroup;
         }
-        Group chatGroup = getAttr("chat_group", Group.class);
-        chatGroup.setWeiBoers(weiBoers);
-        return chatGroup;
+        throw new WbException(jsonObject.toJSONString());
     }
 }

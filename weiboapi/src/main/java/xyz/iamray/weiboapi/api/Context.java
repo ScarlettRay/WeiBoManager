@@ -38,6 +38,14 @@ public abstract class Context {
         return (T)userProperties.get(key);
     }
 
+    public <T> T getProperty(String key,Class<T> tClass,T defaultObj){
+        Object obj = userProperties.get(key);
+        if(obj == null){
+            return defaultObj;
+        }
+        return (T)obj;
+    }
+
     public abstract String getUid();
 
     public abstract CloseableHttpClient getHttpClient();

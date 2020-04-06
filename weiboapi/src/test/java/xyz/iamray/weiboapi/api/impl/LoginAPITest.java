@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.common.R;
@@ -19,7 +19,7 @@ public class LoginAPITest {
     public void testLoginAPI(){
         List<String> apis = new ArrayList<>();
         apis.add(APINumber.LOGINAPI);
-        R<WeiBoer> r = APIManger.call(TestConstant.WEIBOER,apis, null,ContextBuilder.buildContext());
+        R<WeiBoer> r = APIManager.call(TestConstant.WEIBOER,apis, null,ContextBuilder.buildContext());
         log.info("登陆成功：" + r.getRe().getUid());
 
     }
