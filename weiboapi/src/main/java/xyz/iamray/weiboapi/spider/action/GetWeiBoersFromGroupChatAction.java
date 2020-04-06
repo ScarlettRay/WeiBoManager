@@ -31,6 +31,7 @@ public class GetWeiBoersFromGroupChatAction extends AbstractJsonObjectCrawlerAct
             List<WeiBoer> weiBoers = new ArrayList<>();
             for (Object o : mesArr) {
                 JSONObject mes = (JSONObject)o;
+                if(mes.get("mblogid") == null || mes.getInteger("mblogid") != 1000) continue;
                 WeiBoer weiBoer = new WeiBoer();
                 weiBoer.setUid(mes.getString("from_uid"));
                 weiBoer.setNickName((String) JSONPath.eval(mes,"$.from_user.screen_name"));

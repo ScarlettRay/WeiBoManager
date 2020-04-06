@@ -31,7 +31,7 @@ public class FollowWeiBoerAction extends AbstractJsonObjectCrawlerAction<WeiBoer
             }
             weiBoer.setNickName((String)JSONPath.eval(jsonObject,"$.data.fnick"));
         }else{
-            log.error("FollowWeiBoerAction:" + jsonObject);
+            log.error("FollowWeiBoerAction:",jsonObject,weiBoer);
             throw new WbException(jsonObject.toJSONString());
         }
         return weiBoer;

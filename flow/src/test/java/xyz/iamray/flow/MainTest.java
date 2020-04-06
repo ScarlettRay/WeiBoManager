@@ -29,6 +29,11 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class MainTest {
 
+    @Test
+    public void test(){
+        System.out.println(((Integer)null == 1000));
+    }
+
     /**
      * 测试转发和涨粉流程
      */
@@ -49,7 +54,9 @@ public class MainTest {
             } catch (Exception e) {
                 log.error("Exception",e);
             }
-            followingGroup.setGroupId(context.getProperty(AddFollowingToGroupWrapperAPI.NEW_GROUP,String.class));
+            if(context.getProperty(AddFollowingToGroupWrapperAPI.NEW_GROUP,FollowingGroup.class) != null){
+                followingGroup.setGroupId(context.getProperty(AddFollowingToGroupWrapperAPI.NEW_GROUP,FollowingGroup.class).getGroupId());
+            }
             countDownLatch.countDown();
             log.info("完成一次循环");
         },0,3, TimeUnit.MINUTES);

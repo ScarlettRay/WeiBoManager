@@ -106,7 +106,10 @@ public class APIManager {
                 if(isMoreToOne(r.getRe(),api)){//如果多对一
                     List<Object> reList = new ArrayList<>();
                     for (Object o : ((Collection) r.getRe())) {
-                        reList.add(api.exe(ParamConvertor.checkAndConvert(o,api),context).getRe());
+                        if(o == null)continue;
+                        Object tmpObj = api.exe(ParamConvertor.checkAndConvert(o,api),context).getRe();
+                        if(tmpObj == null)continue;
+                        reList.add(tmpObj);
                     }
                     r = R.ok(reList);
                 }else{
