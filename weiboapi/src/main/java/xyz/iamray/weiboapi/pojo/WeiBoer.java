@@ -21,11 +21,15 @@ public class WeiBoer {
 
     private String uid;
 
-    private String gid;//分组
+    private FollowingGroup group;//分组
 
     private String nickName;//昵称
 
     private String profileUrl;//主页URL
+
+    private boolean following;
+
+    private boolean followMe;
 
     public WeiBoer(){}
 

@@ -3,7 +3,7 @@ package xyz.iamray.flow.impl.getfansflow;
 import xyz.iamray.weiboapi.api.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
-import xyz.iamray.weiboapi.pojo.Group;
+import xyz.iamray.weiboapi.pojo.ChatGroup;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Map;
  * @author winray
  * @since v1.0.1
  */
-public class GroupsToWeiBosAPI implements ApiBridge<List<Group>, List<WeiBoer>> {
+public class GroupsToWeiBosAPI implements ApiBridge<List<ChatGroup>, List<WeiBoer>> {
 
     public static final GroupsToWeiBosAPI INSTANCE = new GroupsToWeiBosAPI();
 
@@ -27,10 +27,10 @@ public class GroupsToWeiBosAPI implements ApiBridge<List<Group>, List<WeiBoer>> 
     }
 
     @Override
-    public R<List<WeiBoer>> exe(List<Group> groups, Context context) {
+    public R<List<WeiBoer>> exe(List<ChatGroup> groups, Context context) {
         Map<String,List<WeiBoer>> map = new HashMap<>();
         List<WeiBoer> weiBoers = new ArrayList<>();
-        for (Group group : groups) {
+        for (ChatGroup group : groups) {
             weiBoers.addAll(group.getWeiBoers());
             map.put(group.getGid(),group.getWeiBoers());
         }

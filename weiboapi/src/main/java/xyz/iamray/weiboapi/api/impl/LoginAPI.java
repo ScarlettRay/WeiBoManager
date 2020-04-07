@@ -1,5 +1,6 @@
 package xyz.iamray.weiboapi.api.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
@@ -15,6 +16,7 @@ import xyz.iamray.weiboapi.session.SessionManger;
  * 登录接口，将登录信息放在session里边，把session交给SessionManger
  *
  */
+@Slf4j
 public class LoginAPI implements API<WeiBoer, WeiBoer>{
 
     public final static LoginAPI INSTANCE = new LoginAPI();

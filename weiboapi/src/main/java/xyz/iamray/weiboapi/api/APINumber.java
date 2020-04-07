@@ -8,7 +8,6 @@ package xyz.iamray.weiboapi.api;
  */
 public final class APINumber {
 
-    public static final String ADDFOLLOWINGTOGROUPAPI = "ADDFOLLOWINGTOGROUPAPI";
     public static final String CRAWLWEIBOAPI = "CRAWLWEIBOAPI";
     public static final String CREATENEWFOLLOWINGGROUPAPI = "CREATENEWFOLLOWINGGROUPAPI";
     public static final String DELIVERBLOGAPI = "DELIVERBLOGAPI";

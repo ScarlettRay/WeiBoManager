@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.api.impl.convertapi.Login2DeliverBlogAPI;
@@ -20,8 +20,8 @@ public class DeliverBlogAPITest {
         apis.add(APINumber.LOGINAPI);
         apis.add("Login2DeliverBlogAPI");
         apis.add(APINumber.DELIVERBLOGAPI);
-        APIManger.register(new Login2DeliverBlogAPI());
-        R<String> r = APIManger.call(TestConstant.WEIBOER,apis, "7364250637", ContextBuilder.buildContext());
+        APIManager.register(new Login2DeliverBlogAPI());
+        R<String> r = APIManager.call(TestConstant.WEIBOER,apis, "7364250637", ContextBuilder.buildContext());
         log.info(r.getRe());
     }
 }

@@ -58,6 +58,7 @@ public class PostBodyBuildUtil {
         return map;
     }
 
+    @Deprecated
     public static Map<String,String> buildGroupChatParam(String gid, String text){
         Map<String,String> map = new HashMap<>();
         map.put("location","msgdialog");
@@ -73,12 +74,23 @@ public class PostBodyBuildUtil {
         return map;
     }
 
-    /**
-     * 构建发送微博的请求体
-     * @param reason
-     * @param mid
-     * @return
-     */
+    public static Map<String,String> buildGroupChatBody(String gid, String text){
+        Map<String,String> map = new HashMap<>();
+        map.put("content",text);
+        map.put("id",gid);
+        map.put("media_type","0");
+        map.put("is_encoded","0");
+        map.put("source","209678993");
+        return map;
+    }
+
+
+        /**
+         * 构建发送微博的请求体
+         * @param reason
+         * @param mid
+         * @return
+         */
     public static Map<String,String> buildForwardParam(String reason, String mid){
         Map<String,String> map = new HashMap<>();
         map.put("pic_src","");

@@ -13,6 +13,8 @@ import xyz.iamray.weiboapi.spider.action.ForwardBlogAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
 import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +26,8 @@ public class ForwardBlogAPI implements API<Blog,Blog> {
 
     public static final ForwardBlogAPI INSTANCE = new ForwardBlogAPI();
 
+    public static final String HAS_FORWRAD_MIDS = "ForwardBlogAPI-HasForwardKey";
+
     @Override
     public String getNumber() {
         return APINumber.FORWARDBLOGAPI;
@@ -31,12 +35,21 @@ public class ForwardBlogAPI implements API<Blog,Blog> {
 
     @Override
     public R<Blog> exe(Blog blog, Context context) {
+        List<String> mids = context.getProperty(HAS_FORWRAD_MIDS, ArrayList.class);
+        if(!WeiBoUtil.isNull(mids) && mids.contains(blog.getMid()))return R.ok(blog);//已经转发过了
+
         String url = AutoWeiBoSpiderConstant.Forward_WeiBo_URL.replace("{}",context.getUid())+System.currentTimeMillis();
         Map<String,String> postBody = PostBodyBuildUtil.buildForwardParam(blog.getReason(),blog.getMid());
         Result<Blog> re = PostSpider.make().defaultThreadPool()
                 .setRequestHeader(Constant.COMMON_HEADER)
                 .setStarterConfiger(url, postBody, ForwardBlogAction.getInstance(),context.getHttpClient())
                 .start();
+        if(mids == null){
+            mids = new ArrayList<>();
+        }
+        mids.add(blog.getMid());
+        context.setProperty(HAS_FORWRAD_MIDS,mids);
+
         return WeiBoUtil.dealResult(re);
     }
 }

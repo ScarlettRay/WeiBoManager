@@ -3,7 +3,7 @@ package managerweibo;
 import lombok.extern.slf4j.Slf4j;
 import managerweibo.convertapi.*;
 import org.junit.Test;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
@@ -29,11 +29,11 @@ public class CrawlHotWeiBoAndForward {
 
     @Test
     public void start(){
-        APIManger.register(new BlogsToBlogBridgeAPI());
-        APIManger.register(new WeiBoToUrlBridgeAPI());
-        APIManger.register(new MoewToOneAPI());
-        APIManger.register(new BlogPrepareBridgeAPI());
-        APIManger.register(new WeiBoerToStringBridgeAPI());
+        APIManager.register(new BlogsToBlogBridgeAPI());
+        APIManager.register(new WeiBoToUrlBridgeAPI());
+        APIManager.register(new MoewToOneAPI());
+        APIManager.register(new BlogPrepareBridgeAPI());
+        APIManager.register(new WeiBoerToStringBridgeAPI());
 
         List<String> apis = new ArrayList<>();
         apis.add(APINumber.LOGINAPI);
@@ -46,7 +46,7 @@ public class CrawlHotWeiBoAndForward {
         apis.add("BlogPrepareBridgeAPI");
         apis.add(APINumber.DELIVERBLOGAPI);
         Context context = ContextBuilder.buildContext(Executors.newSingleThreadExecutor());
-        R<Blog> re = APIManger.call(TestConstant.WEIBOER,apis,"7364250637",context);
+        R<Blog> re = APIManager.call(TestConstant.WEIBOER,apis,"7364250637",context);
         log.info(re.getRe().toString());
     }
 }

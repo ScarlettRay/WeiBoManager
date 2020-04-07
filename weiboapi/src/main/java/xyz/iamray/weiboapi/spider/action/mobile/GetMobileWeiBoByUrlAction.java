@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONPath;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
 import xyz.iamray.weiboapi.pojo.Blog;
+import xyz.iamray.weiboapi.pojo.WeiBoer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,11 @@ public class GetMobileWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<L
                 JSONObject mblog = ((JSONObject)o).getJSONObject("mblog");
                 Blog blog = new Blog();
                 blog.setMid(mblog.getString("mid"));
-                blog.setReason(mblog.getString("text"));
+                if(mblog.getBoolean("isLongText")){
+                    blog.setReason((String) JSONPath.eval(mblog,"$.longText.longTextContent"));
+                }else{
+                    blog.setReason(mblog.getString("text"));
+                }
                 //图片
                 JSONArray pics = mblog.getJSONArray("pics");
                 if(pics != null){
@@ -39,6 +44,10 @@ public class GetMobileWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<L
                     }
                     blog.setImagePaths(imgs);
                 }
+                //设置用户
+                WeiBoer weiBoer = new WeiBoer();
+                weiBoer.setUid((String)JSONPath.eval(mblog,"$.user.id"));
+                blog.setWeiBoer(weiBoer);
                 blogs.add(blog);
             }
         }

@@ -2,7 +2,8 @@ package xyz.iamray.flow;
 
 import xyz.iamray.flow.bridge.*;
 import xyz.iamray.flow.impl.forwardhotlist.CommentToBlogBridgeAPI;
-import xyz.iamray.weiboapi.api.APIManger;
+import xyz.iamray.flow.impl.getfansflow.*;
+import xyz.iamray.weiboapi.api.APIManager;
 
 /**
  * @author winray
@@ -11,11 +12,17 @@ import xyz.iamray.weiboapi.api.APIManger;
 public class RegisterCenter {
 
     public static void registerAll() {
-        APIManger.register(ConvertHotWeiBoUrlBridgeAPI.INSTANCE);
-        APIManger.register(MobalHotListUrlBridgeAPI.INSTANCE);
-        APIManger.register(MoreToOneInListBridgeAPI.INSTANCE);
-        APIManger.register(MapToSetBridgeAPI.INSTANCE);
-        APIManger.register(CommentToBlogBridgeAPI.INSTANCE);
-        APIManger.register(ListToOneBridgeAPI.INSTANCE);
+        APIManager.register(ConvertHotWeiBoUrlBridgeAPI.INSTANCE);
+        APIManager.register(MobalHotListUrlBridgeAPI.INSTANCE);
+        APIManager.register(MoreToOneInListBridgeAPI.INSTANCE);
+        APIManager.register(MapToSetBridgeAPI.INSTANCE);
+        APIManager.register(CommentToBlogBridgeAPI.INSTANCE);
+        APIManager.register(ListToOneBridgeAPI.INSTANCE);
+        //GetFansFlow
+        APIManager.register(AddFollowingToGroupWrapperAPI.INSTANCE);
+        APIManager.register(BuildGroupsBridgeAPI.INSTANCE);
+        APIManager.register(BuildMessagesBridgeAPI.INSTANCE);
+        APIManager.register(BuildWeiBoerWithGroupBridgeAPI.INSTANCE);
+        APIManager.register(GroupsToWeiBosAPI.INSTANCE);
     }
 }
