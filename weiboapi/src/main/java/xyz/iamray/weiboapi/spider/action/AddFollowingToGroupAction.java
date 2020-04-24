@@ -10,13 +10,13 @@ import xyz.iamray.repo.CrawlMes;
  * @since v1.0.1
  */
 @Slf4j
-public class AddFollowingToGroupAction extends AbstractJsonObjectCrawlerAction<Integer> {
+public class AddFollowingToGroupAction extends AbstractJsonObjectCrawlerAction<String> {
 
     public static final AddFollowingToGroupAction INSTANCE = new AddFollowingToGroupAction();
 
     @Override
-    public Integer crawl(JSONObject jsonObject, CrawlMes crawlMes) {
+    public String crawl(JSONObject jsonObject, CrawlMes crawlMes) {
         log.info(jsonObject.toJSONString());
-        return jsonObject.getInteger("code");
+        return jsonObject.getString("code");
     }
 }

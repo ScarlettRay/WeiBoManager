@@ -46,7 +46,7 @@ public class GetMobileWeiBoByUrlAction extends AbstractJsonObjectCrawlerAction<L
                 }
                 //设置用户
                 WeiBoer weiBoer = new WeiBoer();
-                weiBoer.setUid((String)JSONPath.eval(mblog,"$.user.id"));
+                weiBoer.setUid(String.valueOf(JSONPath.eval(mblog,"$.user.id")));
                 blog.setWeiBoer(weiBoer);
                 blogs.add(blog);
             }
