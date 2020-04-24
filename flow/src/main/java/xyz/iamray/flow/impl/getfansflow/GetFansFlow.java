@@ -2,9 +2,12 @@ package xyz.iamray.flow.impl.getfansflow;
 
 import xyz.iamray.flow.AbstractFlow;
 import xyz.iamray.weiboapi.api.impl.*;
+import xyz.iamray.weiboapi.common.exception.WbException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author winray
@@ -23,6 +26,9 @@ public class GetFansFlow extends AbstractFlow {
 
     private static List<String> apis = new ArrayList<>();
 
+    private static Map<String, String> requiredMap = new HashMap<>();
+
+
     static {
         apis.add(LoginAPI.INSTANCE.getNumber());
         apis.add(BuildGroupsBridgeAPI.INSTANCE.getNumber());
@@ -33,6 +39,12 @@ public class GetFansFlow extends AbstractFlow {
         apis.add(AddFollowingToGroupWrapperAPI.INSTANCE.getNumber());
         apis.add(BuildMessagesBridgeAPI.INSTANCE.getNumber());
         apis.add(SendGroupMessageAPI.INSTANCE.getNumber());
+
+        requiredMap.put(BuildGroupsBridgeAPI.GROUPS,"请输入群组id(List<String>)");
+        requiredMap.put(AddFollowingToGroupWrapperAPI.GROUP_NAME,"请输入关注分组名");
+        requiredMap.put(AddFollowingToGroupWrapperAPI.GROUP_DESC,"请输入关注分组描述");
+        requiredMap.put(INIT_PARAM,"请传入第一个API执行需要的参数");
+        requiredMap.put(INIT_UID,"请输入微博用户的uid");
     }
 
     @Override
@@ -42,6 +54,9 @@ public class GetFansFlow extends AbstractFlow {
 
     @Override
     public void check() throws Exception {
-
+        String mes = checkUtil(requiredMap);
+        if(!mes.isEmpty()){
+            throw new WbException(mes);
+        }
     }
 }
