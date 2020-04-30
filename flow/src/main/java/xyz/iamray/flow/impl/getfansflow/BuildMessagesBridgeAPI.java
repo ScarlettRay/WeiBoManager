@@ -6,10 +6,7 @@ import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author winray
@@ -40,13 +37,17 @@ public class BuildMessagesBridgeAPI implements ApiBridge<List<WeiBoer>, List<Mes
             }else{
                 sb.append(context.getProperty(MESSAGE_KEY,String.class));
             }
+            HashSet<String> nickName = new HashSet<>();
             if(entry.getValue() != null){
                 entry.getValue().forEach(e->{
                     //没有关注我
                     if(!e.isFollowMe()){
-                        sb.append("@");
-                        sb.append(e.getNickName());
-                        sb.append(" ");
+                        if(!nickName.contains(e.getNickName())){
+                            sb.append("@");
+                            sb.append(e.getNickName());
+                            sb.append(" ");
+                            nickName.add(e.getNickName());
+                        }
                     }
                 });
             }
