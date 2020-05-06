@@ -10,12 +10,6 @@ import xyz.iamray.weiboapi.api.impl.ForwardBlogAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoByUrlAPI;
-import xyz.iamray.weiboapi.common.exception.WbException;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author winray
@@ -25,12 +19,8 @@ import java.util.Map;
  */
 @Slf4j
 public class ForwardHotListFlow extends AbstractFlow {
-    private static List<String> apis = new ArrayList<>();
 
-    private static Map<String, String> requiredMap = new HashMap<>();
-
-
-    static {
+    {
         apis.add(APINumber.LOGINAPI);
         apis.add(MobalHotListUrlBridgeAPI.INSTANCE.getNumber());
         apis.add(CrawlMobalHotListAPI.INSTANCE.getNumber());
@@ -46,16 +36,5 @@ public class ForwardHotListFlow extends AbstractFlow {
         requiredMap.put(INIT_UID,"请输入微博用户的uid");
     }
 
-    protected List<String> getApis(){
-        return apis;
-    }
-
-    @Override
-    public void check() throws Exception {
-        String mes = checkUtil(requiredMap);
-        if(!mes.isEmpty()){
-            throw new WbException(mes);
-        }
-    }
 
 }

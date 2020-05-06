@@ -142,4 +142,10 @@ public class AutoWeiBoSpiderConstant {
     public static final String GET_GROUP_LIST_URL = "https://weibo.com/aj/f/group/list";
 
     public static final String SEND_MESSAGE_URL = "https://api.weibo.com/webim/groupchat/send_message.json";
+
+    //web端点赞
+    public static final String PRAISE_BLOG_URL = "https://s.weibo.com/ajax_Mblog/likeAdd?__rnd=";
+
+    //web端发表评论
+    public static final String DELIVER_COMMENT_URL = "https://s.weibo.com/Ajax_Comment/add?__rnd=";
 }
