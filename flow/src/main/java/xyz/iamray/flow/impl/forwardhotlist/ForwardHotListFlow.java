@@ -42,7 +42,6 @@ public class ForwardHotListFlow extends AbstractFlow {
         apis.add(CommentToBlogBridgeAPI.INSTANCE.getNumber());
         apis.add(ForwardBlogAPI.INSTANCE.getNumber());
 
-        //requiredMap.put(ListToOneBridgeAPI.INDEX,"");
         requiredMap.put(INIT_PARAM,"请传入第一个API执行需要的参数");
         requiredMap.put(INIT_UID,"请输入微博用户的uid");
     }

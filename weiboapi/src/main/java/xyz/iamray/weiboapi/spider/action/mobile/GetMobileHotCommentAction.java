@@ -29,19 +29,7 @@ public class GetMobileHotCommentAction extends AbstractJsonObjectCrawlerAction<L
                 JSONObject commentJsonObj = (JSONObject) o;
                 Comment comment = getCommentFromJson(commentJsonObj);
                 //评论的评论
-                Object subCommentObjs = commentJsonObj.get("comments");
-                if(subCommentObjs instanceof JSONArray){
-                    JSONArray subCommentArray = (JSONArray)subCommentObjs;
-                    if(!subCommentArray.isEmpty()){
-                        List<Comment> subComments = new ArrayList<>();
-                        for (Object subCommentObj : subCommentArray) {
-                            Comment subComment = getCommentFromJson((JSONObject) subCommentObj);
-                            subComments.add(subComment);
-                        }
-                        comment.setSubComment(subComments);
-                    }
-                }
-
+                comment.setSubComment(getSubComments(commentJsonObj));
                 //博主
                 comment.setWeiBoer(getWeiBoerFromJson(commentJsonObj.getJSONObject("user")));
                 comments.add(comment);
@@ -67,5 +55,21 @@ public class GetMobileHotCommentAction extends AbstractJsonObjectCrawlerAction<L
             comment.setImageUrl(largeJson.getString("url"));
         }
         return comment;
+    }
+
+    private List<Comment> getSubComments(JSONObject commentJsonObj){
+        //评论的评论
+        Object subCommentObjs = commentJsonObj.get("comments");
+        List<Comment> subComments = new ArrayList<>();
+        if(subCommentObjs instanceof JSONArray){
+            JSONArray subCommentArray = (JSONArray)subCommentObjs;
+            if(!subCommentArray.isEmpty()){
+                for (Object subCommentObj : subCommentArray) {
+                    Comment subComment = getCommentFromJson((JSONObject) subCommentObj);
+                    subComments.add(subComment);
+                }
+            }
+        }
+        return subComments;
     }
 }

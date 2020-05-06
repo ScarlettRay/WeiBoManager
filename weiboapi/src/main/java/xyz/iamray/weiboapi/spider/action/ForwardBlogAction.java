@@ -21,6 +21,7 @@ public class ForwardBlogAction extends AbstractJsonObjectCrawlerAction<Blog> {
 
     @Override
     public Blog crawl(JSONObject jsonObject, CrawlMes crawlMes) {
+        log.info(jsonObject.toJSONString());
         if(jsonObject.getInteger("code") == 100000){
             return new Blog();//TODO 获取mid
         }else{

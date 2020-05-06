@@ -27,7 +27,7 @@ public class FollowWeiBoerAction extends AbstractJsonObjectCrawlerAction<WeiBoer
                 weiBoer.setFollowing(true);
             }
             if(relation.getInteger("follow_me") == 1){
-                weiBoer.setFollowing(true);
+                weiBoer.setFollowMe(true);
             }
             weiBoer.setNickName((String)JSONPath.eval(jsonObject,"$.data.fnick"));
         }else{
