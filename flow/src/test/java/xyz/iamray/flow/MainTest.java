@@ -25,6 +25,18 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author winray
  * @since v1.0.1
+ * /＼7　　　 ∠ /
+ * /　│　　 ／　／
+ * │　Z ＿,＜　／　　 /`ヽ
+ * │　　　　　ヽ　　 /　　〉
+ * Y　　　　　`　 /　　/
+ * ｲ●　､　●　　⊂⊃〈　　/
+ * ()　   ︶     　  　|　＼〈
+ * >ｰ ､_　 ィ　 │ ／／
+ * / へ　　 /　ﾉ＜| ＼＼
+ * ヽ_ﾉ　　(_／　 │／／
+ * 7　　　　　　　|／
+ * ＞―r￣￣`ｰ―＿丿
  */
 @Slf4j
 public class MainTest {
@@ -39,7 +51,7 @@ public class MainTest {
      */
     @Test
     public void testGetFansFlow() throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(30);
+        CountDownLatch countDownLatch = new CountDownLatch(60);
         RegisterCenter.registerAll();
         LoginUtil.createSession();
         ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(3);
@@ -66,9 +78,11 @@ public class MainTest {
 
     @Test
     public void testForwardFlow() throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(3);
+        RegisterCenter.registerAll();
+        CountDownLatch countDownLatch = new CountDownLatch(6);
         List<String> mids = new ArrayList<>();
         ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(3);
+        LoginUtil.createSession();
         //转发循环
         executor.scheduleAtFixedRate(() -> {
             Context context = ContextBuilder.buildContext(SpiderPool.executorService);
@@ -81,7 +95,7 @@ public class MainTest {
             }
             countDownLatch.countDown();
         },0,60, TimeUnit.MINUTES);
-        countDownLatch.wait();
+        countDownLatch.await();
     }
 
 
@@ -96,7 +110,8 @@ public class MainTest {
 
     private GetFansFlow createGetFansFlow(){
         GetFansFlow flow = new GetFansFlow();
-        List<String> groups = Arrays.asList("4486374369563128","4483270710201090","4480524380658668");
+        List<String> groups = Arrays.asList("4492828023465314","4206288836226287","4495157863336049","4480292360199904",
+                "4496845956996817","4495831107338597","4496599013634210","4494677908955722","4480524380658668","4480520966774917");
         flow.put(BuildGroupsBridgeAPI.GROUPS,groups);
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_NAME,"测试分组");
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_DESC,"测试分组描述");
