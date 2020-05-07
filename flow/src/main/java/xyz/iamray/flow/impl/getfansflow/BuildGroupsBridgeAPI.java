@@ -22,7 +22,7 @@ public class BuildGroupsBridgeAPI implements ApiBridge<Object, List<ChatGroup>> 
 
     @Override
     public R<List<ChatGroup>> exe(Object param, Context context) {
-        List<String> groupIds = context.getProperty(GROUPS, ArrayList.class);
+        List<String> groupIds = context.getProperty(GROUPS, List.class);
         List<ChatGroup> groups = new ArrayList<>();
         groupIds.forEach(e->groups.add(new ChatGroup(e)));
         return R.ok(groups);

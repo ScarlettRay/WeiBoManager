@@ -53,7 +53,7 @@ public class MainTest {
     public void testGetFansFlow() throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(60);
         RegisterCenter.registerAll();
-        LoginUtil.createSession();
+        //LoginUtil.createSession();
         ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor) Executors.newScheduledThreadPool(3);
         FollowingGroup followingGroup = new FollowingGroup();
         //互粉循环
@@ -71,7 +71,7 @@ public class MainTest {
             }
             countDownLatch.countDown();
             log.info("完成一次循环");
-        },0,3, TimeUnit.MINUTES);
+        },0,5, TimeUnit.MINUTES);
 
         countDownLatch.await();
     }
@@ -94,7 +94,9 @@ public class MainTest {
                 log.error("Exception",e);
             }
             countDownLatch.countDown();
+            log.info("完成一次转发");
         },0,60, TimeUnit.MINUTES);
+
         countDownLatch.await();
     }
 
@@ -110,8 +112,7 @@ public class MainTest {
 
     private GetFansFlow createGetFansFlow(){
         GetFansFlow flow = new GetFansFlow();
-        List<String> groups = Arrays.asList("4492828023465314","4206288836226287","4495157863336049","4480292360199904",
-                "4496845956996817","4495831107338597","4496599013634210","4494677908955722","4480524380658668","4480520966774917");
+        List<String> groups = Arrays.asList("4486374369563128","4483270710201090","4480524380658668");
         flow.put(BuildGroupsBridgeAPI.GROUPS,groups);
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_NAME,"测试分组");
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_DESC,"测试分组描述");

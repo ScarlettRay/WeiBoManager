@@ -181,6 +181,31 @@ public class PostBodyBuildUtil {
         return map;
     }
 
+    public static Map<String,String> buildPraiseWeiBoParam(String mid){
+        Map<String,String> map = new HashMap<>();
+        map.put("mid",mid);
+        map.put("location","");
+        map.put("action_code","13");
+        map.put("_t","0");
+        return map;
+    }
+
+    public static Map<String,String> buildCommentParam(String mid,String content){
+        Map<String,String> map = new HashMap<>();
+        map.put("act","post");
+        map.put("mid",mid);
+        //map.put("uid",);
+        map.put("forward","0");
+        map.put("isroot","0");
+        map.put("content",content);
+        map.put("pageid","weibo");
+        map.put("dom","javascript:void(0)");
+        //map.put("ouid",);
+        map.put("action_code","31");
+        map.put("_t","0");
+        return map;
+    }
+
 
 
 }

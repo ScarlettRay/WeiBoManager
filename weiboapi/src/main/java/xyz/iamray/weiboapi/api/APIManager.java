@@ -28,22 +28,23 @@ public class APIManager {
 
     //注册系统自带的api
     static{
-        register( new AddFollowingToGroupAPI());
-        register( new CrawlWeiBoAPI());
-        register( new CreateNewFollowingGroupAPI());
-        register( new DeliverBlogAPI());
-        register( new FollowWeiboerAPI());
-        register( new ForwardBlogAPI());
-        register( new GetMobalHotCommentAPI());
-        register( new GetWeiBoersFromGroupChatAPI());
-        register( new LoginAPI());
-        register( new SendGroupMessageAPI());
-        register( new SendPrivateLetterAPI());
-        register( new UploadImageAPI());
-        register( new GetMobalHotCommentAPI());
-        register( new CrawlWeiBoByUrlAPI());
-        register( new CrawlMobalHotListAPI());
-        register( new GetMobalWeiBoByUrlAPI());
+        register(new AddFollowingToGroupAPI());
+        register(new CrawlWeiBoAPI());
+        register(new CreateNewFollowingGroupAPI());
+        register(new DeliverBlogAPI());
+        register(new FollowWeiboerAPI());
+        register(new ForwardBlogAPI());
+        register(new GetMobalHotCommentAPI());
+        register(new GetWeiBoersFromGroupChatAPI());
+        register(new LoginAPI());
+        register(new SendGroupMessageAPI());
+        register(new SendPrivateLetterAPI());
+        register(new UploadImageAPI());
+        register(new GetMobalHotCommentAPI());
+        register(new CrawlWeiBoByUrlAPI());
+        register(new CrawlMobalHotListAPI());
+        register(new GetMobalWeiBoByUrlAPI());
+        register(PraiseWeiBoAPI.INSTANCE);
 
     }
 

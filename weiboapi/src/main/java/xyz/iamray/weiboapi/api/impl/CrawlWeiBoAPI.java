@@ -22,6 +22,8 @@ public class CrawlWeiBoAPI implements API<WeiBoer,List<Blog>> {
 
     public final static CrawlWeiBoAPI INSTANCE = new CrawlWeiBoAPI();
 
+    public final static String CRAWL_PAGE = "CrawlWeiBoAPI-CrawlPage";
+
     @Override
     public String getNumber() {
         return APINumber.CRAWLWEIBOAPI;
@@ -31,7 +33,7 @@ public class CrawlWeiBoAPI implements API<WeiBoer,List<Blog>> {
     public R<List<Blog>> exe(WeiBoer weiBoer, Context context) {
         String url = AutoWeiBoSpiderConstant.WEIBO_HOME_URL
                 .replace("{uid}",weiBoer.getUid())
-                .replace("{page}",context.getProperty("crawl_page",String.class));
+                .replace("{page}",context.getProperty(CRAWL_PAGE,String.class));
         SimpleSpider spider = SimpleSpider.make();
         spider.customThreadPool(context.getExecutorService(),true);
         Result<List<Blog>> re = spider.setRequestHeader(SpiderConstant.DefaultHeader)

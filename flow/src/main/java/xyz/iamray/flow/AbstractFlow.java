@@ -3,7 +3,9 @@ package xyz.iamray.flow;
 import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
+import xyz.iamray.weiboapi.common.exception.WbException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,11 @@ import java.util.Map;
 public abstract class AbstractFlow implements Flow{
 
     protected Map<String,Object> properties = new HashMap<>();
+
+    protected Map<String, String> requiredMap = new HashMap<>();
+
+    protected List<String> apis = new ArrayList<>();
+
 
     private FlowState state = FlowState.UNRUN;
 
@@ -28,8 +35,6 @@ public abstract class AbstractFlow implements Flow{
     public FlowState getState() {
         return this.state;
     }
-
-    protected abstract List<String> getApis();
 
     @Override
     public <T> R<T> execute(Context context) throws Exception {
@@ -51,5 +56,17 @@ public abstract class AbstractFlow implements Flow{
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public void check() throws Exception {
+        String mes = checkUtil(requiredMap);
+        if(!mes.isEmpty()){
+            throw new WbException(mes);
+        }
+    }
+
+    protected List<String> getApis(){
+        return apis;
     }
 }
