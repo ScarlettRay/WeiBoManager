@@ -19,6 +19,7 @@ public class PraiseCommentFlow extends AbstractFlow{
         apis.add(BuildWeiBoerBridegAPI.INSTANCE.getNumber());
         apis.add(CrawlWeiBoAPI.INSTANCE.getNumber());
         apis.add(PraiseWeiBoAPI.INSTANCE.getNumber());
+        apis.add(AddCommentToBlogBridgeAPI.INSTANCE.getNumber());
         apis.add(DeliverCommentAPI.INSTANCE.getNumber());
     }
 }
