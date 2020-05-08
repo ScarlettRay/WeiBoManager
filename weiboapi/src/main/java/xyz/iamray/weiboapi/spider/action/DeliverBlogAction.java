@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
+import xyz.iamray.weiboapi.common.constant.TextConstant;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.pojo.Blog;
 
@@ -22,7 +23,7 @@ public class DeliverBlogAction extends AbstractJsonObjectCrawlerAction<Blog> {
         if(jsonObject.getInteger("code") == 100000){
             //进行一些属性的设置
 
-            return getAttr("blog",Blog.class);
+            return getAttribute(TextConstant.API_INPUT,Blog.class);
         }else{
             throw new WbException(jsonObject.toJSONString());
         }

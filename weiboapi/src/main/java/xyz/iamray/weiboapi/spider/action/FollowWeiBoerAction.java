@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONPath;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.action.impl.AbstractJsonObjectCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
+import xyz.iamray.weiboapi.common.constant.TextConstant;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
@@ -20,7 +21,7 @@ public class FollowWeiBoerAction extends AbstractJsonObjectCrawlerAction<WeiBoer
     @Override
     public WeiBoer crawl(JSONObject jsonObject, CrawlMes crawlMes) {
         log.info("FollowWeiBoerAction:" + jsonObject);
-        WeiBoer weiBoer = getAttribute("weiboer",WeiBoer.class);
+        WeiBoer weiBoer = getAttribute(TextConstant.API_INPUT,WeiBoer.class);
         if(jsonObject.getInteger("code") == 100000){
             JSONObject relation = (JSONObject) JSONPath.eval(jsonObject,"$.data.relation");
             if(relation.getInteger("following") == 1){
