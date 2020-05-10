@@ -33,6 +33,10 @@ public class WeiBoUtil {
         return collection == null || collection.isEmpty();
     }
 
+    public static boolean isNotNull(Collection collection){
+        return collection != null && !collection.isEmpty();
+    }
+
     public static <I,O> R<O> dealResult(Result<I> result){
         R r = new R();
         if(result.getCrawlMes().getExceptions().isEmpty()){

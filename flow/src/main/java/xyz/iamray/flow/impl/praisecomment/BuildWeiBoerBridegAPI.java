@@ -29,6 +29,7 @@ public class BuildWeiBoerBridegAPI implements ApiBridge<Object,List<WeiBoer>> {
         List<WeiBoer> weiBoers = new ArrayList<>();
         weiboerIds.forEach(e->{
             WeiBoer weiBoer = new WeiBoer();
+            weiBoer.setUid(e);
             weiBoers.add(weiBoer);
         });
         return R.ok(weiBoers);
