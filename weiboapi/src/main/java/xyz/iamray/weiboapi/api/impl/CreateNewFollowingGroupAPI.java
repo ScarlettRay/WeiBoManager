@@ -1,17 +1,13 @@
 package xyz.iamray.weiboapi.api.impl;
 
-import xyz.iamray.core.PostSpider;
-import xyz.iamray.link.Result;
-import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
+import xyz.iamray.weiboapi.api.AbstractPostAPI;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.FollowingGroup;
 import xyz.iamray.weiboapi.spider.action.CreateNewFollowingGroupAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
-import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 import java.util.Map;
 
@@ -19,7 +15,7 @@ import java.util.Map;
  * @author winray
  * @since v1.0.1
  */
-public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingGroup> {
+public class CreateNewFollowingGroupAPI extends AbstractPostAPI<FollowingGroup,FollowingGroup> {
 
     public final static CreateNewFollowingGroupAPI INSTANCE = new CreateNewFollowingGroupAPI();
 
@@ -29,14 +25,18 @@ public class CreateNewFollowingGroupAPI implements API<FollowingGroup,FollowingG
     }
 
     @Override
-    public R<FollowingGroup> exe(FollowingGroup group, Context context) {
-        Map<String,String> postBody = PostBodyBuildUtil.buildAddGroupParam(group.getName(),group.getDescription(),group.isPublic());
-        Result<FollowingGroup> re = PostSpider.make().defaultThreadPool().setRequestHeader(Constant.COMMON_HEADER)
-                .setProperty("followingGroup",group)
-                .setStarterConfiger(AutoWeiBoSpiderConstant.ADD_GROUP_URL+System.currentTimeMillis(),
-                        postBody,CreateNewFollowingGroupAction.getInstance(),context.getHttpClient())
-                .start();
-
-        return WeiBoUtil.dealResult(re);
+    protected String getUrl(FollowingGroup param, Context context) {
+        return AutoWeiBoSpiderConstant.ADD_GROUP_URL+System.currentTimeMillis();
     }
+
+    @Override
+    protected Map<String, String> getPostBody(FollowingGroup group, Context context) {
+        return PostBodyBuildUtil.buildAddGroupParam(group.getName(),group.getDescription(),group.isPublic());
+    }
+
+    @Override
+    protected CrawlerAction getCrawlerAction() {
+        return CreateNewFollowingGroupAction.getInstance();
+    }
+
 }

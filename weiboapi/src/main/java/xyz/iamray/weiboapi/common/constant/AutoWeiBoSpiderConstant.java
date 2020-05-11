@@ -31,9 +31,6 @@ public class AutoWeiBoSpiderConstant {
 
     public static final String WEIBO_WEB_URL_HOT = "https://weibo.com/u/{uid}?is_search=0&visible=0&is_hot=1&is_tag=0&profile_ftype=1&page=";
 
-    //图片数大于5的才爬
-    public static final Integer PIC_SIZE = 5;
-
     /**
      * 微博预登陆接口
      */
@@ -69,12 +66,6 @@ public class AutoWeiBoSpiderConstant {
      */
     public static final String SHEYING_FOLLOW_URL = "https://weibo.com/p/{uid}/myfollow?gid=3984393204979718&Pl_Official_RelationMyfollow__92_page=";
 
-    /**
-     * 骚话组下的关注
-     */
-    public static final String SAOHUA_FOLLOW_URL = "https://weibo.com/p/{uid}/myfollow?gid=4231209502641627&Pl_Official_RelationMyfollow__92_page=";
-
-    public static final String MingXing_Follow_URL = "https://weibo.com/p/1005055945738590/myfollow?t=1&gid=4025574361414188&cfs=&Pl_Official_RelationMyfollow__92_page=";
     /**
      * 继续加载更多的url
      */
@@ -128,7 +119,7 @@ public class AutoWeiBoSpiderConstant {
     public static final String RPOFILE_URL_WITH_PAGE = "https://weibo.com/{uid}?is_all=1&is_tag=0&page={page}";
 
     //博主微博列表
-    public static final String WEIBO_HOME_URL = "https://weibo.com/p/{uid}/home?pids=Pl_Official_MyProfileFeed__23&is_all=1&page={page}&ajaxpagelet=1";
+    public static final String WEIBO_HOME_URL = "https://weibo.com/p/{uid}/home?pids=Pl_Official_MyProfileFeed__20&is_all=1&page={page}&ajaxpagelet=1";
 
     //微博热门评论
     public static final String WEIBO_HOT_COMMENT_URL = "https://weibo.com/aj/v6/comment/small?ajwvr=6&act=list&mid={mid}&isMain=true&comment_type=0&_t=0&__rnd=&comment_type=0&_t=0&__rnd=";

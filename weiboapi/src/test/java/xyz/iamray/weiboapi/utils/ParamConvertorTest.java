@@ -5,6 +5,7 @@ import org.junit.Test;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.impl.CrawlWeiBoByUrlAPI;
+import xyz.iamray.weiboapi.api.impl.PraiseWeiBoAPI;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
@@ -65,6 +66,12 @@ public class ParamConvertorTest {
         Set<String> re = new HashSet<>();
         re.add("test");
         Assert.assertEquals(ParamConvertor.checkAndConvert(re,api).getClass(),ArrayList.class);
+    }
+
+    @Test
+    public void test6(){
+        API api = new PraiseWeiBoAPI();
+        ParamConvertor.getRowType(api);
     }
 
 

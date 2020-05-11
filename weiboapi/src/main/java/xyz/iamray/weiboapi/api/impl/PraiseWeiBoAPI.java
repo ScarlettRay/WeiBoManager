@@ -1,13 +1,16 @@
 package xyz.iamray.weiboapi.api.impl;
 
 import xyz.iamray.action.CrawlerAction;
+import xyz.iamray.core.HttpConstant;
 import xyz.iamray.weiboapi.api.AbstractPostAPI;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
+import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.PraiseWeiBoAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,5 +40,14 @@ public class PraiseWeiBoAPI extends AbstractPostAPI<Blog,Blog> {
     @Override
     protected CrawlerAction getCrawlerAction() {
         return new PraiseWeiBoAction();
+    }
+
+    @Override
+    protected Map<String, String> getRequestHeader() {
+        Map<String,String> header = new HashMap<>(Constant.COMMON_HEADER);
+        header.put("Content-Type","application/x-www-form-urlencoded");
+        header.put("X-Requested-With","XMLHttpRequest");
+        header.put(HttpConstant.Header.REFERER,"https://s.weibo.com/weibo");
+        return header;
     }
 }

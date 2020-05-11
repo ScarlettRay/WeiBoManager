@@ -1,14 +1,11 @@
 package xyz.iamray.weiboapi.api.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import xyz.iamray.core.PostSpider;
-import xyz.iamray.link.Result;
-import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
+import xyz.iamray.weiboapi.api.AbstractPostAPI;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.spider.action.SendGroupMessageAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
@@ -21,7 +18,7 @@ import java.util.Map;
  * 发送群消息
  */
 @Slf4j
-public class SendGroupMessageAPI implements API<Message,Message> {
+public class SendGroupMessageAPI extends AbstractPostAPI<Message,Message> {
 
     public final static SendGroupMessageAPI INSTANCE = new SendGroupMessageAPI();
 
@@ -31,14 +28,17 @@ public class SendGroupMessageAPI implements API<Message,Message> {
     }
 
     @Override
-    public R<Message> exe(Message groupMessage, Context context) {
-        String url = AutoWeiBoSpiderConstant.SEND_MESSAGE_URL;
-        Map<String,String> postBody = PostBodyBuildUtil.buildGroupChatBody(groupMessage.getId(),groupMessage.getText());
-        PostSpider spider = PostSpider.make();
-        spider.customThreadPool(context.getExecutorService(),true);
-        Result<Message> result = spider.setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(url,postBody, SendGroupMessageAction.getInstance(),context.getHttpClient())
-                .start();
-        return R.ok(result.getObj());
+    protected String getUrl(Message param, Context context) {
+        return AutoWeiBoSpiderConstant.SEND_MESSAGE_URL;
+    }
+
+    @Override
+    protected Map<String, String> getPostBody(Message groupMessage, Context context) {
+        return PostBodyBuildUtil.buildGroupChatBody(groupMessage.getId(),groupMessage.getText());
+    }
+
+    @Override
+    protected CrawlerAction getCrawlerAction() {
+        return SendGroupMessageAction.getInstance();
     }
 }

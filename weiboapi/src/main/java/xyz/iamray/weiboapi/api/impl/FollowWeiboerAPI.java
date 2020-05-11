@@ -1,13 +1,10 @@
 package xyz.iamray.weiboapi.api.impl;
 
-import xyz.iamray.core.PostSpider;
-import xyz.iamray.link.Result;
-import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
+import xyz.iamray.weiboapi.api.AbstractPostAPI;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 import xyz.iamray.weiboapi.spider.action.FollowWeiBoerAction;
 import xyz.iamray.weiboapi.utils.PostBodyBuildUtil;
@@ -20,7 +17,7 @@ import java.util.Map;
  * 关注微博api,
  * 此接口必须有自定义的线程池
  */
-public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
+public class FollowWeiboerAPI extends AbstractPostAPI<WeiBoer, WeiBoer> {
 
     public final static FollowWeiboerAPI INSTANCE = new FollowWeiboerAPI();
 
@@ -30,15 +27,18 @@ public class FollowWeiboerAPI implements API<WeiBoer, WeiBoer> {
     }
 
     @Override
-    public R<WeiBoer> exe(WeiBoer weiBoer, Context context) {
-        String url = AutoWeiBoSpiderConstant.Followed_URL+System.currentTimeMillis();
-        Map<String,String> postBody = PostBodyBuildUtil.buildFollowedParam(weiBoer.getUid());
-        PostSpider spider = PostSpider.make();
-        spider.customThreadPool(context.getExecutorService(),true);
-        Result<WeiBoer> re = spider.setRequestHeader(Constant.COMMON_HEADER)
-                .setProperty("weiboer",weiBoer)
-                .setStarterConfiger(url,postBody, FollowWeiBoerAction.INSTANCE,context.getHttpClient())
-                .start();
-        return R.ok(re.getObj());
+    protected String getUrl(WeiBoer param, Context context) {
+        return AutoWeiBoSpiderConstant.Followed_URL+System.currentTimeMillis();
     }
+
+    @Override
+    protected Map<String, String> getPostBody(WeiBoer weiBoer, Context context) {
+        return PostBodyBuildUtil.buildFollowedParam(weiBoer.getUid());
+    }
+
+    @Override
+    protected CrawlerAction getCrawlerAction() {
+        return FollowWeiBoerAction.INSTANCE;
+    }
+
 }

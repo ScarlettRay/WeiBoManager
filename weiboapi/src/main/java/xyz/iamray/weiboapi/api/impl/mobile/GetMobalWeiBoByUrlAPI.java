@@ -1,12 +1,9 @@
 package xyz.iamray.weiboapi.api.impl.mobile;
 
-import xyz.iamray.core.SimpleSpider;
-import xyz.iamray.core.SpiderConstant;
-import xyz.iamray.link.Result;
-import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.common.R;
+import xyz.iamray.weiboapi.api.impl.AbstractGetAPI;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.mobile.GetMobileWeiBoByUrlAction;
 
@@ -17,7 +14,7 @@ import java.util.List;
  * @create 2020-03-19 16:30:46
  * <p>
  */
-public class GetMobalWeiBoByUrlAPI implements API<String,List<Blog>> {
+public class GetMobalWeiBoByUrlAPI extends AbstractGetAPI<String,List<Blog>> {
 
     public final static GetMobalWeiBoByUrlAPI INSTANCE = new GetMobalWeiBoByUrlAPI();
 
@@ -27,12 +24,13 @@ public class GetMobalWeiBoByUrlAPI implements API<String,List<Blog>> {
     }
 
     @Override
-    public R<List<Blog>> exe(String url, Context context) {
-        SimpleSpider spider = SimpleSpider.make();
-        spider.customThreadPool(context.getExecutorService(),true);
-        Result<List<Blog>> result = spider.setRequestHeader(SpiderConstant.DefaultHeader)
-                .setStarterConfiger(url, GetMobileWeiBoByUrlAction.INSTANCE).start();
-
-        return R.ok(result.getObj());
+    protected String getUrl(String url, Context context) {
+        return url;
     }
+
+    @Override
+    protected CrawlerAction getCrawlerAction() {
+        return GetMobileWeiBoByUrlAction.INSTANCE;
+    }
+
 }

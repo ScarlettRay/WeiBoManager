@@ -28,24 +28,24 @@ public class APIManager {
 
     //注册系统自带的api
     static{
-        register(new AddFollowingToGroupAPI());
-        register(new CrawlWeiBoAPI());
-        register(new CreateNewFollowingGroupAPI());
-        register(new DeliverBlogAPI());
-        register(new FollowWeiboerAPI());
-        register(new ForwardBlogAPI());
-        register(new GetMobalHotCommentAPI());
-        register(new GetWeiBoersFromGroupChatAPI());
-        register(new LoginAPI());
-        register(new SendGroupMessageAPI());
-        register(new SendPrivateLetterAPI());
-        register(new UploadImageAPI());
-        register(new GetMobalHotCommentAPI());
-        register(new CrawlWeiBoByUrlAPI());
-        register(new CrawlMobalHotListAPI());
-        register(new GetMobalWeiBoByUrlAPI());
+        register(AddFollowingToGroupAPI.INSTANCE);
+        register(CrawlWeiBoAPI.INSTANCE);
+        register(CreateNewFollowingGroupAPI.INSTANCE);
+        register(DeliverBlogAPI.INSTANCE);
+        register(FollowWeiboerAPI.INSTANCE);
+        register(ForwardBlogAPI.INSTANCE);
+        register(GetMobalHotCommentAPI.INSTANCE);
+        register(GetWeiBoersFromGroupChatAPI.INSTANCE);
+        register(LoginAPI.INSTANCE);
+        register(SendGroupMessageAPI.INSTANCE);
+        register(SendPrivateLetterAPI.INSTANCE);
+        register(UploadImageAPI.INSTANCE);
+        register(GetMobalHotCommentAPI.INSTANCE);
+        register(CrawlWeiBoByUrlAPI.INSTANCE);
+        register(CrawlMobalHotListAPI.INSTANCE);
+        register(GetMobalWeiBoByUrlAPI.INSTANCE);
         register(PraiseWeiBoAPI.INSTANCE);
-
+        register(DeliverCommentAPI.INSTANCE);
     }
 
     public static boolean register(API api){

@@ -1,15 +1,11 @@
 package xyz.iamray.weiboapi.api.impl.mobile;
 
-import xyz.iamray.core.SimpleSpider;
-import xyz.iamray.link.Result;
-import xyz.iamray.weiboapi.api.API;
+import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.Context;
-import xyz.iamray.weiboapi.common.R;
+import xyz.iamray.weiboapi.api.impl.AbstractGetAPI;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
-import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.spider.action.mobile.GetMobileMessageListAction;
-import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
 import java.util.List;
 
@@ -19,7 +15,7 @@ import java.util.List;
  * I:消息列表第几页
  * O:
  */
-public class GetMobileMessageListAPI implements API<String, List<Message>> {
+public class GetMobileMessageListAPI extends AbstractGetAPI<String, List<Message>> {
 
     public static final GetMobileMessageListAPI INSTANCE  = new GetMobileMessageListAPI();
 
@@ -29,13 +25,12 @@ public class GetMobileMessageListAPI implements API<String, List<Message>> {
     }
 
     @Override
-    public R<List<Message>> exe(String pageNo, Context context) {
-        String url = AutoWeiBoSpiderConstant.GET_MESSAGE_LIST_URL.replace("{page}",pageNo);
-        Result<List<Message>> r = SimpleSpider.make().defaultThreadPool()
-                .setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(url, GetMobileMessageListAction.getInstance(),context.getHttpClient())
-                .start();
+    protected String getUrl(String pageNo, Context context) {
+        return AutoWeiBoSpiderConstant.GET_MESSAGE_LIST_URL.replace("{page}",pageNo);
+    }
 
-        return WeiBoUtil.dealResult(r);
+    @Override
+    protected CrawlerAction getCrawlerAction() {
+        return GetMobileMessageListAction.getInstance();
     }
 }

@@ -108,6 +108,11 @@ public final class ParamConvertor {
                 return typeArgs[0];
             }
         }
+        Type superType = clazz.getGenericSuperclass();
+        if(API.class.isAssignableFrom(((ParameterizedTypeImpl) superType).getRawType())){
+            Type[] typeArgs = ((ParameterizedType)superType).getActualTypeArguments();
+            return typeArgs[0];
+        }
         throw new WbException("API:" + api.getNumber() + " 没有获取到泛型，请检查！");
     }
 
