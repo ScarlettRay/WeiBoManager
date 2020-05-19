@@ -1,6 +1,5 @@
-package xyz.iamray.flow.bridge;
+package xyz.iamray.weiboapi.api.bridge.impl;
 
-import xyz.iamray.weiboapi.api.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;

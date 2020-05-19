@@ -1,6 +1,6 @@
 package xyz.iamray.flow.impl.getfansflow;
 
-import xyz.iamray.weiboapi.api.ApiBridge;
+import xyz.iamray.weiboapi.api.bridge.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.impl.AddFollowingToGroupAPI;
 import xyz.iamray.weiboapi.api.impl.CreateNewFollowingGroupAPI;

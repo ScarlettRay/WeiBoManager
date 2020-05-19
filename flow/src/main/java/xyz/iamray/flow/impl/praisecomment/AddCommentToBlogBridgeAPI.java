@@ -1,7 +1,7 @@
 package xyz.iamray.flow.impl.praisecomment;
 
 import org.apache.commons.lang.math.RandomUtils;
-import xyz.iamray.weiboapi.api.ApiBridge;
+import xyz.iamray.weiboapi.api.bridge.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.Constant;

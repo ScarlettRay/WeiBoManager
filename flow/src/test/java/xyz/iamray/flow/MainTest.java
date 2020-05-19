@@ -2,7 +2,6 @@ package xyz.iamray.flow;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import xyz.iamray.flow.bridge.ListToOneBridgeAPI;
 import xyz.iamray.flow.common.SpiderPool;
 import xyz.iamray.flow.impl.forwardhotlist.ForwardHotListFlow;
 import xyz.iamray.flow.impl.getfansflow.AddFollowingToGroupWrapperAPI;
@@ -11,6 +10,7 @@ import xyz.iamray.flow.impl.getfansflow.BuildWeiBoerWithGroupBridgeAPI;
 import xyz.iamray.flow.impl.getfansflow.GetFansFlow;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
+import xyz.iamray.weiboapi.api.bridge.impl.ListToOneBridgeAPI;
 import xyz.iamray.weiboapi.api.impl.ForwardBlogAPI;
 import xyz.iamray.weiboapi.pojo.FollowingGroup;
 
@@ -25,6 +25,19 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author winray
  * @since v1.0.1
+ * ⣿⣿⠿⠀⢰⠇⠀⠰⣾⡯⠭⠭⣭⠭⡭⠭⠭⠭⢿⡀⠙⠿⣿
+ * ⣿⣤⠀⠀⠀⢸⠀⢠⣧⣤⣤⣤⠤⢼⣾⠥⣤⡤⠤⠬⡇⣠⣴⣾
+ * ⣿⣿⣿⣿⡦⠀⢸⠀⠈⢧⡀⠁⠀⠀⡠⠛⣄⠈⠀⢀⣠⠇⣿⣿⣿
+ * ⣿⣿⠿⠋⠀⠀⣸⡄⠀⢤⣉⠓⠚⠋⠁⡀⢸⡩⣯⡭⢿⡀⠙⠿⣿
+ * ⣿⣷⣤⣄⡀⢼⠋⠀⠀⠀⠉⠉⠁⠀⠀⠳⣼⠇⠀⠀⣼⢹⣾⣿⣿
+ * ⣿⣿⣿⣿⡟⠈⠳⣤⠀⠀⡀⠀⠀⣀⣀⣀⣀⣀⡀⠀⣿⡻⣿⣿⣿
+ * ⣿⣿⣿⣿⣾⣿⣿⠞⣆⠸⡇⠚⠉⠁⠀⣿⣿⡟⠉⢁⣿⣿⣿⣿⣿
+ * ⣿⣿⣿⣿⣿⣿⣿⣶⣿⣆⠈⠁⠀⠰⡖⠙⠛⠃⣠⣿⣿⣿⣿⣿⣿
+ * ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡦⣄⣀⣀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿
+ * ⣿⣿⣿⣿⣿⣿⡿⠿⠟⠛⡛⢷⣤⣀⣠⢾⣛⠛⠿⢿⣿⣿⣿⣿⣿
+ * ⣿⣿⣿⣿⣿⠃⠀⠀⠀⢰⠃⢸⠀⠀⠀⠘⡟⣆⠀⠀⢹⣿⣿⣿⣿
+ *
+ *
  * /＼7　　　 ∠ /
  * /　│　　 ／　／
  * │　Z ＿,＜　／　　 /`ヽ
@@ -112,7 +125,8 @@ public class MainTest {
 
     private GetFansFlow createGetFansFlow(){
         GetFansFlow flow = new GetFansFlow();
-        List<String> groups = Arrays.asList("4486374369563128","4483270710201090","4480524380658668");
+        List<String> groups = Arrays.asList("4495831107338597","4206288836226287","4480292360199904","4495157863336049",
+                "4496599013634210","4494677908955722","4480524380658668","4480520966774917","4496121382332207");
         flow.put(BuildGroupsBridgeAPI.GROUPS,groups);
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_NAME,"测试分组");
         flow.put(AddFollowingToGroupWrapperAPI.GROUP_DESC,"测试分组描述");

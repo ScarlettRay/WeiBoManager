@@ -48,7 +48,6 @@ public class PraiseCommentFlowTest {
         flow.put(Flow.INIT_UID,TestConstant.UID);
         flow.put(BuildWeiBoerBridegAPI.WEIBOERS,getWeiBoers());
         flow.put(CrawlWeiBoAPI.CRAWL_PAGE,"1");
-        flow.put(BlogFilterBridgeAPI.BLOG_FILTER,new BlogFilter());
         flow.put(ListToOneBridgeAPI.INDEX,0);
         return flow;
     }

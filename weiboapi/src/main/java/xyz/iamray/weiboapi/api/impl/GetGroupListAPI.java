@@ -30,7 +30,7 @@ public class GetGroupListAPI implements API<Object, List<FollowingGroup>>{
     @Override
     public R<List<FollowingGroup>> exe(Object param, Context context) {
         Result<List<FollowingGroup>> result = SimpleSpider.make().setRequestHeader(Constant.COMMON_HEADER)
-                .setStarterConfiger(AutoWeiBoSpiderConstant.GET_GROUP_LIST_URL, GetGroupListAction.INSTANCE,context.getHttpClient())
+                .setStarterConfiger(AutoWeiBoSpiderConstant.GET_GROUP_LIST_URL, null,GetGroupListAction.INSTANCE,context.getHttpClient())
                 .start();
         return WeiBoUtil.dealResult(result);
     }

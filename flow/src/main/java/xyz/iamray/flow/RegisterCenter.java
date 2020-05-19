@@ -31,6 +31,5 @@ public class RegisterCenter {
         //PraiseCommentFlow
         APIManager.register(BuildWeiBoerBridegAPI.INSTANCE);
         APIManager.register(AddCommentToBlogBridgeAPI.INSTANCE);
-        APIManager.register(BlogFilterBridgeAPI.INSTANCE);
     }
 }

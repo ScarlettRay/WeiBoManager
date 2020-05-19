@@ -1,6 +1,6 @@
 package xyz.iamray.flow.impl.forwardhotlist;
 
-import xyz.iamray.weiboapi.api.ApiBridge;
+import xyz.iamray.weiboapi.api.bridge.ApiBridge;
 import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
