@@ -1,7 +1,7 @@
 package xyz.iamray.weiboapi.api.bridge.impl;
 
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.bridge.ApiBridge;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 
@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * @author winray
  * @since v1.0.1
+ * 取List里面的一个放到新的List里面
  */
 public class MoreToOneInListBridgeAPI implements ApiBridge<List,List> {
 

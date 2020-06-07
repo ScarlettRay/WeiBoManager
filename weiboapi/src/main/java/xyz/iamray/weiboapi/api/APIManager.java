@@ -1,6 +1,8 @@
 package xyz.iamray.weiboapi.api;
 
 import lombok.extern.slf4j.Slf4j;
+import xyz.iamray.weiboapi.api.bridge.impl.*;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.impl.*;
 import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
@@ -46,6 +48,13 @@ public class APIManager {
         register(GetMobalWeiBoByUrlAPI.INSTANCE);
         register(PraiseWeiBoAPI.INSTANCE);
         register(DeliverCommentAPI.INSTANCE);
+        register(ConvertHotWeiBoUrlBridgeAPI.INSTANCE);
+        register(MobalHotListUrlBridgeAPI.INSTANCE);
+        register(MoreToOneInListBridgeAPI.INSTANCE);
+        register(MapToSetBridgeAPI.INSTANCE);
+        register(ListToOneBridgeAPI.INSTANCE);
+        register(ListsToListBridgeAPI.INSTANCE);
+        register(CrawlWeiBoInUserPageAPI.INSTANCE);
     }
 
     public static boolean register(API api){
@@ -76,13 +85,11 @@ public class APIManager {
     /**
      * api调用接口
      * 上下文环境构建
-     * TODO 1.如果有会话了，删除掉前面的登录api
-     * TODO 2.API之间传入传出类型的转换
      * @param obj 初始api的参数
      * @param apiNumbers
      * @param uid
      */
-    public static <T,E> R<E> call(T obj,List<String> apiNumbers, String uid,Context context){
+    public static <T,E> R<E> call(T obj, List<String> apiNumbers, String uid, Context context){
         if(apiNumbers.isEmpty())return null;
         int i = 0;
         R<?> r = R.ok(obj);

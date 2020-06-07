@@ -2,7 +2,6 @@ package xyz.iamray.flow.impl.praisecomment;
 
 import xyz.iamray.flow.filter.Filter;
 import xyz.iamray.weiboapi.api.bridge.ApiBridge;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.utils.WeiBoUtil;

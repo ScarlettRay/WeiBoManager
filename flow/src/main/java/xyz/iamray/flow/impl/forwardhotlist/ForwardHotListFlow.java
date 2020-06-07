@@ -2,10 +2,10 @@ package xyz.iamray.flow.impl.forwardhotlist;
 
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.flow.AbstractFlow;
-import xyz.iamray.flow.bridge.ConvertHotWeiBoUrlBridgeAPI;
-import xyz.iamray.flow.bridge.ListToOneBridgeAPI;
-import xyz.iamray.flow.bridge.MobalHotListUrlBridgeAPI;
 import xyz.iamray.weiboapi.api.APINumber;
+import xyz.iamray.weiboapi.api.bridge.impl.ConvertHotWeiBoUrlBridgeAPI;
+import xyz.iamray.weiboapi.api.bridge.impl.ListToOneBridgeAPI;
+import xyz.iamray.weiboapi.api.bridge.impl.MobalHotListUrlBridgeAPI;
 import xyz.iamray.weiboapi.api.impl.ForwardBlogAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;

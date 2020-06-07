@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.api.impl;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.APINumber;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.login.LoginAssistant;
 import xyz.iamray.weiboapi.login.WeiBoLoginMes;

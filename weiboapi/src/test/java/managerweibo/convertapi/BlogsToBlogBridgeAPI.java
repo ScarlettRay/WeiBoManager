@@ -1,7 +1,7 @@
 package managerweibo.convertapi;
 
 import xyz.iamray.weiboapi.api.API;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
 

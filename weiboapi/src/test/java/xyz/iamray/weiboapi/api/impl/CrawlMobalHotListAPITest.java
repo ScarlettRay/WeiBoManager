@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.APINumber;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 
 import java.util.ArrayList;

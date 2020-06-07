@@ -8,9 +8,9 @@ import xyz.iamray.flow.impl.getfansflow.AddFollowingToGroupWrapperAPI;
 import xyz.iamray.flow.impl.getfansflow.BuildGroupsBridgeAPI;
 import xyz.iamray.flow.impl.getfansflow.BuildWeiBoerWithGroupBridgeAPI;
 import xyz.iamray.flow.impl.getfansflow.GetFansFlow;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.api.bridge.impl.ListToOneBridgeAPI;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.impl.ForwardBlogAPI;
 import xyz.iamray.weiboapi.pojo.FollowingGroup;
 

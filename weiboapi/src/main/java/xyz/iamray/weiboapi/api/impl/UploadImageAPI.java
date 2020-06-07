@@ -8,7 +8,7 @@ import xyz.iamray.link.http.HttpClientTool;
 import xyz.iamray.repo.NormalCrawlMes;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.APINumber;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.common.constant.Constant;

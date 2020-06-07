@@ -2,7 +2,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.AbstractPostAPI;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 import xyz.iamray.weiboapi.spider.action.AddFollowingToGroupAction;
@@ -30,7 +30,7 @@ public class AddFollowingToGroupAPI extends AbstractPostAPI<WeiBoer,String> {
     }
 
     @Override
-    protected Map<String, String> getPostBody(WeiBoer weiBoer, Context context) {
+    protected Map<String, String> getPostBody(WeiBoer weiBoer,Context context) {
         return PostBodyBuildUtil.buildGroupAddParam(weiBoer.getGroup().getGroupId(),weiBoer.getUid());
     }
 

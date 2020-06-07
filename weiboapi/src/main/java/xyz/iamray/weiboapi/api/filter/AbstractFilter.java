@@ -1,6 +1,6 @@
 package xyz.iamray.weiboapi.api.filter;
 
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 
 

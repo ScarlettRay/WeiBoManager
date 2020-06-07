@@ -1,7 +1,7 @@
 package xyz.iamray.weiboapi.api.impl.mobile;
 
 import xyz.iamray.action.CrawlerAction;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.impl.AbstractGetAPI;
 import xyz.iamray.weiboapi.spider.action.mobile.CrawlMobileHotListAction;
 

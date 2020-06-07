@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.api.impl;
 import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.AbstractPostAPI;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.DeliverBlogAction;
@@ -31,7 +31,7 @@ public class DeliverBlogAPI extends AbstractPostAPI<Blog,Blog> {
     }
 
     @Override
-    protected Map<String, String> getPostBody(Blog blog, Context context) {
+    protected Map<String, String> getPostBody(Blog blog,Context context) {
         return PostBodyBuildUtil.buildSendBlogParam(blog.getReason(),blog.getImagePaths());
     }
 

@@ -1,5 +1,7 @@
 package xyz.iamray.weiboapi.api;
 
+import xyz.iamray.weiboapi.api.context.APIContext;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.Session;
 
@@ -19,7 +21,7 @@ public class ContextBuilder {
         return new APIContext(executorService);
     }
 
-    static APIContext buildAPIContext(Context context,Session session){
+    static APIContext buildAPIContext(Context context, Session session){
         if(context == null)return new APIContext(session);
         if(context instanceof APIContext){
             ((APIContext)context).setSession(session);

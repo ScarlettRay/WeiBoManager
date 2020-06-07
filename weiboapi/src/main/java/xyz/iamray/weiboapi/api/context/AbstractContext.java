@@ -1,8 +1,6 @@
-package xyz.iamray.weiboapi.api;
+package xyz.iamray.weiboapi.api.context;
 
-import org.apache.http.impl.client.CloseableHttpClient;
 import xyz.iamray.weiboapi.common.exception.WbException;
-import xyz.iamray.weiboapi.pojo.WeiBoer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,14 +12,14 @@ import java.util.concurrent.ExecutorService;
  * 调用过程中的上下文环境
  * 配置会话信息和调用参数
  */
-public abstract class Context {
+public abstract class AbstractContext implements Context{
 
 
     protected ExecutorService executorService;
 
     private Map<String,Object> userProperties = new HashMap<>();
 
-    Context(){}
+    AbstractContext(){}
 
     public ExecutorService getExecutorService(){
         if(executorService == null){
@@ -45,10 +43,4 @@ public abstract class Context {
         }
         return (T)obj;
     }
-
-    public abstract String getUid();
-
-    public abstract CloseableHttpClient getHttpClient();
-
-    public abstract WeiBoer getWeiBoer();
 }

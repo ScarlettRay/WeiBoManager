@@ -4,8 +4,6 @@ import lombok.Data;
 import org.apache.http.impl.client.CloseableHttpClient;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
-import java.util.List;
-
 /**
  * @author winray
  * @since v1.0.1
@@ -26,8 +24,6 @@ public class Session {
     private WeiBoer weiBoer;
 
     private boolean isExpired = false;//是否过期
-
-    private List tasks;
 
     /**
      * TODO

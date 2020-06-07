@@ -1,7 +1,6 @@
 package xyz.iamray.flow.impl.getfansflow;
 
 import xyz.iamray.weiboapi.api.bridge.ApiBridge;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.pojo.WeiBoer;

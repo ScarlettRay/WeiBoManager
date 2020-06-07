@@ -1,7 +1,7 @@
 package xyz.iamray.weiboapi.api.bridge.impl;
 
 import xyz.iamray.weiboapi.api.bridge.ApiBridge;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 
 /**

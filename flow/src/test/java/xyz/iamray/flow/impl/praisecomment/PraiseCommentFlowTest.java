@@ -7,10 +7,10 @@ import xyz.iamray.flow.Flow;
 import xyz.iamray.flow.LoginUtil;
 import xyz.iamray.flow.RegisterCenter;
 import xyz.iamray.flow.TestConstant;
-import xyz.iamray.flow.bridge.ListToOneBridgeAPI;
 import xyz.iamray.flow.common.SpiderPool;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
+import xyz.iamray.weiboapi.api.bridge.impl.ListToOneBridgeAPI;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.impl.CrawlWeiBoAPI;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class PraiseCommentFlowTest {
     }
 
     public static Flow getFlow(){
-        PraiseCommentFlow flow = new PraiseCommentFlow();
+        PraiseCommentFlow flow = new PraiseCommentFlow(new BlogFilter());
         flow.put(Flow.INIT_PARAM, TestConstant.WEIBOER);
         flow.put(Flow.INIT_UID,TestConstant.UID);
         flow.put(BuildWeiBoerBridegAPI.WEIBOERS,getWeiBoers());

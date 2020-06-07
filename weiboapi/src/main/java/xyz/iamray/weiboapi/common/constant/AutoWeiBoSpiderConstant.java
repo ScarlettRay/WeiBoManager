@@ -139,4 +139,7 @@ public class AutoWeiBoSpiderConstant {
 
     //web端发表评论
     public static final String DELIVER_COMMENT_URL = "https://s.weibo.com/Ajax_Comment/add?__rnd=";
+
+    //用户主页weibo的API
+    public static final String USER_HOME_WEIBO_URL = "https://weibo.com/u/{uid}?pids=Pl_Official_MyProfileFeed__23&is_search=0&visible=0&is_all=1&is_tag=0&profile_ftype=1&page={page}&ajaxpagelet=1&ajaxpagelet_v6=1";
 }

@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.utils;
 import org.junit.Assert;
 import org.junit.Test;
 import xyz.iamray.weiboapi.api.API;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.impl.CrawlWeiBoByUrlAPI;
 import xyz.iamray.weiboapi.api.impl.PraiseWeiBoAPI;
 import xyz.iamray.weiboapi.common.R;

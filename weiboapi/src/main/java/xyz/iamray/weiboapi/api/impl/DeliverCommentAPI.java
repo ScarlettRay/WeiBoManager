@@ -2,7 +2,7 @@ package xyz.iamray.weiboapi.api.impl;
 
 import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.AbstractPostAPI;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.pojo.Blog;
@@ -23,12 +23,12 @@ public class DeliverCommentAPI extends AbstractPostAPI<Blog,Blog> {
     public static final DeliverCommentAPI INSTANCE = new DeliverCommentAPI();
 
     @Override
-    protected String getUrl(Blog param, Context context) {
+    protected String getUrl(Blog param,Context context) {
         return AutoWeiBoSpiderConstant.DELIVER_COMMENT_URL + System.currentTimeMillis();
     }
 
     @Override
-    protected Map<String, String> getPostBody(Blog blog, Context context) {
+    protected Map<String, String> getPostBody(Blog blog,Context context) {
         List<Comment> commentList = blog.getComments();
         Comment comment = commentList.get(0);
         return PostBodyBuildUtil.buildCommentParam(blog.getMid(),comment.getText());

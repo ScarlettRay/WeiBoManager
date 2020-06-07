@@ -5,7 +5,7 @@ import xyz.iamray.core.SpiderConstant;
 import xyz.iamray.link.Result;
 import xyz.iamray.weiboapi.api.API;
 import xyz.iamray.weiboapi.api.APINumber;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.spider.action.CrawlWeiBoByUrlAction;

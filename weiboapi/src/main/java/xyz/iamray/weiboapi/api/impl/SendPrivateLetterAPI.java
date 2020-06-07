@@ -3,7 +3,7 @@ package xyz.iamray.weiboapi.api.impl;
 import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.AbstractPostAPI;
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.constant.AutoWeiBoSpiderConstant;
 import xyz.iamray.weiboapi.pojo.Message;
 import xyz.iamray.weiboapi.spider.action.SendPrivateLetterAction;
@@ -31,7 +31,7 @@ public class SendPrivateLetterAPI extends AbstractPostAPI<Message,Message> {
     }
 
     @Override
-    protected Map<String, String> getPostBody(Message message, Context context) {
+    protected Map<String, String> getPostBody(Message message,Context context) {
         return PostBodyBuildUtil.buildPrivateMesParam(message.getId(),message.getText());
     }
 

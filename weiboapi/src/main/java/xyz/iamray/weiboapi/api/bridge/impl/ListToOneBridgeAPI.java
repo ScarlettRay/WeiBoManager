@@ -1,6 +1,7 @@
 package xyz.iamray.weiboapi.api.bridge.impl;
 
-import xyz.iamray.weiboapi.api.Context;
+import xyz.iamray.weiboapi.api.bridge.ApiBridge;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.utils.WeiBoUtil;
 
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * @author winray
  * @since v1.0.1
+ * 从List里面选择一个返回
  */
 public class ListToOneBridgeAPI implements ApiBridge<List<Object>,Object> {
 

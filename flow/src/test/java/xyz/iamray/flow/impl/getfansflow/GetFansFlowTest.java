@@ -7,8 +7,8 @@ import xyz.iamray.flow.LoginUtil;
 import xyz.iamray.flow.RegisterCenter;
 import xyz.iamray.flow.TestConstant;
 import xyz.iamray.flow.common.SpiderPool;
-import xyz.iamray.weiboapi.api.Context;
 import xyz.iamray.weiboapi.api.ContextBuilder;
+import xyz.iamray.weiboapi.api.context.Context;
 
 import java.util.Arrays;
 import java.util.List;

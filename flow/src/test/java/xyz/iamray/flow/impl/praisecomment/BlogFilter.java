@@ -1,7 +1,6 @@
 package xyz.iamray.flow.impl.praisecomment;
 
-import xyz.iamray.flow.filter.AbstractFilter;
-import xyz.iamray.flow.filter.Filter;
+import xyz.iamray.weiboapi.api.filter.AbstractFilter;
 import xyz.iamray.weiboapi.pojo.Blog;
 
 /**

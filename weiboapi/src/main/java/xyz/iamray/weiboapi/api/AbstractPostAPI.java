@@ -3,6 +3,7 @@ package xyz.iamray.weiboapi.api;
 import xyz.iamray.action.CrawlerAction;
 import xyz.iamray.core.PostSpider;
 import xyz.iamray.link.Result;
+import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.constant.Constant;
 import xyz.iamray.weiboapi.common.constant.TextConstant;

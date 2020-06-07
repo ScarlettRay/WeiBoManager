@@ -1,4 +1,4 @@
-package xyz.iamray.weiboapi.api;
+package xyz.iamray.weiboapi.api.context;
 
 import org.apache.http.impl.client.CloseableHttpClient;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
@@ -9,18 +9,19 @@ import java.util.concurrent.ExecutorService;
 /**
  * @author winray
  * @since v1.0.1
+ * API运行时上下文
  */
-public class APIContext extends Context{
+public class APIContext extends AbstractContext {
 
     private Session session;
 
-    APIContext(){}
+    public APIContext(){}
 
-    APIContext(ExecutorService executorService){
+    public APIContext(ExecutorService executorService){
         super.executorService = executorService;
     };
 
-    APIContext(Session session){
+    public APIContext(Session session){
         this.session = session;
     }
 
