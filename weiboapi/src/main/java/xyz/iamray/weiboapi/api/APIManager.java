@@ -3,10 +3,12 @@ package xyz.iamray.weiboapi.api;
 import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.weiboapi.api.bridge.impl.*;
 import xyz.iamray.weiboapi.api.context.Context;
+import xyz.iamray.weiboapi.api.filter.SelectForwardBlogFilter;
 import xyz.iamray.weiboapi.api.impl.*;
 import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoByUrlAPI;
+import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoDetailByMidAPI;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
@@ -55,6 +57,8 @@ public class APIManager {
         register(ListToOneBridgeAPI.INSTANCE);
         register(ListsToListBridgeAPI.INSTANCE);
         register(CrawlWeiBoInUserPageAPI.INSTANCE);
+        register(SelectForwardBlogFilter.INSTANCE);
+        register(GetMobalWeiBoDetailByMidAPI.INSTANCE);
     }
 
     public static boolean register(API api){
@@ -133,7 +137,13 @@ public class APIManager {
 
     }
 
+    public static <T,E> R<E> callSingle(T obj, String apiNumber, String uid, Context context){
+        List<String> apiNumbers = Collections.singletonList(apiNumber);
+        return APIManager.call(obj,apiNumbers,null,context);
+    }
+
     private static boolean isMoreToOne(Object re,API api){
+        if(re == null)return false;
         Type type = ParamConvertor.getRowType(api);
         boolean b;
         if(type instanceof Class){

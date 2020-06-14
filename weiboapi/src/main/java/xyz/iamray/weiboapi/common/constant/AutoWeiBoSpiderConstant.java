@@ -142,4 +142,11 @@ public class AutoWeiBoSpiderConstant {
 
     //用户主页weibo的API
     public static final String USER_HOME_WEIBO_URL = "https://weibo.com/u/{uid}?pids=Pl_Official_MyProfileFeed__23&is_search=0&visible=0&is_all=1&is_tag=0&profile_ftype=1&page={page}&ajaxpagelet=1&ajaxpagelet_v6=1";
+
+    public static final String MOBAL_WEIBO_DETAIL_URL = "https://m.weibo.cn/detail/";
+
+    //抽奖详情首页
+    public static final String LOTTERY_URL = "https://lottery.media.weibo.com/lottery/h5/history/list?mid=";
+
+    public static final String MOBAL_HOME_PAGE_URL = "https://m.weibo.cn/n/";
 }

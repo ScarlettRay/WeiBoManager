@@ -1,5 +1,6 @@
 package xyz.iamray.flow;
 
+import xyz.iamray.flow.impl.ffp.GetOmidsBridgeAPI;
 import xyz.iamray.flow.impl.forwardhotlist.CommentToBlogBridgeAPI;
 import xyz.iamray.flow.impl.getfansflow.*;
 import xyz.iamray.flow.impl.praisecomment.AddCommentToBlogBridgeAPI;
@@ -24,5 +25,6 @@ public class RegisterCenter {
         APIManager.register(AddCommentToBlogBridgeAPI.INSTANCE);
         APIManager.register(CommentToBlogBridgeAPI.INSTANCE);
 
+        APIManager.register(GetOmidsBridgeAPI.INSTANCE);
     }
 }

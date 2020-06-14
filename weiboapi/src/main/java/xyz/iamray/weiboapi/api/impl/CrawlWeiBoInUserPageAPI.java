@@ -11,7 +11,6 @@ import xyz.iamray.weiboapi.pojo.Blog;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 import xyz.iamray.weiboapi.spider.action.CrawlWeiBoInUserPageAction;
 import xyz.iamray.weiboapi.utils.WeiBoUtil;
-
 import java.util.List;
 
 /**

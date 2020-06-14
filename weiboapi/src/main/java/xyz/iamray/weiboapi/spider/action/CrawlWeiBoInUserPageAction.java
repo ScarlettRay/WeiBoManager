@@ -1,7 +1,5 @@
 package xyz.iamray.weiboapi.spider.action;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -42,17 +40,15 @@ public class CrawlWeiBoInUserPageAction extends AbstractDocumentCrawlerAction<Li
         Elements els = document.getElementsByTag("script");
         if(els.isEmpty())return Collections.EMPTY_LIST;
         String text = els.get(0).html();
-        Matcher ma = RegexRepo.JSON_REGEX.matcher(text);
-        String jsonStr = null;
+        Matcher ma = RegexRepo.HTML_REGEX.matcher(text);
+        String htmlStr = null;
         if(ma.find()){
-            jsonStr = ma.group();
+            htmlStr = ma.group();
         }else {
             return Collections.EMPTY_LIST;
         }
-        JSONObject jsonObject = JSON.parseObject(jsonStr);
-        String html = jsonObject.getString("html");
-        if (html != null) {
-            Document weiboDoc = Jsoup.parse(html);
+        if (htmlStr != null) {
+            Document weiboDoc = Jsoup.parse(htmlStr);
             Elements feedEls = weiboDoc.select("div[action-type=feed_list_item]");//获取全部列表
             //自定义要抓取的属性
             PropCrawlAction[] customPropActions = getAttr("cutsom_prop", PropCrawlAction[].class);
