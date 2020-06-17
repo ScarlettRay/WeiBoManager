@@ -37,7 +37,7 @@ public enum PrizeRequirement {
                 }
             }
             Blog blog = new Blog();
-            blog.setMid(blog.getMid());
+            blog.setMid(prizeBlog.getBlog().getMid());
             blog.setReason(sb.toString());
             R<Blog> r = APIManager.callSingle(blog, ForwardBlogAPI.INSTANCE.getNumber(),null,context);
             return r.getStatus() != Status.ERR;
