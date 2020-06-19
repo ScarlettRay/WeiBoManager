@@ -5,10 +5,7 @@ import xyz.iamray.weiboapi.api.bridge.impl.*;
 import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.api.filter.SelectForwardBlogFilter;
 import xyz.iamray.weiboapi.api.impl.*;
-import xyz.iamray.weiboapi.api.impl.mobile.CrawlMobalHotListAPI;
-import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
-import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoByUrlAPI;
-import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoDetailByMidAPI;
+import xyz.iamray.weiboapi.api.impl.mobile.*;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.session.SessionManger;
@@ -59,6 +56,8 @@ public class APIManager {
         register(CrawlWeiBoInUserPageAPI.INSTANCE);
         register(SelectForwardBlogFilter.INSTANCE);
         register(GetMobalWeiBoDetailByMidAPI.INSTANCE);
+        register(ExecuteRequirementsBridgeAPI.INSTANCE);
+        register(GetUidByNickNameAPI.INSTANCE);
     }
 
     public static boolean register(API api){

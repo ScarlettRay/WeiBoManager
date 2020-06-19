@@ -84,6 +84,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 本地maven -->
+        <dependency>
+            <groupId>xyz.iamray</groupId>
+            <artifactId>simplespider</artifactId>
+            <version>1.2.1</version>
+        </dependency>
 
     </dependencies>
 

@@ -28,12 +28,12 @@ public enum PrizeRequirement {
         public boolean exe(PrizeBlog prizeBlog, String filter, Context context) {
             //构建转发文字
             StringBuilder sb = new StringBuilder("参与抽奖，谢谢。");
-            for (Tuple<PrizeRequirement, String> requirement : prizeBlog.getRequirements()) {
+            for (Pair<PrizeRequirement, String> requirement : prizeBlog.getRequirements()) {
                 if (requirement.A.equals(FORWARD_KEY_WORD)){
-                    sb.append(requirement.B);
+                    sb.append(requirement.B + " ");
                 }else if(requirement.A.equals(CUE_SOMEONE)){
                     String name = context.getProperty(ExecuteRequirementsBridgeAPI.NICK_NAME,String.class);
-                    sb.append("@" + name);
+                    sb.append("@" + name + " ");
                 }
             }
             Blog blog = new Blog();
@@ -90,19 +90,19 @@ public enum PrizeRequirement {
     };
 
 
-    public static Tuple<PrizeRequirement,String> getRequirement(String string){
+    public static Pair<PrizeRequirement,String> getRequirement(String string){
         if(string.contains("转发微博")){
-            return new Tuple<>(FORWRAD_BLOG,null);
+            return new Pair<>(FORWRAD_BLOG,null);
         }else if(string.contains("关注我")){
-            return new Tuple<>(FOLLOW_ME,null);
+            return new Pair<>(FOLLOW_ME,null);
         }else if(string.contains("点赞微博")){
-            return new Tuple<>(PRAISE_BLOG,null);
+            return new Pair<>(PRAISE_BLOG,null);
         }else if(string.contains("关注:@")){
-            return new Tuple<>(FOLLOW_OTHER,string);
+            return new Pair<>(FOLLOW_OTHER,string);
         }else if (string.contains("@1个好友")){
-            return new Tuple<>(CUE_SOMEONE,null);
+            return new Pair<>(CUE_SOMEONE,null);
         }else if (string.contains("关键字")){
-            return new Tuple<>(FORWARD_KEY_WORD,string);
+            return new Pair<>(FORWARD_KEY_WORD,string);
         }
         throw new WbException("未找到对应的抽奖类型：" + string);
     }

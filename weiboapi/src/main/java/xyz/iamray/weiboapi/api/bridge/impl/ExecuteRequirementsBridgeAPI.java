@@ -4,7 +4,7 @@ import xyz.iamray.weiboapi.api.bridge.ApiBridge;
 import xyz.iamray.weiboapi.api.context.Context;
 import xyz.iamray.weiboapi.common.PrizeRequirement;
 import xyz.iamray.weiboapi.common.R;
-import xyz.iamray.weiboapi.common.Tuple;
+import xyz.iamray.weiboapi.common.Pair;
 import xyz.iamray.weiboapi.pojo.PrizeBlog;
 
 import java.util.List;
@@ -22,13 +22,13 @@ public class ExecuteRequirementsBridgeAPI implements ApiBridge<PrizeBlog,PrizeBl
 
     @Override
     public String getNumber() {
-        return "ExecuteRequirementsAPI";
+        return "ExecuteRequirementsBridgeAPI";
     }
 
     @Override
     public R<PrizeBlog> exe(PrizeBlog prizeBlog, Context context) {
-        List<Tuple<PrizeRequirement,String>> list = prizeBlog.getRequirements();
-        for (Tuple<PrizeRequirement, String> tuple : list) {
+        List<Pair<PrizeRequirement,String>> list = prizeBlog.getRequirements();
+        for (Pair<PrizeRequirement, String> tuple : list) {
             if(!tuple.A.exe(prizeBlog,tuple.B,context)){
                 return null;
             }

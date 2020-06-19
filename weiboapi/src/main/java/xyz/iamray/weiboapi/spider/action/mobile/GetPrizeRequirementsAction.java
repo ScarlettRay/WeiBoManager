@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import xyz.iamray.action.impl.AbstractStringCrawlerAction;
 import xyz.iamray.repo.CrawlMes;
 import xyz.iamray.weiboapi.common.PrizeRequirement;
-import xyz.iamray.weiboapi.common.Tuple;
+import xyz.iamray.weiboapi.common.Pair;
 import xyz.iamray.weiboapi.pojo.PrizeBlog;
 import xyz.iamray.weiboapi.utils.RegexRepo;
 
@@ -32,7 +32,7 @@ public class GetPrizeRequirementsAction extends AbstractStringCrawlerAction<Priz
             return null;
         }
         JSONArray jsonArray = jsonObject.getJSONArray("list");
-        List<Tuple<PrizeRequirement,String>> tuples = new ArrayList<>();
+        List<Pair<PrizeRequirement,String>> tuples = new ArrayList<>();
         if (jsonArray.isEmpty())return null;
         JSONObject object = jsonArray.getJSONObject(0);
         if(object.getInteger("status") == 1){
@@ -42,7 +42,7 @@ public class GetPrizeRequirementsAction extends AbstractStringCrawlerAction<Priz
         String filters = object.getString("filter");
         String[] filterStrs = filters.split("；");
         for (String filterStr : filterStrs) {
-            Tuple<PrizeRequirement,String> tuple = PrizeRequirement.getRequirement(filterStr);
+            Pair<PrizeRequirement,String> tuple = PrizeRequirement.getRequirement(filterStr);
             tuples.add(tuple);
         }
         PrizeBlog blog = new PrizeBlog();
