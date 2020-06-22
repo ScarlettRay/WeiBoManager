@@ -88,9 +88,9 @@ public class APIManager {
     /**
      * api调用接口
      * 上下文环境构建
-     * @param obj 初始api的参数
-     * @param apiNumbers
-     * @param uid
+     * @param obj 第一个API的输入
+     * @param apiNumbers API流程
+     * @param uid 用户uid
      */
     public static <T,E> R<E> call(T obj, List<String> apiNumbers, String uid, Context context){
         if(apiNumbers.isEmpty())return null;

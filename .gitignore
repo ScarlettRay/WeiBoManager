@@ -4,3 +4,5 @@
 
 .idea
 
+/flow/src/test/java/xyz/iamray/flow/TestConstant.java
+/weiboapi/src/test/java/xyz/iamray/weiboapi/utils/TestConstant.java

@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import xyz.iamray.flow.Flow;
 import xyz.iamray.flow.LoginUtil;
 import xyz.iamray.flow.RegisterCenter;
-import xyz.iamray.flow.TestConstant;
 import xyz.iamray.flow.common.SpiderPool;
 import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.api.context.Context;

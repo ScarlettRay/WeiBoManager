@@ -6,6 +6,7 @@ import xyz.iamray.weiboapi.api.bridge.impl.ExecuteRequirementsBridgeAPI;
 import xyz.iamray.weiboapi.api.bridge.impl.ListsToListBridgeAPI;
 import xyz.iamray.weiboapi.api.filter.SelectForwardBlogFilter;
 import xyz.iamray.weiboapi.api.impl.CrawlWeiBoInUserPageAPI;
+import xyz.iamray.weiboapi.api.impl.LoginAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalHotCommentAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoDetailByMidAPI;
 
@@ -17,7 +18,7 @@ import xyz.iamray.weiboapi.api.impl.mobile.GetMobalWeiBoDetailByMidAPI;
 public class ForwardForPrizeFlow extends AbstractFlow {
 
     {
-        //apis.add(LoginAPI.INSTANCE.getNumber());
+        apis.add(LoginAPI.INSTANCE.getNumber());
         apis.add(BuildWeiBoerBridegAPI.INSTANCE.getNumber());
         apis.add(CrawlWeiBoInUserPageAPI.INSTANCE.getNumber());
         apis.add(ListsToListBridgeAPI.INSTANCE.getNumber());

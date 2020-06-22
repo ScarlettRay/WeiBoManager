@@ -11,7 +11,6 @@ import xyz.iamray.weiboapi.pojo.PrizeBlog;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 import xyz.iamray.weiboapi.utils.LoginUtil;
 import xyz.iamray.weiboapi.utils.SpiderPool;
-import xyz.iamray.weiboapi.utils.TestConstant;
 
 import java.util.Arrays;
 import java.util.List;
