@@ -1,9 +1,12 @@
 package xyz.iamray.weiboapi.common;
 
+import lombok.Data;
+
 /**
  * @author winray
  * @since v1.0.1
  */
+@Data
 public class Pair<A,B> {
 
     public A A;

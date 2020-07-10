@@ -8,6 +8,7 @@ import xyz.iamray.weiboapi.api.APINumber;
 import xyz.iamray.weiboapi.api.ContextBuilder;
 import xyz.iamray.weiboapi.common.R;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
+import xyz.iamray.weiboapi.utils.TestConstant;
 
 import java.util.ArrayList;
 import java.util.List;

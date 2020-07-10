@@ -1,6 +1,8 @@
 package xyz.iamray.flow;
 
 import xyz.iamray.flow.impl.ffp.GetOmidsBridgeAPI;
+import xyz.iamray.flow.impl.ffp.GetPrizeRequirementsAPI;
+import xyz.iamray.flow.impl.ffp.PrizeBlogFilter;
 import xyz.iamray.flow.impl.forwardhotlist.CommentToBlogBridgeAPI;
 import xyz.iamray.flow.impl.getfansflow.*;
 import xyz.iamray.flow.impl.praisecomment.AddCommentToBlogBridgeAPI;
@@ -26,5 +28,9 @@ public class RegisterCenter {
         APIManager.register(CommentToBlogBridgeAPI.INSTANCE);
 
         APIManager.register(GetOmidsBridgeAPI.INSTANCE);
+
+        //ffp
+        APIManager.register(PrizeBlogFilter.INSTANCE);
+        APIManager.register(GetPrizeRequirementsAPI.INSTANCE);
     }
 }

@@ -18,7 +18,7 @@ public class PrizeBlogFilter extends AbstractFilter<Blog> {
 
     @Override
     public String getNumber() {
-        return "SelectPrizeBlogAPI";
+        return "PrizeBlogFilter";
     }
 
     @Override

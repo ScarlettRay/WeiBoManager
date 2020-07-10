@@ -11,6 +11,7 @@ import xyz.iamray.weiboapi.pojo.PrizeBlog;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 import xyz.iamray.weiboapi.utils.LoginUtil;
 import xyz.iamray.weiboapi.utils.SpiderPool;
+import xyz.iamray.weiboapi.utils.TestConstant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,8 @@ public class PrizeRequirementTest {
                 new Pair(PrizeRequirement.FORWRAD_BLOG,""),
                 new Pair(PrizeRequirement.CUE_SOMEONE,""),
                 new Pair(PrizeRequirement.FORWARD_KEY_WORD,"转发关键字：#为仝卓办理虚假转学手续6人被处理#"),
-                new Pair(PrizeRequirement.FOLLOW_OTHER,""));
+                new Pair(PrizeRequirement.FOLLOW_OTHER,"关注:@韩墨-"),
+                new Pair(PrizeRequirement.COMMENT_BLOG,"评论"));
         prizeBlog.setRequirements(list);
         prizeBlog.setBlog(blog);
         Context context = ContextBuilder.buildContext(SpiderPool.executorService);

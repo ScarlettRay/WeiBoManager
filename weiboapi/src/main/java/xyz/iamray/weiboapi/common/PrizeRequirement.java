@@ -3,12 +3,14 @@ package xyz.iamray.weiboapi.common;
 import xyz.iamray.weiboapi.api.APIManager;
 import xyz.iamray.weiboapi.api.bridge.impl.ExecuteRequirementsBridgeAPI;
 import xyz.iamray.weiboapi.api.context.Context;
+import xyz.iamray.weiboapi.api.impl.DeliverCommentAPI;
 import xyz.iamray.weiboapi.api.impl.FollowWeiboerAPI;
 import xyz.iamray.weiboapi.api.impl.ForwardBlogAPI;
 import xyz.iamray.weiboapi.api.impl.PraiseWeiBoAPI;
 import xyz.iamray.weiboapi.api.impl.mobile.GetUidByNickNameAPI;
 import xyz.iamray.weiboapi.common.exception.WbException;
 import xyz.iamray.weiboapi.pojo.Blog;
+import xyz.iamray.weiboapi.pojo.Comment;
 import xyz.iamray.weiboapi.pojo.PrizeBlog;
 import xyz.iamray.weiboapi.pojo.WeiBoer;
 
@@ -87,20 +89,35 @@ public enum PrizeRequirement {
         public boolean exe(PrizeBlog prizeBlog, String filter, Context context) {
             return true;
         }
+    },
+    //评论
+    COMMENT_BLOG(){
+        @Override
+        public boolean exe(PrizeBlog prizeBlog, String filter, Context context) {
+            Blog blog = new Blog();
+            blog.setMid(prizeBlog.getBlog().getMid());
+            List<Comment> comments = new ArrayList<>();
+            Comment comment = new Comment();
+            comment.setText("参与抽奖，谢谢！");
+            comments.add(comment);
+            blog.setComments(comments);
+            R<WeiBoer> r = APIManager.callSingle(blog, DeliverCommentAPI.INSTANCE.getNumber(),null,context);
+            return r.getStatus() != Status.ERR;
+        }
     };
 
 
     public static Pair<PrizeRequirement,String> getRequirement(String string){
         if(string.contains("转发微博")){
-            return new Pair<>(FORWRAD_BLOG,null);
+            return new Pair<>(FORWRAD_BLOG,string);
         }else if(string.contains("关注我")){
-            return new Pair<>(FOLLOW_ME,null);
+            return new Pair<>(FOLLOW_ME,string);
         }else if(string.contains("点赞微博")){
-            return new Pair<>(PRAISE_BLOG,null);
+            return new Pair<>(PRAISE_BLOG,string);
         }else if(string.contains("关注:@")){
             return new Pair<>(FOLLOW_OTHER,string);
         }else if (string.contains("@1个好友")){
-            return new Pair<>(CUE_SOMEONE,null);
+            return new Pair<>(CUE_SOMEONE,string);
         }else if (string.contains("关键字")){
             return new Pair<>(FORWARD_KEY_WORD,string);
         }
