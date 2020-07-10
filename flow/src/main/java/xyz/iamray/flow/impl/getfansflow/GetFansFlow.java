@@ -1,10 +1,7 @@
 package xyz.iamray.flow.impl.getfansflow;
 
 import xyz.iamray.flow.AbstractFlow;
-import xyz.iamray.weiboapi.api.impl.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author winray
@@ -22,15 +19,7 @@ import java.util.List;
 public class GetFansFlow extends AbstractFlow {
 
     {
-        apis.add(LoginAPI.INSTANCE.getNumber());
-        apis.add(BuildGroupsBridgeAPI.INSTANCE.getNumber());
-        apis.add(GetWeiBoersFromGroupChatAPI.INSTANCE.getNumber());
-        apis.add(GroupsToWeiBosAPI.INSTANCE.getNumber());
-        apis.add(FollowWeiboerAPI.INSTANCE.getNumber());
-        apis.add(BuildWeiBoerWithGroupBridgeAPI.INSTANCE.getNumber());
-        apis.add(AddFollowingToGroupWrapperAPI.INSTANCE.getNumber());
-        apis.add(BuildMessagesBridgeAPI.INSTANCE.getNumber());
-        apis.add(SendGroupMessageAPI.INSTANCE.getNumber());
+
     }
 
 }
